@@ -1,0 +1,2227 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Magyar Ábécé — Fișă pentru români</title>
+  <style>
+    :root {
+      --bg: #fff;
+      --bg-soft: #f8f7f4;
+      --surface: #fff;
+      --surface-2: #f6f5f1;
+      --ink: #141413;
+      --ink-soft: #6b6a63;
+      --ink-faint: #9e9d98;
+      --line: #e8e6df;
+      --line-strong: #d6d3ca;
+      --hu-red: #ce2939;
+      --hu-green: #477050;
+      --ro-blue: #002b7f;
+      --ro-yellow: #fcd116;
+      --ro-red: #ce1126;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+      --red: #dc2626;
+      --red-bg: #fef2f2;
+      --green: #15803d;
+      --green-bg: #f0fdf4;
+      --orange: #ea580c;
+      --orange-bg: #fff7ed;
+      --warn-ink: #9a3412;
+      --warn-ink-dark: #7c2d12;
+      --warn-line: #fdba74;
+      --shadow-soft: 0 2px 16px rgba(20, 20, 19, 0.06);
+      --shadow-med: 0 8px 32px rgba(20, 20, 19, 0.08);
+      --r-xl: 20px;
+      --r-lg: 14px;
+      --r-md: 10px;
+      --mono:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", monospace;
+      /* Fluid type tokens: rem bounds respect browser text preferences and zoom. */
+      --fs-xs: clamp(0.75rem, calc(0.72rem + 0.12vw), 0.875rem);
+      --fs-sm: clamp(0.875rem, calc(0.84rem + 0.16vw), 1rem);
+      --fs-body: clamp(1rem, calc(0.95rem + 0.22vw), 1.125rem);
+      --fs-lg: clamp(1.125rem, calc(1.02rem + 0.45vw), 1.375rem);
+      --fs-xl: clamp(1.5rem, calc(1.15rem + 1.5vw), 2.5rem);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121210;
+        --bg-soft: #1a1917;
+        --surface: #1e1d1a;
+        --surface-2: #252420;
+        --ink: #f5f3ef;
+        --ink-soft: #a8a6a1;
+        --ink-faint: #7a7975;
+        --line: #2a2926;
+        --line-strong: #3a3935;
+        --blue-bg: #1a2744;
+        --red-bg: #3a1e1e;
+        --green-bg: #1a2e1e;
+        --orange-bg: #3a2616;
+        --warn-ink: #fdba74;
+        --warn-ink-dark: #fed7aa;
+        --warn-line: #7c2d12;
+        --shadow-soft: 0 2px 16px rgba(0, 0, 0, 0.2);
+        --shadow-med: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.55;
+      font-size: var(--fs-body);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    ::selection {
+      background: var(--ro-yellow);
+      color: #141413;
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 12px;
+    }
+
+    @media (min-width: 768px) {
+      .wrap {
+        padding: 0 32px;
+      }
+    }
+
+    .mono {
+      font-family: var(--mono);
+    }
+
+    .soft {
+      color: var(--ink-soft);
+    }
+
+    .faint {
+      color: var(--ink-faint);
+    }
+
+    /* flag strip */
+    .strip {
+      display: flex;
+      height: 6px;
+    }
+
+    .strip span {
+      flex: 1;
+    }
+
+    .strip .gap {
+      flex: 0 0 12px;
+    }
+
+    /* header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px 8px;
+    }
+
+    @media (min-width: 768px) {
+      .head {
+        padding: 20px 0;
+      }
+    }
+
+    .flags {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .flag {
+      display: flex;
+      gap: 2px;
+    }
+
+    .flag i {
+      display: inline-block;
+      width: 14px;
+      height: 10px;
+      border-radius: 2px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .vsep {
+      width: 1px;
+      height: 10px;
+      background: var(--line-strong);
+    }
+
+    h1 {
+      font-weight: 650;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      font-size: 22px;
+    }
+
+    h1 span {
+      font-weight: 300;
+      color: var(--ink-soft);
+    }
+
+    .lede {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      max-width: 62ch;
+    }
+
+    .legend-inline {
+      display: none;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+
+    .legend-inline span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .lede {
+        font-size: 14px;
+      }
+
+      .legend-inline {
+        display: flex;
+      }
+    }
+
+    /* cards */
+    .card {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .intro {
+      margin-top: 24px;
+      display: grid;
+    }
+
+    @media (min-width: 768px) {
+      .intro {
+        margin-top: 32px;
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+    }
+
+    .pad {
+      padding: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .pad {
+        padding: 32px;
+      }
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--hu-green);
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    .intro h2 {
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: 650;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .intro h2 span {
+      color: var(--ink-soft);
+      font-weight: 400;
+    }
+
+    @media (min-width: 768px) {
+      .intro h2 {
+        font-size: 22px;
+      }
+    }
+
+    .stats {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .stat {
+      border-radius: var(--r-md);
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      padding: 12px;
+    }
+
+    .stat b {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .stat p {
+      color: var(--ink-soft);
+      line-height: 1.35;
+      margin-top: 4px;
+    }
+
+    .warn {
+      grid-column: 1/-1;
+      display: flex;
+      gap: 10px;
+      background: var(--orange-bg);
+      border: 1px solid color-mix(in srgb, var(--warn-line) 50%, transparent);
+      border-radius: var(--r-md);
+      padding: 12px;
+    }
+
+    .bang {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .warn b {
+      display: block;
+      font-size: 13px;
+      color: var(--warn-ink);
+    }
+
+    .warn p {
+      color: var(--warn-ink);
+      opacity: 0.85;
+      line-height: 1.35;
+      margin-top: 2px;
+    }
+
+    .side {
+      background: var(--surface-2);
+      border-top: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 768px) {
+      .side {
+        border-top: 0;
+        border-left: 1px solid var(--line);
+      }
+    }
+
+    .kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 600;
+      color: var(--ink-faint);
+    }
+
+    .leg {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .leg-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .leg-row .dot {
+      width: 12px;
+      height: 12px;
+      margin-top: 2px;
+    }
+
+    .leg-row b {
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      margin-left: 8px;
+      vertical-align: 1px;
+    }
+
+    .leg-row p {
+      font-size: 11px;
+      line-height: 1.35;
+      color: var(--ink-soft);
+      margin-top: 2px;
+    }
+
+    .howto {
+      margin-top: 24px;
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 12px;
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .howto b {
+      color: var(--ink);
+    }
+
+    .voice-control {
+      margin-top: 12px;
+    }
+
+    .voice-control label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .voice-control select {
+      width: 100%;
+      min-height: 36px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 6px 32px 6px 10px;
+      font: inherit;
+      font-size: 12px;
+    }
+
+    .voice-control select:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--hu-green) 25%, transparent);
+      outline-offset: 2px;
+    }
+
+    .voice-status {
+      display: block;
+      margin-top: 5px;
+      font-size: 10px;
+      line-height: 1.35;
+      color: var(--ink-faint);
+    }
+
+    .voice-status.error {
+      color: var(--warn-ink);
+    }
+
+    /* sections */
+    section {
+      margin-top: 40px;
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding: 0 4px;
+    }
+
+    .sec-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    @media (min-width: 768px) {
+      .sec-title {
+        font-size: 22px;
+      }
+    }
+
+    .num {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--bg);
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .sec-note {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-faint);
+    }
+
+    .sec-desc {
+      margin-top: 8px;
+      padding: 0 4px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      max-width: 70ch;
+    }
+
+    /* tables */
+    .table-card {
+      margin-top: 16px;
+      box-shadow: var(--shadow-med);
+    }
+
+    .scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead tr {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--line-strong);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      color: var(--ink-faint);
+    }
+
+    th {
+      padding: 12px;
+      font-weight: 600;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--line);
+      transition: background-color 0.15s;
+    }
+
+    tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    tbody tr:hover {
+      background: var(--bg-soft);
+    }
+
+    td {
+      padding: 10px 12px;
+      vertical-align: top;
+    }
+
+    .alpha {
+      font-size: 13.5px;
+      line-height: 1.4;
+    }
+
+    .alpha td:first-child {
+      padding-left: 16px;
+      border-left: 4px solid var(--line-strong);
+    }
+
+    .letter {
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 6px;
+      border-radius: 999px;
+      color: #fff;
+      margin-left: 8px;
+      vertical-align: 2px;
+    }
+
+    .trap {
+      font-size: 12px;
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+
+    .k-short td:first-child {
+      border-left-color: var(--blue);
+      background: var(--blue-bg);
+    }
+
+    .k-long td:first-child {
+      border-left-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .k-digraph td:first-child {
+      border-left-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .k-danger td:first-child {
+      border-left-color: var(--orange);
+      background: var(--orange-bg);
+    }
+
+    .desktop {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .desktop {
+        display: block;
+      }
+
+      .mobile {
+        display: none;
+      }
+    }
+
+    .m-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      border-left: 4px solid var(--line-strong);
+    }
+
+    .m-item:last-child {
+      border-bottom: 0;
+    }
+
+    .m-item .letter {
+      min-width: 44px;
+      font-size: 22px;
+    }
+
+    .m-item .ipa {
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .m-item p {
+      font-size: 13px;
+      margin-top: 2px;
+    }
+
+    .m-item .trap {
+      margin-top: 4px;
+    }
+
+    .k-short.m-item {
+      border-left-color: var(--blue);
+    }
+
+    .k-long.m-item {
+      border-left-color: var(--red);
+    }
+
+    .k-digraph.m-item {
+      border-left-color: var(--green);
+    }
+
+    .k-danger.m-item {
+      border-left-color: var(--orange);
+      background: var(--orange-bg);
+    }
+
+    .table-foot {
+      background: var(--surface-2);
+      border-top: 1px solid var(--line);
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--ink-faint);
+    }
+
+    /* rules */
+    .rules {
+      margin-top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .rules {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+    }
+
+    .rule {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rule-n {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .rule h3 {
+      margin-top: 16px;
+      font-weight: 650;
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .rule>p {
+      margin-top: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-soft);
+    }
+
+    .rule>p strong {
+      color: var(--ink);
+    }
+
+    .box {
+      margin-top: 16px;
+      border-radius: var(--r-md);
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      padding: 12px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .pairs {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pair {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-family: var(--mono);
+      background: var(--red-bg);
+      border: 1px solid rgba(252, 165, 165, 0.4);
+      border-radius: 999px;
+      padding: 6px 12px;
+    }
+
+    .pair b {
+      font-weight: 700;
+    }
+
+    .pair .sl {
+      opacity: 0.5;
+    }
+
+    .pair em {
+      margin-left: auto;
+      font-style: normal;
+      font-family: inherit;
+      font:
+        11px Inter,
+        system-ui,
+        sans-serif;
+      color: var(--ink-soft);
+    }
+
+    .rule.danger {
+      background: var(--orange-bg);
+      border-color: var(--warn-line);
+    }
+
+    .rule.danger h3 {
+      color: var(--warn-ink-dark);
+    }
+
+    .rule.danger>p {
+      color: var(--warn-ink);
+    }
+
+    .ss {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ss div {
+      border-radius: var(--r-md);
+      background: var(--surface);
+      border: 1px solid var(--warn-line);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .ss .big {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .ss .eq {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.025em;
+    }
+
+    .ss .ipa {
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    .ss code {
+      display: block;
+      margin-top: 8px;
+      font: 11px var(--mono);
+      background: var(--orange-bg);
+      border-radius: 4px;
+      padding: 4px 6px;
+    }
+
+    .trick {
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--warn-ink);
+    }
+
+    /* minimal pairs */
+    .mp {
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .mp td {
+      padding: 12px;
+    }
+
+    .mp td:first-child,
+    .mp th:first-child {
+      padding-left: 20px;
+    }
+
+    .mp td:first-child {
+      font-weight: 600;
+    }
+
+    .mp .ipa {
+      font: 11.5px var(--mono);
+      color: var(--ink-soft);
+    }
+
+    .chip {
+      display: inline-flex;
+      border-radius: 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .speakable {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+    }
+
+    .speak-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      padding: 0;
+      border: 1px solid var(--line-strong);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--hu-green);
+      cursor: pointer;
+      vertical-align: middle;
+      transition:
+        background-color 0.15s,
+        border-color 0.15s,
+        transform 0.15s;
+      color: inherit;
+    }
+
+    .speak-btn svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+      pointer-events: none;
+    }
+
+    .speak-btn:hover {
+      background: var(--green-bg);
+      border-color: var(--hu-green);
+      transform: scale(1.06);
+    }
+
+    .speak-btn:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--hu-green) 30%, transparent);
+      outline-offset: 2px;
+    }
+
+    .speak-btn.is-speaking {
+      background: var(--hu-green);
+      border-color: var(--hu-green);
+      color: #fff;
+      animation: speak-pulse 0.9s ease-in-out infinite alternate;
+    }
+
+    .speak-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.45;
+      transform: none;
+    }
+
+    @keyframes speak-pulse {
+      to {
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--hu-green) 18%, transparent);
+      }
+    }
+
+    .speech-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--ink-soft);
+    }
+
+    .speech-note svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--hu-green);
+      flex: none;
+    }
+
+    /* anki */
+    .anki {
+      margin-top: 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+    @media (min-width: 768px) {
+      .anki {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .anki-head {
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .anki-head span:first-child {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .anki-head.dark {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .anki-head.light {
+      background: var(--surface-2);
+      border-bottom: 1px solid var(--line);
+      color: var(--ink-soft);
+    }
+
+    .anki-head span:last-child {
+      font-size: 10px;
+      opacity: 0.7;
+    }
+
+    .arow {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      font-size: 12.5px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .arow:last-child {
+      border-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+      .arow {
+        grid-template-columns: 0.9fr 0.9fr 1.2fr;
+      }
+    }
+
+    .arow>div {
+      padding: 10px 16px;
+    }
+
+    .arow .front {
+      font-weight: 600;
+      border-right: 1px solid var(--line);
+    }
+
+    .arow .back {
+      color: var(--ink-soft);
+      border-right: 1px solid var(--line);
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      .arow .back {
+        display: block;
+      }
+    }
+
+    .arow .tip {
+      font-size: 11px;
+      line-height: 1.4;
+      color: var(--ink-faint);
+    }
+
+    .arow .tip .mb {
+      display: block;
+      color: var(--ink-soft);
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    @media (min-width: 768px) {
+      .arow .tip .mb {
+        display: none;
+      }
+    }
+
+    .anki-note {
+      margin-top: 16px;
+      border-radius: var(--r-lg);
+      border: 1px dashed var(--line-strong);
+      background: var(--bg-soft);
+      padding: 16px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      justify-content: space-between;
+    }
+
+    @media (min-width: 768px) {
+      .anki-note {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .anki-note p {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
+    .anki-note p strong {
+      color: var(--ink);
+    }
+
+    .anki-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 6px 12px;
+      font: inherit;
+      font-size: 11px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--surface-2);
+    }
+
+    .btn .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--hu-green);
+    }
+
+    footer {
+      margin-top: 48px;
+      border-top: 1px solid var(--line);
+      padding: 24px 4px 40px;
+    }
+
+    .foot {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      justify-content: space-between;
+      font-size: 11px;
+      line-height: 1.6;
+      color: var(--ink-faint);
+    }
+
+    @media (min-width: 768px) {
+      .foot {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .foot-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .foot-tags span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      padding: 4px 12px;
+    }
+
+    .foot-tags .dot {
+      width: 6px;
+      height: 6px;
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    /* Fluid typography hierarchy. Small UI text never drops below 12px at the
+   default browser setting, while body copy starts at the user's 1rem. */
+    h1 {
+      font-size: var(--fs-xl);
+    }
+
+    .intro h2,
+    .sec-title {
+      font-size: var(--fs-lg);
+    }
+
+    .lede,
+    .sec-desc,
+    .rule>p {
+      font-size: var(--fs-sm);
+    }
+
+    .alpha,
+    .mp,
+    .m-item p,
+    .stat b,
+    .warn b,
+    .rule h3,
+    .arow {
+      font-size: clamp(0.875rem, calc(0.84rem + 0.12vw), 0.975rem);
+    }
+
+    .legend-inline,
+    .kicker,
+    .sec-note,
+    .pill,
+    .leg-row p,
+    .howto,
+    .table-foot,
+    .faint,
+    .trap,
+    .m-item .ipa,
+    .mp .ipa,
+    .chip,
+    .pair,
+    .pair em,
+    .box,
+    .ss .eq,
+    .ss .ipa,
+    .ss code,
+    .trick,
+    .anki-head span:last-child,
+    .arow .tip,
+    .anki-note p,
+    .btn,
+    .foot,
+    .voice-control label,
+    .voice-status {
+      font-size: var(--fs-xs);
+    }
+
+    .stats,
+    .leg-row b,
+    .anki-head span:first-child {
+      font-size: var(--fs-sm);
+    }
+
+    .voice-control select {
+      min-height: 44px;
+      font-size: var(--fs-body);
+      padding-block: 8px;
+    }
+
+    .speak-btn {
+      width: 30px;
+      height: 30px;
+    }
+
+    .speak-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media print {
+      header {
+        position: static;
+        backdrop-filter: none;
+      }
+
+      .card,
+      .table-card {
+        box-shadow: none;
+      }
+
+      .desktop {
+        display: block !important;
+      }
+
+      .mobile {
+        display: none !important;
+      }
+
+      .btn {
+        display: none;
+      }
+
+      .speak-btn,
+      .speech-note,
+      .voice-control {
+        display: none !important;
+      }
+
+      section {
+        break-inside: avoid-page;
+      }
+
+      .print-break {
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="strip">
+    <span style="background: var(--hu-red)"></span><span style="
+          background: #fff;
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        "></span><span style="background: var(--hu-green)"></span>
+    <span class="gap"></span>
+    <span style="background: var(--ro-blue)"></span><span style="background: var(--ro-yellow)"></span><span
+      style="background: var(--ro-red)"></span>
+  </div>
+
+  <header>
+    <div class="wrap head">
+      <div style="flex: 1; min-width: 0">
+        <div class="flags">
+          <div class="flag">
+            <i style="background: var(--hu-red)"></i><i
+              style="background: #fff; border: 1px solid rgba(0, 0, 0, 0.1)"></i><i
+              style="background: var(--hu-green)"></i>
+          </div>
+          <div class="vsep"></div>
+          <div class="flag">
+            <i style="background: var(--ro-blue)"></i><i style="background: var(--ro-yellow)"></i><i
+              style="background: var(--ro-red)"></i>
+          </div>
+        </div>
+        <h1>Magyar Ábécé <span>— Fișă pentru români</span></h1>
+        <p class="lede">
+          Hungarian alphabet sheet <span style="opacity: 0.6">/</span> Tabel
+          complet 44 litere, capcane RO→HU, reguli de aur și Anki. Optimizat
+          pentru print A4.
+        </p>
+      </div>
+      <div class="legend-inline">
+        <span><i class="dot" style="background: var(--blue)"></i>vocală
+          scurtă</span>
+        <span><i class="dot" style="background: var(--red)"></i>vocală
+          lungă</span>
+        <span><i class="dot" style="background: var(--green)"></i>digraf</span>
+        <span><i class="dot" style="background: var(--orange)"></i>S/Sz</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Intro -->
+    <div class="card intro">
+      <div class="pad">
+        <div class="pill">
+          <span class="pulse"></span> Pentru vorbitori de română • 0 → A1
+        </div>
+        <h2>
+          Maghiara are 44 de litere, nu 26.<br /><span>Dacă stăpânești tabelul de mai jos, ai trecut 60% din
+            fonetică.</span>
+        </h2>
+        <div class="stats">
+          <div class="stat">
+            <b>14 vocale</b>
+            <p>
+              7 scurte + 7 lungi. Lungimea schimbă sensul:
+              <span data-hu="kor">kor</span> ≠ <span data-hu="kór">kór</span>.
+            </p>
+          </div>
+          <div class="stat">
+            <b>9 digrafe</b>
+            <p>Cs, Dz, Dzs, Gy, Ly, Ny, Sz, Ty, Zs = un singur sunet.</p>
+          </div>
+          <div class="warn">
+            <div class="bang">!</div>
+            <div>
+              <b>Capcana S / Sz</b>
+              <p>
+                S maghiar = Ș românesc [ʃ]. Sz maghiar = S românesc [s]. E
+                INVERS! Românii greșesc asta 100%.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="side pad">
+        <div>
+          <div class="kicker">Legenda rapidă</div>
+          <div class="leg" id="legend"></div>
+        </div>
+        <div class="howto">
+          <b>Cum folosești fișa:</b> Printează A4 color. 1) Citește pe rând cu
+          Forvo. 2) Acoperă coloana RO și ghicește. 3) Fă Anki din Secțiunea
+          4.
+        </div>
+        <div class="voice-control">
+          <label for="voice-select">Voce maghiară pentru toate cuvintele</label>
+          <select id="voice-select" aria-describedby="voice-status">
+            <option value="">Se caută vocile maghiare…</option>
+          </select>
+          <span class="voice-status" id="voice-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. Alphabet -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">
+          <span class="num">1</span>Alfabetul complet — 44 litere
+        </h2>
+        <span class="sec-note desktop">A4 • lizibil • high-contrast</span>
+      </div>
+      <div class="card table-card">
+        <div class="desktop scroll">
+          <table class="alpha">
+            <thead>
+              <tr>
+                <th style="width: 72px; padding-left: 16px">Betű</th>
+                <th style="width: 70px">IPA</th>
+                <th style="width: 28%">Aproximare Română</th>
+                <th style="width: 22%">Exemplu</th>
+                <th>Capcană RO</th>
+              </tr>
+            </thead>
+            <tbody id="alpha-body"></tbody>
+          </table>
+        </div>
+        <div class="mobile" id="alpha-mobile"></div>
+        <div class="table-foot">
+          <span>💡 Tip RO: Maghiara scrie exact cum se aude. Fiecare digraf = o
+            literă în alfabet.</span>
+          <span class="desktop">•</span>
+          <span>Tipar: folosește color, altfel S/Sz devin invizibile.</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="print-break"></div>
+
+    <!-- 2. Rules -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">
+          <span class="num">2</span>3 Reguli de Aur pentru Români
+        </h2>
+      </div>
+      <div class="rules">
+        <div class="card rule">
+          <div class="rule-n" style="background: var(--ink); color: var(--bg)">
+            1
+          </div>
+          <h3>Accentul mereu pe prima silabă</h3>
+          <p>
+            Spre deosebire de română (care sare), în maghiară accentul e
+            <strong>fix pe prima silabă</strong>, dar nu lungim vocala. E un
+            accent de intensitate, nu melodic.
+          </p>
+          <div class="box">
+            <div class="mono">
+              <span data-hu="Budapest">BUdapest</span> •
+              <span data-hu="Magyarország">MAgyarország</span> •
+              <span data-hu="köszönöm">KÖszönöm</span>
+            </div>
+            <div class="soft" style="margin-top: 4px">
+              Românii au tendința să spună buda-PESTA — greșit. Totul pleacă
+              tare de la început.
+            </div>
+          </div>
+        </div>
+        <div class="card rule">
+          <div class="rule-n" style="background: var(--red)">2</div>
+          <h3>Lungimea schimbă sensul</h3>
+          <p>
+            În română, lungimea e stilistică. În maghiară e
+            <strong>fonemică</strong>: dacă lungești, schimbi cuvântul.
+          </p>
+          <div class="pairs">
+            <div class="pair">
+              <b data-hu="kor">kor</b><span class="sl">/</span><b data-hu="kór" style="color: var(--red)">kór</b><span
+                class="sl">/</span><b data-hu="kör" style="color: var(--blue)">kör</b><em>vârstă / boală / cerc</em>
+            </div>
+            <div class="pair">
+              <b data-hu="ver">ver</b><span class="sl">/</span><b data-hu="vér" style="color: var(--red)">vér</b><em>a
+                bate / sânge</em>
+            </div>
+            <div class="pair">
+              <b data-hu="szel">szel</b><span class="sl">/</span><b data-hu="szél"
+                style="color: var(--red)">szél</b><em>feliază / vânt</em>
+            </div>
+          </div>
+          <div class="faint" style="margin-top: 12px; font-size: 11px">
+            Exercițiu: spune perechile tare, ținând lungimea 2x mai mult.
+          </div>
+        </div>
+        <div class="card rule danger">
+          <div class="rule-n" style="background: var(--orange)">3</div>
+          <h3>S vs Sz — INVERSAT!</h3>
+          <p>
+            Capcana #1 pentru români. Vei citi <em data-hu="sör">sör</em> ca
+            „sor” — greșit. E „șör”. Iar <em data-hu="szia">szia</em> se
+            citește „sia”, nu „șia”.
+          </p>
+          <div class="ss">
+            <div>
+              <div class="big">S</div>
+              <div class="eq">= Ș</div>
+              <div class="ipa">[ʃ] ca în școală</div>
+              <code><span data-hu="só">só</span> = [ʃoː] sare</code>
+            </div>
+            <div>
+              <div class="big">Sz</div>
+              <div class="eq">= S</div>
+              <div class="ipa">[s] ca în soare</div>
+              <code><span data-hu="szó">szó</span> = [soː] cuvânt</code>
+            </div>
+          </div>
+          <div class="trick">
+            Truc: imaginează-ți că maghiarii au pus un z mic ca să
+            „îmblânzească” ș-ul în s.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Minimal pairs -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">
+          <span class="num">3</span>Minimal Pairs — Antrenament de ureche
+        </h2>
+      </div>
+      <p class="sec-desc">
+        12 perechi care dor. Ascultă pe Forvo, repetă, înregistrează-te. Dacă
+        le auzi, ai trecut testul fonetic.
+      </p>
+      <p class="speech-note">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z" />
+        </svg>Apasă difuzorul de lângă un cuvânt pentru pronunție maghiară. Vocea
+        exactă depinde de vocile instalate în browser și sistem.
+      </p>
+      <div class="card table-card" style="box-shadow: var(--shadow-soft)">
+        <div class="scroll">
+          <table class="mp">
+            <thead>
+              <tr>
+                <th style="width: 34%">Pereche</th>
+                <th style="width: 18%">IPA</th>
+                <th>Traducere RO</th>
+                <th style="width: 28%">Focus</th>
+              </tr>
+            </thead>
+            <tbody id="pairs-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Anki -->
+    <section>
+      <div class="sec-head" style="align-items: flex-end">
+        <h2 class="sec-title">
+          <span class="num">4</span>Primele 20 carduri Anki — preview
+          printabil
+        </h2>
+        <div class="faint" style="font-size: 11px">
+          Format: Front / Back / Sfat audio • Taie și pune în Anki • Audio:
+          Forvo + SZTAKI
+        </div>
+      </div>
+      <div class="anki">
+        <div class="card">
+          <div class="anki-head dark">
+            <span>Carduri 1-10 • Esențiale supraviețuire</span><span>HU → RO</span>
+          </div>
+          <div id="anki-1"></div>
+        </div>
+        <div class="card">
+          <div class="anki-head light">
+            <span>Carduri 11-20 • Cultură + curiozități</span><span>HU → RO</span>
+          </div>
+          <div id="anki-2"></div>
+        </div>
+      </div>
+      <div class="anki-note">
+        <p>
+          <strong>Cum le imporți în Anki:</strong> Copiază coloana Front/Back
+          în CSV. Adaugă câmp Audio → caută fiecare cuvânt pe Forvo.com →
+          descarcă mp3 → atașează. Repetă 15 min/zi.
+        </p>
+        <div class="anki-actions">
+          <button class="btn" id="dl-csv" type="button">
+            ⬇ Descarcă CSV
+          </button>
+          <span class="btn" style="cursor: default"><i class="dot"></i> Recomandat: 5 carduri noi / zi</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>
+          Creat pentru vorbitori de română — Octombrie 2026 — Sursă audio:
+          Forvo.com + SZTAKI Szótár<br />
+          <span style="font-size: 10px">Design print-friendly A4 • Fonturi sistem • Fără trackere • Poți
+            printa color sau alb-negru.</span>
+        </div>
+        <div class="foot-tags">
+          <span><i class="dot" style="background: var(--hu-red)"></i> HU</span>
+          <span><i class="dot" style="background: var(--ro-blue)"></i> RO</span>
+          <span>44 litere • 14 vocale • 9 digrafe</span>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // kind: s = short vowel, l = long vowel, d = digraph, x = S/Sz danger, "" = plain consonant
+    const ALPHABET = [
+      [
+        "A",
+        "s",
+        "/ɒ/",
+        "a din cap, dar mult mai închis, rotunjit",
+        "alma",
+        "măr",
+        "NU e a românesc! Gură aproape închisă.",
+      ],
+      [
+        "Á",
+        "l",
+        "/aː/",
+        "a lung din tare, deschis",
+        "álom",
+        "vis",
+        "Lungimea schimbă sensul: alma ≠ álma",
+      ],
+      ["B", "", "/b/", "b ca în română", "baba", "bebeluș", "-"],
+      ["C", "", "/t͡s/", "ț ca în țiplă", "cica", "pisicuță", "NU e c! E ț!"],
+      [
+        "Cs",
+        "d",
+        "/t͡ʃ/",
+        "ce/ci ca în ceară",
+        "csoki",
+        "ciocolată",
+        "Un singur sunet!",
+      ],
+      ["D", "", "/d/", "d ca în română", "dél", "miazăzi, sud", "-"],
+      [
+        "Dz",
+        "d",
+        "/d͡z/",
+        "dz rar, ca în edz",
+        "edz",
+        "antrenează",
+        "Rar, aproape dispărut.",
+      ],
+      [
+        "Dzs",
+        "d",
+        "/d͡ʒ/",
+        "ge/gi ca în gem",
+        "dzsem",
+        "gem",
+        "Un singur sunet! Ge.",
+      ],
+      [
+        "E",
+        "s",
+        "/ɛ/",
+        "e scurt ca în merge",
+        "ember",
+        "om",
+        "Deschis, scurt.",
+      ],
+      [
+        "É",
+        "l",
+        "/eː/",
+        "é lung ca în café, francez",
+        "élet",
+        "viață",
+        "Lung și închis, nu e E lungit.",
+      ],
+      ["F", "", "/f/", "f ca în română", "fa", "lemn, copac", "-"],
+      [
+        "G",
+        "",
+        "/ɡ/",
+        "g ca în gol",
+        "gól",
+        "gol (fotbal)",
+        "Întotdeauna dur, chiar și înainte de e, i",
+      ],
+      [
+        "Gy",
+        "d",
+        "/ɟ/",
+        "ghi moale, ca d în during (eng)",
+        "gyár",
+        "fabrică",
+        "Cel mai greu! Nu e ghi românesc.",
+      ],
+      ["H", "", "/h/", "h ca în română", "ház", "casă", "-"],
+      ["I", "s", "/i/", "i scurt", "ital", "băutură", "-"],
+      [
+        "Í",
+        "l",
+        "/iː/",
+        "i lung",
+        "ír",
+        "a scrie",
+        "Lungimea contează: ir ≠ ír",
+      ],
+      [
+        "J",
+        "",
+        "/j/",
+        "i semivocală ca în iar",
+        "jó",
+        "bun",
+        "Ca y în yoga.",
+      ],
+      ["K", "", "/k/", "c ca în cal", "kép", "poză, imagine", "-"],
+      ["L", "", "/l/", "l ca în română", "lé", "zeamă, suc", "-"],
+      [
+        "Ly",
+        "d",
+        "/j/",
+        "identic cu J !",
+        "hely",
+        "loc",
+        "Arhaic. Se pronunță J. Capcană istorică.",
+      ],
+      ["M", "", "/m/", "m ca în română", "ma", "azi", "-"],
+      ["N", "", "/n/", "n ca în română", "nap", "zi, soare", "-"],
+      [
+        "Ny",
+        "d",
+        "/ɲ/",
+        "ni ca în câine, gnocchi",
+        "nyár",
+        "vară",
+        "Un singur sunet, nu n+i",
+      ],
+      ["O", "s", "/o/", "o scurt ca în om", "orvos", "doctor", "-"],
+      ["Ó", "l", "/oː/", "o lung închis", "óvoda", "grădiniță", "Lung!"],
+      [
+        "Ö",
+        "s",
+        "/ø/",
+        "eu scurt ca în fr. deux, mai rotunjit",
+        "öröm",
+        "bucurie",
+        "Buze ca la o, limbă ca la e.",
+      ],
+      ["Ő", "l", "/øː/", "eu lung", "ő", "el/ea", "Versiunea lungă a lui Ö."],
+      ["P", "", "/p/", "p ca în română", "pár", "cuplu, pereche", "-"],
+      [
+        "R",
+        "",
+        "/r/",
+        "r vibrant ca în română",
+        "rózsa",
+        "trandafir",
+        "Rulat ușor, nu englezesc.",
+      ],
+      [
+        "S",
+        "x",
+        "/ʃ/",
+        "ș ca în școală",
+        "só",
+        "sare",
+        "ATENȚIE! S = Ș !!! Capcană mortală!",
+      ],
+      [
+        "Sz",
+        "x",
+        "/s/",
+        "s ca în soare",
+        "szó",
+        "cuvânt",
+        "INVERS! Sz = S românesc. S vs Sz inversat!",
+      ],
+      ["T", "", "/t/", "t ca în română", "tó", "lac", "-"],
+      [
+        "Ty",
+        "d",
+        "/c/",
+        "chi moale, ca t în tune (eng)",
+        "tyúk",
+        "găină",
+        "Perechea surdă a lui Gy.",
+      ],
+      ["U", "s", "/u/", "u scurt", "utca", "stradă", "-"],
+      ["Ú", "l", "/uː/", "u lung", "út", "drum", "utca ≠ út"],
+      [
+        "Ü",
+        "s",
+        "/y/",
+        "iu ca în fr. tu, scurt",
+        "ül",
+        "stă jos",
+        "Buze ca la u, limbă ca la i.",
+      ],
+      [
+        "Ű",
+        "l",
+        "/yː/",
+        "iu lung",
+        "űr",
+        "spațiu, cosmos",
+        "Versiunea lungă a lui Ü.",
+      ],
+      ["V", "", "/v/", "v ca în română", "víz", "apă", "-"],
+      ["Z", "", "/z/", "z ca în română", "zár", "lacăt", "-"],
+      [
+        "Zs",
+        "d",
+        "/ʒ/",
+        "j ca în jar, francez jour",
+        "zsír",
+        "grăsime",
+        "Un singur sunet: j.",
+      ],
+    ];
+
+    const KINDS = {
+      s: {
+        cls: "k-short",
+        color: "var(--blue)",
+        bg: "var(--blue-bg)",
+        badge: "scurt",
+        title: "Vocală scurtă",
+        tag: "Vocală",
+        desc: "a, e, i, o, ö, u, ü — scurte, deschise",
+      },
+      l: {
+        cls: "k-long",
+        color: "var(--red)",
+        bg: "var(--red-bg)",
+        badge: "lung",
+        title: "Vocală lungă",
+        tag: "Vocală",
+        desc: "á, é, í, ó, ő, ú, ű — ținute, sens diferit",
+      },
+      d: {
+        cls: "k-digraph",
+        color: "var(--green)",
+        bg: "var(--green-bg)",
+        badge: "digraf",
+        title: "Digraf / Trigraf",
+        tag: "Digraf",
+        desc: "cs, gy, ny, ty... un singur sunet",
+      },
+      x: {
+        cls: "k-danger",
+        color: "var(--orange)",
+        bg: "var(--orange-bg)",
+        badge: "PERICOL",
+        title: "Pericol RO",
+        tag: "Pericol",
+        desc: "s (=ș) și sz (=s) — invers față de română!",
+      },
+    };
+
+    const PAIRS = [
+      [
+        "kor – kór – kör",
+        "[kor] – [koːr] – [kør]",
+        "vârstă – boală – cerc",
+        "O scurt / Ó lung / Ö rotunjit",
+      ],
+      ["ver – vér", "[vɛr] – [veːr]", "a bate – sânge", "E scurt vs É lung"],
+      ["szel – szél", "[sɛl] – [seːl]", "feliază – vânt", "Sz=s + lungime"],
+      [
+        "kora – kóra",
+        "[korɒ] – [koːrɒ]",
+        "timpurie (ea) – pe ceas",
+        "Lungimea schimbă cazul",
+      ],
+      ["tör – tőr", "[tør] – [tøːr]", "a sparge – pumnal", "Ö vs Ő"],
+      [
+        "szár – zár",
+        "[saːr] – [zaːr]",
+        "tulpină – lacăt / a închide",
+        "Sz=s vs Z=z. S/Sz inversat!",
+      ],
+      [
+        "meggy – megy",
+        "[mɛɟː] – [mɛɟ]",
+        "vișină – merge (el)",
+        "Consoană lungă vs scurtă",
+      ],
+      [
+        "var – vár",
+        "[vɒr] – [vaːr]",
+        "cicatrice – castel / a aștepta",
+        "A vs Á",
+      ],
+      ["üt – fűt", "[yt] – [fyːt]", "lovește – încălzește", "Ü vs Ű"],
+      [
+        "örül – őrül",
+        "[øryl] – [øːryl]",
+        "se bucură – înnebunește",
+        "Ö vs Ő",
+      ],
+      [
+        "kar – kár",
+        "[kɒr] – [kaːr]",
+        "braț – pagubă, păcat",
+        "A vs Á, clasic Anki",
+      ],
+      [
+        "hal – hál – hála",
+        "[hɒl] – [haːl] – [haːlɒ]",
+        "pește – (el) doarme – mulțumire",
+        "A/Á + sens total diferit",
+      ],
+    ];
+
+    const ANKI = [
+      ["szia", "bună / salut", "Sz=s! [siɒ] - cel mai util cuvânt"],
+      ["köszönöm", "mulțumesc", "Ö = eu, Sz=s. [køsønøm]"],
+      ["igen / nem", "da / nu", "I scurt, E scurt. Ușor!"],
+      ["alma", "măr", "A = /ɒ/ adânc, nu a românesc"],
+      ["víz", "apă", "Í lung! [viːz] - esențial"],
+      ["ház", "casă", "Á lung! [haːz]"],
+      ["sör", "bere", "S=ș! [ʃør] - pronunție Ö corect"],
+      ["szó", "cuvânt", "Sz=s! [soː] - inversul lui S!"],
+      ["csoki", "ciocolată", "Cs=ce! [t͡ʃoki]"],
+      ["gyár", "fabrică", "Gy= ghi moale [ɟaːr]"],
+      ["nyár", "vară", "Ny= ni în câine [ɲaːr]"],
+      ["jó napot", "bună ziua", "J= y din yoga, Ly=J"],
+      ["hol van ...?", "unde este ...?", "H normal, O scurt"],
+      ["szeretlek", "te iubesc", "Sz=s, E scurt, T normal [sɛrɛtlɛk]"],
+      [
+        "egészségedre!",
+        "noroc! (la pahar)",
+        "Sz+s → ss lung, É lung [ɛɡeːʃːeːɡɛdrɛ]",
+      ],
+      ["pálinka", "pălincă", "Á lung! Băutura națională"],
+      [
+        "kürtőskalács",
+        "colac secuiesc",
+        "Ü=iu, Ő=eu lung, Cs=ce! [kyrtøːʃkɒlaːt͡ʃ]",
+      ],
+      ["térkép", "hartă", "É lung de două ori [teːrkeːp]"],
+      ["meggy", "vișină", "Ggy= Gy lung [mɛɟː] - nu megy!"],
+      ["család", "familie", "Cs=ce, Á lung [t͡ʃɒlaːd]"],
+    ];
+
+    const esc = (s) =>
+      String(s).replace(
+        /[&<>"]/g,
+        (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
+      );
+    const speakerIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z"/></svg>`;
+    const speakable = (text, label = text) =>
+      `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-speak="${esc(text)}" aria-label="Pronunță ${esc(text)} în maghiară" title="Pronunță în maghiară">${speakerIcon}</button></span>`;
+    document.querySelectorAll("[data-hu]").forEach((node) => {
+      node.innerHTML = speakable(node.dataset.hu, node.textContent);
+    });
+
+    // Legend
+    document.getElementById("legend").innerHTML = Object.values(KINDS)
+      .map(
+        (k) => `
+  <div class="leg-row"><i class="dot" style="background:${k.color}"></i><div>
+    <b>${k.title}</b><span class="tag" style="background:${k.bg};color:${k.color}">${k.tag}</span>
+    <p>${k.desc}</p></div></div>`,
+      )
+      .join("");
+
+    // Alphabet: desktop table + mobile list
+    const badge = (k) =>
+      k
+        ? `<span class="badge" style="background:${KINDS[k].color}">${KINDS[k].badge}</span>`
+        : "";
+    const kindCls = (k) => (k ? KINDS[k].cls : "");
+    document.getElementById("alpha-body").innerHTML = ALPHABET.map(
+      ([l, k, ipa, ro, ex, tr, trap]) => `
+  <tr class="${kindCls(k)}">
+    <td><span class="letter">${esc(l)}</span>${badge(k)}</td>
+    <td class="mono soft" style="font-size:13px">${esc(ipa)}</td>
+    <td>${esc(ro)}</td>
+    <td><b style="font-weight:600">${speakable(ex)}</b> <span class="soft">= ${esc(tr)}</span></td>
+    <td class="trap">${esc(trap)}</td>
+  </tr>`,
+    ).join("");
+    document.getElementById("alpha-mobile").innerHTML = ALPHABET.map(
+      ([l, k, ipa, ro, ex, tr, trap]) => `
+  <div class="m-item ${kindCls(k)}">
+    <span class="letter">${esc(l)}</span>
+    <div style="min-width:0">
+      <div><span class="mono ipa">${esc(ipa)}</span>${badge(k)}</div>
+      <p>${esc(ro)}</p>
+      <p><b style="font-weight:600">${speakable(ex)}</b> <span class="soft">= ${esc(tr)}</span></p>
+      ${trap !== "-" ? `<div class="trap">${esc(trap)}</div>` : ""}
+    </div>
+  </div>`,
+    ).join("");
+
+    // Minimal pairs
+    document.getElementById("pairs-body").innerHTML = PAIRS.map(
+      ([p, ipa, ro, f]) => `
+  <tr><td>${p
+          .split(/\s+[–/]\s+/)
+          .map((word) => speakable(word))
+          .join(
+            ' <span class="faint">–</span> ',
+          )}</td><td class="ipa">${esc(ipa)}</td><td class="soft">${esc(ro)}</td><td><span class="chip">${esc(f)}</span></td></tr>`,
+    ).join("");
+
+    // Anki cards
+    const ankiRow = ([f, b, t]) => `
+  <div class="arow"><div class="front">${speakable(f)}</div><div class="back">${esc(b)}</div>
+  <div class="tip"><span class="mb">${esc(b)}</span>${esc(t)}</div></div>`;
+    document.getElementById("anki-1").innerHTML = ANKI.slice(0, 10)
+      .map(ankiRow)
+      .join("");
+    document.getElementById("anki-2").innerHTML = ANKI.slice(10)
+      .map(ankiRow)
+      .join("");
+
+    // Hungarian text-to-speech. Voice ranking follows pronunciation-helper's approach,
+    // with Hungarian-native voices preferred over generic/default fallbacks.
+    let hungarianVoices = [];
+    let activeSpeakButton = null;
+    const voiceSelect = document.getElementById("voice-select");
+    const voiceStatus = document.getElementById("voice-status");
+    const voiceId = (voice) =>
+      `${voice.voiceURI}|${voice.name}|${voice.lang}`;
+    const voiceScore = (voice) => {
+      const name = voice.name.toLowerCase();
+      let score = 0;
+      if (/mariska|noemi|szabolcs/.test(name)) score += 20;
+      if (/microsoft|google|apple|natural|online|premium|enhanced/.test(name))
+        score += 8;
+      if (voice.localService) score += 2;
+      if (voice.default) score += 1;
+      if (
+        /espeak|mbrola|albert|bells|boing|bubbles|trinoids|whisper|zarvox/.test(
+          name,
+        )
+      )
+        score -= 20;
+      return score;
+    };
+    const bestHungarianVoice = () =>
+      [...hungarianVoices].sort((a, b) => voiceScore(b) - voiceScore(a))[0];
+    const storedVoiceId = () => {
+      try {
+        return localStorage.getItem("magyar-selected-voice") || "";
+      } catch {
+        return "";
+      }
+    };
+    const selectedHungarianVoice = () =>
+      hungarianVoices.find((voice) => voiceId(voice) === voiceSelect.value) ||
+      bestHungarianVoice();
+    const refreshVoices = () => {
+      hungarianVoices =
+        window.speechSynthesis
+          ?.getVoices()
+          .filter((voice) =>
+            voice.lang.toLowerCase().replace("_", "-").startsWith("hu"),
+          )
+          .sort(
+            (a, b) =>
+              voiceScore(b) - voiceScore(a) || a.name.localeCompare(b.name),
+          ) || [];
+
+      if (!hungarianVoices.length) {
+        voiceSelect.innerHTML = `<option value="">Nicio voce maghiară disponibilă</option>`;
+        voiceSelect.disabled = true;
+        voiceStatus.textContent =
+          "Instalează o voce maghiară (hu-HU) în sistem sau încearcă Microsoft Edge, apoi reîncarcă pagina.";
+        voiceStatus.classList.add("error");
+        return;
+      }
+
+      const previous = voiceSelect.value || storedVoiceId();
+      voiceSelect.innerHTML = hungarianVoices
+        .map(
+          (voice, index) =>
+            `<option value="${esc(voiceId(voice))}">${index === 0 ? "★ " : ""}${esc(voice.name)} — ${esc(voice.lang)}${voice.localService ? " (sistem)" : " (online)"}</option>`,
+        )
+        .join("");
+      if (hungarianVoices.some((voice) => voiceId(voice) === previous))
+        voiceSelect.value = previous;
+      voiceSelect.disabled = false;
+      voiceStatus.textContent = `${hungarianVoices.length} ${hungarianVoices.length === 1 ? "voce maghiară disponibilă" : "voci maghiare disponibile"}. Selecția se aplică peste tot.`;
+      voiceStatus.classList.remove("error");
+    };
+    const finishSpeaking = (button) => {
+      button?.classList.remove("is-speaking");
+      button?.removeAttribute("aria-pressed");
+      if (activeSpeakButton === button) activeSpeakButton = null;
+    };
+    const pronounceHungarian = (text, button) => {
+      if (
+        !("speechSynthesis" in window) ||
+        !("SpeechSynthesisUtterance" in window)
+      )
+        return;
+      window.speechSynthesis.cancel();
+      finishSpeaking(activeSpeakButton);
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "hu-HU";
+      utterance.rate = 0.88;
+      utterance.pitch = 1;
+      const voice = selectedHungarianVoice();
+      if (!voice) {
+        voiceStatus.textContent =
+          "Nu pot pronunța corect: browserul nu oferă nicio voce maghiară.";
+        voiceStatus.classList.add("error");
+        return;
+      }
+      utterance.voice = voice;
+      activeSpeakButton = button;
+      button.classList.add("is-speaking");
+      button.setAttribute("aria-pressed", "true");
+      utterance.onend = () => finishSpeaking(button);
+      utterance.onerror = () => finishSpeaking(button);
+      window.speechSynthesis.speak(utterance);
+    };
+    if ("speechSynthesis" in window) {
+      refreshVoices();
+      if (window.speechSynthesis.addEventListener)
+        window.speechSynthesis.addEventListener(
+          "voiceschanged",
+          refreshVoices,
+        );
+      else window.speechSynthesis.onvoiceschanged = refreshVoices;
+    } else {
+      voiceSelect.innerHTML = `<option value="">Pronunția nu este suportată</option>`;
+      voiceSelect.disabled = true;
+      voiceStatus.textContent = "Acest browser nu suportă Web Speech API.";
+      voiceStatus.classList.add("error");
+      document
+        .querySelectorAll(".speak-btn")
+        .forEach((button) => (button.disabled = true));
+    }
+    voiceSelect.addEventListener("change", () => {
+      try {
+        localStorage.setItem("magyar-selected-voice", voiceSelect.value);
+      } catch { }
+      window.speechSynthesis?.cancel();
+      finishSpeaking(activeSpeakButton);
+    });
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest(".speak-btn");
+      if (button) pronounceHungarian(button.dataset.speak, button);
+    });
+
+    // CSV download (Front;Back;Tip) with BOM so Anki/Excel read UTF-8 diacritics correctly
+    document.getElementById("dl-csv").addEventListener("click", () => {
+      const q = (s) => `"${String(s).replace(/"/g, '""')}"`;
+      const csv = "\uFEFF" + ANKI.map((r) => r.map(q).join(";")).join("\n");
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(
+        new Blob([csv], { type: "text/csv;charset=utf-8" }),
+      );
+      a.download = "anki-maghiara-20.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    });
+  </script>
+</body>
+
+</html>
