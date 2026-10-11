@@ -478,49 +478,6 @@
       color: var(--ink);
     }
 
-    .voice-control {
-      margin-top: 12px;
-    }
-
-    .voice-control label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    .voice-control select {
-      width: 100%;
-      min-height: 36px;
-      border: 1px solid var(--line-strong);
-      border-radius: 8px;
-      background: var(--surface);
-      color: var(--ink);
-      padding: 6px 32px 6px 10px;
-      font: inherit;
-      font-size: 12px;
-    }
-
-    .voice-control select:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--hu-green) 25%, transparent);
-      outline-offset: 2px;
-    }
-
-    .voice-status {
-      display: block;
-      margin-top: 5px;
-      font-size: 10px;
-      line-height: 1.35;
-      color: var(--ink-faint);
-    }
-
-    .voice-status.error {
-      color: var(--warn-ink);
-    }
-
     /* sections */
     section {
       margin-top: 40px;
@@ -954,6 +911,11 @@
       white-space: nowrap;
     }
 
+    .audio-unavailable {
+      text-decoration: underline dotted var(--ink-faint);
+      text-underline-offset: 3px;
+    }
+
     .speak-btn {
       display: inline-grid;
       place-items: center;
@@ -1284,9 +1246,7 @@
     .arow .tip,
     .anki-note p,
     .btn,
-    .foot,
-    .voice-control label,
-    .voice-status {
+    .foot {
       font-size: var(--fs-xs);
     }
 
@@ -1294,12 +1254,6 @@
     .leg-row b,
     .anki-head span:first-child {
       font-size: var(--fs-sm);
-    }
-
-    .voice-control select {
-      min-height: 44px;
-      font-size: var(--fs-body);
-      padding-block: 8px;
     }
 
     .speak-btn {
@@ -1336,8 +1290,7 @@
       }
 
       .speak-btn,
-      .speech-note,
-      .voice-control {
+      .speech-note {
         display: none !important;
       }
 
@@ -1439,15 +1392,8 @@
         </div>
         <div class="howto">
           <b>Cum folosești fișa:</b> Printează A4 color. 1) Citește pe rând cu
-          Forvo. 2) Acoperă coloana RO și ghicește. 3) Fă Anki din Secțiunea
+          audio nativ DictZone. 2) Acoperă coloana RO și ghicește. 3) Fă Anki din Secțiunea
           4.
-        </div>
-        <div class="voice-control">
-          <label for="voice-select">Voce maghiară pentru toate cuvintele</label>
-          <select id="voice-select" aria-describedby="voice-status">
-            <option value="">Se caută vocile maghiare…</option>
-          </select>
-          <span class="voice-status" id="voice-status" role="status" aria-live="polite"></span>
         </div>
       </div>
     </div>
@@ -1580,15 +1526,14 @@
         </h2>
       </div>
       <p class="sec-desc">
-        12 perechi care dor. Ascultă pe Forvo, repetă, înregistrează-te. Dacă
+        12 perechi care dor. Ascultă înregistrările, repetă, înregistrează-te. Dacă
         le auzi, ai trecut testul fonetic.
       </p>
       <p class="speech-note">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z" />
-        </svg>Apasă difuzorul de lângă un cuvânt pentru pronunție maghiară. Vocea
-        exactă depinde de vocile instalate în browser și sistem.
+        </svg>Apasă difuzorul de lângă un cuvânt pentru o înregistrare maghiară de pe DictZone.
       </p>
       <div class="card table-card" style="box-shadow: var(--shadow-soft)">
         <div class="scroll">
@@ -1616,7 +1561,7 @@
         </h2>
         <div class="faint" style="font-size: 11px">
           Format: Front / Back / Sfat audio • Taie și pune în Anki • Audio:
-          Forvo + SZTAKI
+          DictZone
         </div>
       </div>
       <div class="anki">
@@ -1636,8 +1581,8 @@
       <div class="anki-note">
         <p>
           <strong>Cum le imporți în Anki:</strong> Copiază coloana Front/Back
-          în CSV. Adaugă câmp Audio → caută fiecare cuvânt pe Forvo.com →
-          descarcă mp3 → atașează. Repetă 15 min/zi.
+          în CSV. Pentru câmpul Audio poți folosi înregistrările DictZone
+          asociate butoanelor de mai sus. Repetă 15 min/zi.
         </p>
         <div class="anki-actions">
           <button class="btn" id="dl-csv" type="button">
@@ -1652,7 +1597,7 @@
       <div class="foot">
         <div>
           Creat pentru vorbitori de română — Octombrie 2026 — Sursă audio:
-          Forvo.com + SZTAKI Szótár<br />
+          DictZone.com<br />
           <span style="font-size: 10px">Design print-friendly A4 • Fonturi sistem • Fără trackere • Poți
             printa color sau alb-negru.</span>
         </div>
@@ -2008,9 +1953,61 @@
         /[&<>"]/g,
         (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
       );
+    const DICTZONE_AUDIO = {
+      "alma":"https://dictzone.com/s/hu/1/2mc.mp3","álom":"https://dictzone.com/s/hu/1/2qt.mp3",
+      "baba":"https://dictzone.com/s/hu/4/172.mp3","cica":"https://dictzone.com/s/hu/7/2fz.mp3",
+      "csoki":"https://dictzone.com/s/hu/8/2md.mp3","dél":"https://dictzone.com/s/hu/9/1gv.mp3",
+      "edz":"https://dictzone.com/s/hu/a/1ws.mp3","dzsem":"https://dictzone.com/s/hu/a/1hf.mp3",
+      "ember":"https://dictzone.com/s/hu/d/2nt.mp3","élet":"https://dictzone.com/s/hu/c/jd.mp3",
+      "fa":"https://dictzone.com/s/hu/f/24n.mp3","gól":"https://dictzone.com/s/hu/k/1lg.mp3",
+      "gyár":"https://dictzone.com/s/hu/l/c7.mp3","ház":"https://dictzone.com/s/hu/n/1f3.mp3",
+      "ital":"https://dictzone.com/s/hu/q/2te.mp3","ír":"https://dictzone.com/s/hu/q/1p8.mp3",
+      "jó":"https://dictzone.com/s/hu/r/1rf.mp3","kép":"https://dictzone.com/s/hu/t/1se.mp3",
+      "lé":"https://dictzone.com/s/hu/z/1lc.mp3","hely":"https://dictzone.com/s/hu/n/26s.mp3",
+      "ma":"https://dictzone.com/s/hu/11/1ak.mp3","nap":"https://dictzone.com/s/hu/16/25z.mp3",
+      "nyár":"https://dictzone.com/s/hu/18/2gf.mp3","orvos":"https://dictzone.com/s/hu/1a/1qg.mp3",
+      "óvoda":"https://dictzone.com/s/hu/1b/vt.mp3","öröm":"https://dictzone.com/s/hu/1a/17n.mp3",
+      "ő":"https://dictzone.com/s/hu/19/zg.mp3","pár":"https://dictzone.com/s/hu/1b/21l.mp3",
+      "rózsa":"https://dictzone.com/s/hu/1f/25y.mp3","só":"https://dictzone.com/s/hu/1g/2uu.mp3",
+      "szó":"https://dictzone.com/s/hu/1k/11q.mp3","tó":"https://dictzone.com/s/hu/1n/1nx.mp3",
+      "tyúk":"https://dictzone.com/s/hu/1p/bw.mp3","utca":"https://dictzone.com/s/hu/1q/f9.mp3",
+      "út":"https://dictzone.com/s/hu/1q/5s.mp3","ül":"https://dictzone.com/s/hu/1p/28t.mp3",
+      "űr":"https://dictzone.com/s/hu/1p/2oi.mp3","víz":"https://dictzone.com/s/hu/1t/p3.mp3",
+      "zár":"https://dictzone.com/s/hu/1t/2nk.mp3","zsír":"https://dictzone.com/s/hu/1u/vg.mp3",
+      "kor":"https://dictzone.com/s/hu/x/10q.mp3","kór":"https://dictzone.com/s/hu/x/1ae.mp3",
+      "kör":"https://dictzone.com/s/hu/x/10s.mp3","ver":"https://dictzone.com/s/hu/1s/ep.mp3",
+      "vér":"https://dictzone.com/s/hu/1s/eq.mp3","szel":"https://dictzone.com/s/hu/1i/2be.mp3",
+      "szél":"https://dictzone.com/s/hu/1i/2bf.mp3","kora":"https://dictzone.com/s/hu/x/10q.mp3",
+      "kóra":"https://dictzone.com/s/hu/o/2rk.mp3","tör":"https://dictzone.com/s/hu/1n/329.mp3",
+      "tőr":"https://dictzone.com/s/hu/1n/32a.mp3","szár":"https://dictzone.com/s/hu/1i/12p.mp3",
+      "meggy":"https://dictzone.com/s/hu/12/2uc.mp3","megy":"https://dictzone.com/s/hu/13/2v1.mp3",
+      "var":"https://dictzone.com/s/hu/1r/1en.mp3","vár":"https://dictzone.com/s/hu/1r/1eo.mp3",
+      "üt":"https://dictzone.com/s/hu/1q/5t.mp3","fűt":"https://dictzone.com/s/hu/j/2k3.mp3",
+      "örül":"https://dictzone.com/s/hu/1a/1n5.mp3","őrül":"https://dictzone.com/s/hu/1a/1na.mp3",
+      "kar":"https://dictzone.com/s/hu/s/208.mp3","kár":"https://dictzone.com/s/hu/s/20a.mp3",
+      "hal":"https://dictzone.com/s/hu/m/ft.mp3","hál":"https://dictzone.com/s/hu/m/fv.mp3",
+      "hála":"https://dictzone.com/s/hu/m/fw.mp3","szia":"https://dictzone.com/s/hu/1j/2hf.mp3",
+      "köszönöm":"https://dictzone.com/s/hu/x/29n.mp3","sör":"https://dictzone.com/s/hu/1h/bp.mp3",
+      "szeretlek":"https://dictzone.com/s/hu/1j/1n4.mp3","egészségedre!":"https://dictzone.com/s/hu/a/25k.mp3",
+      "pálinka":"https://dictzone.com/s/hu/1b/1eo.mp3","térkép":"https://dictzone.com/s/hu/1m/2jf.mp3",
+      "család":"https://dictzone.com/s/hu/8/ex.mp3","Budapest":"https://dictzone.com/s/hu/7/wm.mp3",
+      "Magyarország":"https://dictzone.com/s/hu/11/2fv.mp3","igen":"https://dictzone.com/s/hu/p/2so.mp3",
+      "nem":"https://dictzone.com/s/hu/17/og.mp3","napot":"https://dictzone.com/s/hu/16/25z.mp3",
+      "hol":"https://dictzone.com/s/hu/o/29c.mp3","van":"https://dictzone.com/s/hu/1r/14e.mp3"
+    };
     const speakerIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z"/></svg>`;
-    const speakable = (text, label = text) =>
-      `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-speak="${esc(text)}" aria-label="Pronunță ${esc(text)} în maghiară" title="Pronunță în maghiară">${speakerIcon}</button></span>`;
+    const audioWord = (word, label = word) => {
+      const url = DICTZONE_AUDIO[word] || DICTZONE_AUDIO[word.toLowerCase()];
+      if (!url) return `<span class="audio-unavailable" lang="hu" title="Înregistrare indisponibilă pe DictZone">${esc(label)}</span>`;
+      return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția DictZone pentru ${esc(word)}" title="Pronunție nativă DictZone">${speakerIcon}</button></span>`;
+    };
+    const speakable = (text, label = text) => {
+      if (DICTZONE_AUDIO[text] || DICTZONE_AUDIO[text.toLowerCase()]) return audioWord(text, label);
+      const parts = String(label).split(/([\p{L}À-žŐőŰű]+|\s+|\/|\.{3}|[!?])/gu);
+      const hasRecordedWord = parts.some((part) => DICTZONE_AUDIO[part.toLowerCase()]);
+      if (hasRecordedWord) return parts.map((part) => DICTZONE_AUDIO[part.toLowerCase()] ? audioWord(part.toLowerCase(), part) : esc(part)).join("");
+      return audioWord(text, label);
+    };
     document.querySelectorAll("[data-hu]").forEach((node) => {
       node.innerHTML = speakable(node.dataset.hu, node.textContent);
     });
@@ -2076,135 +2073,29 @@
       .map(ankiRow)
       .join("");
 
-    // Hungarian text-to-speech. Voice ranking follows pronunciation-helper's approach,
-    // with Hungarian-native voices preferred over generic/default fallbacks.
-    let hungarianVoices = [];
+    // Native Hungarian recordings indexed from DictZone dictionary entries.
+    const audioPlayer = new Audio();
     let activeSpeakButton = null;
-    const voiceSelect = document.getElementById("voice-select");
-    const voiceStatus = document.getElementById("voice-status");
-    const voiceId = (voice) =>
-      `${voice.voiceURI}|${voice.name}|${voice.lang}`;
-    const voiceScore = (voice) => {
-      const name = voice.name.toLowerCase();
-      let score = 0;
-      if (/mariska|noemi|szabolcs/.test(name)) score += 20;
-      if (/microsoft|google|apple|natural|online|premium|enhanced/.test(name))
-        score += 8;
-      if (voice.localService) score += 2;
-      if (voice.default) score += 1;
-      if (
-        /espeak|mbrola|albert|bells|boing|bubbles|trinoids|whisper|zarvox/.test(
-          name,
-        )
-      )
-        score -= 20;
-      return score;
-    };
-    const bestHungarianVoice = () =>
-      [...hungarianVoices].sort((a, b) => voiceScore(b) - voiceScore(a))[0];
-    const storedVoiceId = () => {
-      try {
-        return localStorage.getItem("magyar-selected-voice") || "";
-      } catch {
-        return "";
-      }
-    };
-    const selectedHungarianVoice = () =>
-      hungarianVoices.find((voice) => voiceId(voice) === voiceSelect.value) ||
-      bestHungarianVoice();
-    const refreshVoices = () => {
-      hungarianVoices =
-        window.speechSynthesis
-          ?.getVoices()
-          .filter((voice) =>
-            voice.lang.toLowerCase().replace("_", "-").startsWith("hu"),
-          )
-          .sort(
-            (a, b) =>
-              voiceScore(b) - voiceScore(a) || a.name.localeCompare(b.name),
-          ) || [];
-
-      if (!hungarianVoices.length) {
-        voiceSelect.innerHTML = `<option value="">Nicio voce maghiară disponibilă</option>`;
-        voiceSelect.disabled = true;
-        voiceStatus.textContent =
-          "Instalează o voce maghiară (hu-HU) în sistem sau încearcă Microsoft Edge, apoi reîncarcă pagina.";
-        voiceStatus.classList.add("error");
-        return;
-      }
-
-      const previous = voiceSelect.value || storedVoiceId();
-      voiceSelect.innerHTML = hungarianVoices
-        .map(
-          (voice, index) =>
-            `<option value="${esc(voiceId(voice))}">${index === 0 ? "★ " : ""}${esc(voice.name)} — ${esc(voice.lang)}${voice.localService ? " (sistem)" : " (online)"}</option>`,
-        )
-        .join("");
-      if (hungarianVoices.some((voice) => voiceId(voice) === previous))
-        voiceSelect.value = previous;
-      voiceSelect.disabled = false;
-      voiceStatus.textContent = `${hungarianVoices.length} ${hungarianVoices.length === 1 ? "voce maghiară disponibilă" : "voci maghiare disponibile"}. Selecția se aplică peste tot.`;
-      voiceStatus.classList.remove("error");
-    };
     const finishSpeaking = (button) => {
       button?.classList.remove("is-speaking");
       button?.removeAttribute("aria-pressed");
       if (activeSpeakButton === button) activeSpeakButton = null;
     };
-    const pronounceHungarian = (text, button) => {
-      if (
-        !("speechSynthesis" in window) ||
-        !("SpeechSynthesisUtterance" in window)
-      )
-        return;
-      window.speechSynthesis.cancel();
+    const playHungarianAudio = async (button) => {
+      audioPlayer.pause();
       finishSpeaking(activeSpeakButton);
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "hu-HU";
-      utterance.rate = 0.88;
-      utterance.pitch = 1;
-      const voice = selectedHungarianVoice();
-      if (!voice) {
-        voiceStatus.textContent =
-          "Nu pot pronunța corect: browserul nu oferă nicio voce maghiară.";
-        voiceStatus.classList.add("error");
-        return;
-      }
-      utterance.voice = voice;
+      audioPlayer.src = button.dataset.audio;
       activeSpeakButton = button;
       button.classList.add("is-speaking");
       button.setAttribute("aria-pressed", "true");
-      utterance.onend = () => finishSpeaking(button);
-      utterance.onerror = () => finishSpeaking(button);
-      window.speechSynthesis.speak(utterance);
+      try { await audioPlayer.play(); }
+      catch { finishSpeaking(button); }
     };
-    if ("speechSynthesis" in window) {
-      refreshVoices();
-      if (window.speechSynthesis.addEventListener)
-        window.speechSynthesis.addEventListener(
-          "voiceschanged",
-          refreshVoices,
-        );
-      else window.speechSynthesis.onvoiceschanged = refreshVoices;
-    } else {
-      voiceSelect.innerHTML = `<option value="">Pronunția nu este suportată</option>`;
-      voiceSelect.disabled = true;
-      voiceStatus.textContent = "Acest browser nu suportă Web Speech API.";
-      voiceStatus.classList.add("error");
-      document
-        .querySelectorAll(".speak-btn")
-        .forEach((button) => (button.disabled = true));
-    }
-    voiceSelect.addEventListener("change", () => {
-      try {
-        localStorage.setItem("magyar-selected-voice", voiceSelect.value);
-      } catch { }
-      window.speechSynthesis?.cancel();
-      finishSpeaking(activeSpeakButton);
-    });
+    audioPlayer.addEventListener("ended", () => finishSpeaking(activeSpeakButton));
+    audioPlayer.addEventListener("error", () => finishSpeaking(activeSpeakButton));
     document.addEventListener("click", (event) => {
       const button = event.target.closest(".speak-btn");
-      if (button) pronounceHungarian(button.dataset.speak, button);
+      if (button) playHungarianAudio(button);
     });
 
     // CSV download (Front;Back;Tip) with BOM so Anki/Excel read UTF-8 diacritics correctly

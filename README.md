@@ -15,16 +15,56 @@ special pentru vorbitori de română.
 - exemple și capcane frecvente, inclusiv diferența dintre `S` și `Sz`;
 - perechi minimale pentru antrenarea auzului;
 - 20 de carduri Anki și export CSV;
-- pronunție în browser pentru cuvintele și expresiile maghiare;
-- selector global pentru vocile maghiare disponibile în browser;
+- înregistrări audio maghiare asociate intrărilor din DictZone;
 - aspect responsive, mod întunecat și versiune optimizată pentru imprimare.
 
 ## Pronunție
 
-Audio este generat local cu Web Speech API. Calitatea și numărul vocilor
-maghiare depind de browser și de vocile instalate în sistemul de operare.
-Pagina folosește exclusiv vocile marcate `hu` sau `hu-HU`, pentru a evita
-pronunțarea textului maghiar cu o voce engleză.
+Butoanele de pronunție redau înregistrările MP3 maghiare publicate pentru
+intrările corespunzătoare din [DictZone](https://dictzone.com/dictionar-maghiar-roman).
+Expresiile fără o înregistrare completă sunt împărțite în cuvinte, fiecare cu
+propriul buton audio. Dacă DictZone nu oferă o înregistrare pentru un cuvânt,
+acesta este afișat fără buton și este marcat ca indisponibil.
+
+Implementarea nu mai folosește Web Speech API și nu depinde de vocile
+sintetice instalate în browser sau în sistemul de operare.
+
+## Scripturi pentru audio
+
+Instrumentele folosite pentru construirea și verificarea listei de URL-uri
+sunt păstrate în repository:
+
+- [`scripts/collect-dictzone-audio.mjs`](./scripts/collect-dictzone-audio.mjs)
+  extrage toate cuvintele din fișă, interoghează paginile DictZone și produce
+  un obiect JSON cu URL-urile MP3. Pentru expresiile fără audio complet,
+  scriptul caută automat și cuvintele componente.
+- [`scripts/verify-dictzone-audio.mjs`](./scripts/verify-dictzone-audio.mjs)
+  verifică dacă URL-urile din `DICTZONE_AUDIO` răspund cu un tip MIME audio.
+
+Ambele scripturi folosesc doar funcționalități incluse în Node.js și introduc
+pauze între cereri pentru a reduce riscul limitării de către DictZone.
+
+Colectează toate URL-urile într-un fișier JSON:
+
+```bash
+node scripts/collect-dictzone-audio.mjs --output dictzone-audio.json
+```
+
+Testează colectarea pentru un singur cuvânt:
+
+```bash
+node scripts/collect-dictzone-audio.mjs --word csoki --delay 0
+```
+
+Verifică un URL din harta inclusă în pagină:
+
+```bash
+node scripts/verify-dictzone-audio.mjs --word csoki --delay 0
+```
+
+Pentru o verificare completă, rulează fără `--word`. DictZone poate limita
+cererile repetate sau poate redirecționa temporar fișierele audio; în acest
+caz mărește pauza, de exemplu cu `--delay 3000`.
 
 ## Utilizare locală
 
@@ -49,6 +89,5 @@ publicată” de mai sus.
 
 ## Confidențialitate
 
-Fișa nu folosește trackere și nu trimite textul către un serviciu audio
-extern. Pronunția este gestionată de funcțiile audio oferite de browser și
-de sistemul de operare.
+Fișa nu folosește trackere. La apăsarea unui buton de pronunție, browserul
+solicită fișierul MP3 corespunzător de la `dictzone.com`.
