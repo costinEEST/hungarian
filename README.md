@@ -16,7 +16,8 @@ special pentru vorbitori de română.
 - perechi minimale pentru antrenarea auzului;
 - 20 de carduri Anki și export CSV;
 - înregistrări audio maghiare asociate intrărilor din DictZone;
-- aspect responsive, mod întunecat și versiune optimizată pentru imprimare.
+- aspect responsive, mod întunecat și versiune optimizată pentru imprimare;
+- metadate SEO, Open Graph, Twitter Card și date structurate Schema.org.
 
 ## Pronunție
 
