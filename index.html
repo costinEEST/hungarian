@@ -5,6 +5,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Magyar Ábécé — Fișă pentru români</title>
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23fff'/%3E%3Cpath d='M0 12A12 12 0 0 1 12 0h40a12 12 0 0 1 12 12v10H0z' fill='%23ce2939'/%3E%3Cpath d='M0 42h64v10a12 12 0 0 1-12 12H12A12 12 0 0 1 0 52z' fill='%23477050'/%3E%3Cpath d='M0 22h64v20H0z' fill='%23fff'/%3E%3C/svg%3E" />
   <style>
     :root {
       --bg: #fff;
@@ -1177,7 +1179,8 @@
       flex-wrap: wrap;
     }
 
-    .foot-tags span {
+    .foot-tags span,
+    .foot-tags a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -1185,6 +1188,23 @@
       border: 1px solid var(--line);
       background: var(--surface);
       padding: 4px 12px;
+    }
+
+    .foot-tags a {
+      color: var(--ink-soft);
+      text-decoration: none;
+    }
+
+    .foot-tags a:hover {
+      color: var(--ink);
+      border-color: var(--line-strong);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .foot-tags a:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--hu-green) 30%, transparent);
+      outline-offset: 2px;
     }
 
     .foot-tags .dot {
@@ -1602,6 +1622,7 @@
             printa color sau alb-negru.</span>
         </div>
         <div class="foot-tags">
+          <a href="https://github.com/costinEEST/hungarian/issues" target="_blank" rel="noopener noreferrer">💬 Feedback și contribuții</a>
           <span><i class="dot" style="background: var(--hu-red)"></i> HU</span>
           <span><i class="dot" style="background: var(--ro-blue)"></i> RO</span>
           <span>44 litere • 14 vocale • 9 digrafe</span>
