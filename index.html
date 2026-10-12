@@ -55,7 +55,7 @@
       --surface-2: #f6f5f1;
       --ink: #141413;
       --ink-soft: #6b6a63;
-      --ink-faint: #9e9d98;
+      --ink-faint: #74736e;
       --line: #e8e6df;
       --line-strong: #d6d3ca;
       --hu-red: #ce2939;
@@ -69,7 +69,7 @@
       --red-bg: #fef2f2;
       --green: #15803d;
       --green-bg: #f0fdf4;
-      --orange: #ea580c;
+      --orange: #c2410c;
       --orange-bg: #fff7ed;
       --warn-ink: #9a3412;
       --warn-ink-dark: #7c2d12;
@@ -98,7 +98,7 @@
         --surface-2: #252420;
         --ink: #f5f3ef;
         --ink-soft: #a8a6a1;
-        --ink-faint: #7a7975;
+        --ink-faint: #989690;
         --line: #2a2926;
         --line-strong: #3a3935;
         --blue-bg: #1a2744;
@@ -122,6 +122,8 @@
     html {
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     body {
@@ -151,6 +153,41 @@
     ::selection {
       background: var(--ro-yellow);
       color: #141413;
+    }
+
+    :where(a, button, select, [tabindex]):focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: 8px;
+      left: 8px;
+      z-index: 100;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--ink);
+      color: var(--bg);
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-160%);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     .wrap {
@@ -193,8 +230,7 @@
 
     /* header */
     header {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 40;
       background: color-mix(in srgb, var(--bg) 90%, transparent);
       backdrop-filter: blur(24px);
@@ -769,7 +805,7 @@
     }
 
     .rule {
-      padding: 24px;
+      padding: clamp(18px, 5vw, 24px);
       display: flex;
       flex-direction: column;
     }
@@ -821,15 +857,21 @@
     }
 
     .pair {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      display: grid;
+      gap: 6px;
       font-size: 12px;
       font-family: var(--mono);
       background: var(--red-bg);
       border: 1px solid rgba(252, 165, 165, 0.4);
-      border-radius: 999px;
-      padding: 6px 12px;
+      border-radius: var(--r-md);
+      padding: 10px 12px;
+    }
+
+    .pair-words {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 8px;
     }
 
     .pair b {
@@ -841,7 +883,9 @@
     }
 
     .pair em {
-      margin-left: auto;
+      display: block;
+      padding-top: 6px;
+      border-top: 1px solid color-mix(in srgb, var(--red) 12%, transparent);
       font-style: normal;
       font-family: inherit;
       font:
@@ -1336,6 +1380,48 @@
       height: 16px;
     }
 
+    @media (pointer: coarse) {
+      .speak-btn,
+      .btn {
+        min-width: 44px;
+        min-height: 44px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (forced-colors: active) {
+      .badge,
+      .num,
+      .rule-n {
+        background: CanvasText !important;
+        color: Canvas !important;
+      }
+
+      .dot,
+      .pulse {
+        background: CanvasText !important;
+      }
+
+      .speak-btn,
+      .pair,
+      .card {
+        border-color: CanvasText;
+      }
+    }
+
     @media print {
       header {
         position: static;
@@ -1376,7 +1462,8 @@
 </head>
 
 <body>
-  <div class="strip">
+  <a class="skip-link" href="#main-content">Sari la conținut</a>
+  <div class="strip" aria-hidden="true">
     <span style="background: var(--hu-red)"></span><span style="
           background: #fff;
           border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -1390,7 +1477,7 @@
   <header>
     <div class="wrap head">
       <div style="flex: 1; min-width: 0">
-        <div class="flags">
+        <div class="flags" aria-hidden="true">
           <div class="flag">
             <i style="background: var(--hu-red)"></i><i
               style="background: #fff; border: 1px solid rgba(0, 0, 0, 0.1)"></i><i
@@ -1420,7 +1507,8 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <main class="wrap" id="main-content" tabindex="-1">
+    <div class="sr-only" id="audio-status" role="status" aria-live="polite"></div>
     <!-- Intro -->
     <div class="card intro">
       <div class="pad">
@@ -1477,15 +1565,16 @@
         <span class="sec-note desktop">A4 • lizibil • high-contrast</span>
       </div>
       <div class="card table-card">
-        <div class="desktop scroll">
+        <div class="desktop scroll" role="region" aria-label="Tabelul alfabetului maghiar" tabindex="0">
           <table class="alpha">
+            <caption class="sr-only">Alfabetul maghiar complet: litere, pronunție IPA, aproximare română, exemple și capcane</caption>
             <thead>
               <tr>
-                <th style="width: 72px; padding-left: 16px">Betű</th>
-                <th style="width: 70px">IPA</th>
-                <th style="width: 28%">Aproximare Română</th>
-                <th style="width: 22%">Exemplu</th>
-                <th>Capcană RO</th>
+                <th scope="col" style="width: 72px; padding-left: 16px">Betű</th>
+                <th scope="col" style="width: 70px">IPA</th>
+                <th scope="col" style="width: 28%">Aproximare Română</th>
+                <th scope="col" style="width: 22%">Exemplu</th>
+                <th scope="col">Capcană RO</th>
               </tr>
             </thead>
             <tbody id="alpha-body"></tbody>
@@ -1542,16 +1631,17 @@
           </p>
           <div class="pairs">
             <div class="pair">
-              <b data-hu="kor">kor</b><span class="sl">/</span><b data-hu="kór" style="color: var(--red)">kór</b><span
-                class="sl">/</span><b data-hu="kör" style="color: var(--blue)">kör</b><em>vârstă / boală / cerc</em>
+              <div class="pair-words"><b data-hu="kor">kor</b><span class="sl">/</span><b data-hu="kór"
+                  style="color: var(--red)">kór</b><span class="sl">/</span><b data-hu="kör"
+                  style="color: var(--blue)">kör</b></div><em>vârstă / boală / cerc</em>
             </div>
             <div class="pair">
-              <b data-hu="ver">ver</b><span class="sl">/</span><b data-hu="vér" style="color: var(--red)">vér</b><em>a
-                bate / sânge</em>
+              <div class="pair-words"><b data-hu="ver">ver</b><span class="sl">/</span><b data-hu="vér"
+                  style="color: var(--red)">vér</b></div><em>a bate / sânge</em>
             </div>
             <div class="pair">
-              <b data-hu="szel">szel</b><span class="sl">/</span><b data-hu="szél"
-                style="color: var(--red)">szél</b><em>feliază / vânt</em>
+              <div class="pair-words"><b data-hu="szel">szel</b><span class="sl">/</span><b data-hu="szél"
+                  style="color: var(--red)">szél</b></div><em>feliază / vânt</em>
             </div>
           </div>
           <div class="faint" style="margin-top: 12px; font-size: 11px">
@@ -1606,14 +1696,15 @@
         </svg>Apasă difuzorul de lângă un cuvânt pentru o înregistrare maghiară din sursele indicate în subsol.
       </p>
       <div class="card table-card" style="box-shadow: var(--shadow-soft)">
-        <div class="scroll">
+        <div class="scroll" role="region" aria-label="Tabel cu perechi minimale" tabindex="0">
           <table class="mp">
+            <caption class="sr-only">Perechi minimale maghiare cu pronunție IPA, traducere română și obiectiv fonetic</caption>
             <thead>
               <tr>
-                <th style="width: 34%">Pereche</th>
-                <th style="width: 18%">IPA</th>
-                <th>Traducere RO</th>
-                <th style="width: 28%">Focus</th>
+                <th scope="col" style="width: 34%">Pereche</th>
+                <th scope="col" style="width: 18%">IPA</th>
+                <th scope="col">Traducere RO</th>
+                <th scope="col" style="width: 28%">Focus</th>
               </tr>
             </thead>
             <tbody id="pairs-body"></tbody>
@@ -2077,7 +2168,7 @@
       const url = DICTZONE_AUDIO[word] || DICTZONE_AUDIO[word.toLowerCase()];
       if (!url) return `<span class="audio-unavailable" lang="hu" title="Înregistrare indisponibilă pe DictZone">${esc(label)}</span>`;
       const source = url.includes("szotar.sztaki.hu") ? "SZTAKI" : "DictZone";
-      return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția ${source} pentru ${esc(word)}" title="Pronunție ${source}">${speakerIcon}</button></span>`;
+      return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția ${source} pentru ${esc(word)}" aria-pressed="false" title="Pronunție ${source}">${speakerIcon}</button></span>`;
     };
     const speakable = (text, label = text) => {
       if (DICTZONE_AUDIO[text] || DICTZONE_AUDIO[text.toLowerCase()]) return audioWord(text, label);
@@ -2153,10 +2244,11 @@
 
     // Native Hungarian recordings indexed from DictZone dictionary entries.
     const audioPlayer = new Audio();
+    const audioStatus = document.getElementById("audio-status");
     let activeSpeakButton = null;
     const finishSpeaking = (button) => {
       button?.classList.remove("is-speaking");
-      button?.removeAttribute("aria-pressed");
+      button?.setAttribute("aria-pressed", "false");
       if (activeSpeakButton === button) activeSpeakButton = null;
     };
     const playHungarianAudio = async (button) => {
@@ -2166,11 +2258,23 @@
       activeSpeakButton = button;
       button.classList.add("is-speaking");
       button.setAttribute("aria-pressed", "true");
+      audioStatus.textContent = `Se redă pronunția pentru ${button.dataset.word}.`;
       try { await audioPlayer.play(); }
-      catch { finishSpeaking(button); }
+      catch {
+        finishSpeaking(button);
+        audioStatus.textContent = `Înregistrarea pentru ${button.dataset.word} nu a putut fi redată.`;
+      }
     };
-    audioPlayer.addEventListener("ended", () => finishSpeaking(activeSpeakButton));
-    audioPlayer.addEventListener("error", () => finishSpeaking(activeSpeakButton));
+    audioPlayer.addEventListener("ended", () => {
+      const word = activeSpeakButton?.dataset.word;
+      finishSpeaking(activeSpeakButton);
+      if (word) audioStatus.textContent = `Redarea pentru ${word} s-a încheiat.`;
+    });
+    audioPlayer.addEventListener("error", () => {
+      const word = activeSpeakButton?.dataset.word;
+      finishSpeaking(activeSpeakButton);
+      if (word) audioStatus.textContent = `Înregistrarea pentru ${word} nu a putut fi redată.`;
+    });
     document.addEventListener("click", (event) => {
       const button = event.target.closest(".speak-btn");
       if (button) playHungarianAudio(button);
