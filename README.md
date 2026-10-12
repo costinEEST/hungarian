@@ -15,14 +15,16 @@ special pentru vorbitori de română.
 - exemple și capcane frecvente, inclusiv diferența dintre `S` și `Sz`;
 - perechi minimale pentru antrenarea auzului;
 - 20 de carduri Anki și export CSV;
-- înregistrări audio maghiare asociate intrărilor din DictZone;
+- înregistrări audio maghiare asociate resurselor DictZone și SZTAKI;
 - aspect responsive, mod întunecat și versiune optimizată pentru imprimare;
 - metadate SEO, Open Graph, Twitter Card și date structurate Schema.org.
 
 ## Pronunție
 
-Butoanele de pronunție redau înregistrările MP3 maghiare publicate pentru
-intrările corespunzătoare din [DictZone](https://dictzone.com/dictionar-maghiar-roman).
+Butoanele de pronunție redau înregistrări MP3 maghiare oferite de
+<a href="https://dictzone.com/romanian-hungarian-dictionary/" target="_blank" rel="noopener noreferrer">DictZone</a>
+și
+<a href="https://szotar.sztaki.hu/en/home" target="_blank" rel="noopener noreferrer">SZTAKI</a>.
 Expresiile fără o înregistrare completă sunt împărțite în cuvinte, fiecare cu
 propriul buton audio. Dacă DictZone nu oferă o înregistrare pentru un cuvânt,
 acesta este afișat fără buton și este marcat ca indisponibil.

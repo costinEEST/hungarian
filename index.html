@@ -1247,6 +1247,16 @@
       outline-offset: 2px;
     }
 
+    .audio-sources a {
+      color: inherit;
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+
+    .audio-sources a:hover {
+      color: var(--ink-soft);
+    }
+
     .foot-tags .dot {
       width: 6px;
       height: 6px;
@@ -1452,7 +1462,7 @@
         </div>
         <div class="howto">
           <b>Cum folosești fișa:</b> Printează A4 color. 1) Citește pe rând cu
-          audio nativ DictZone. 2) Acoperă coloana RO și ghicește. 3) Fă Anki din Secțiunea
+          audio nativ. 2) Acoperă coloana RO și ghicește. 3) Fă Anki din Secțiunea
           4.
         </div>
       </div>
@@ -1593,7 +1603,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z" />
-        </svg>Apasă difuzorul de lângă un cuvânt pentru o înregistrare maghiară de pe DictZone.
+        </svg>Apasă difuzorul de lângă un cuvânt pentru o înregistrare maghiară din sursele indicate în subsol.
       </p>
       <div class="card table-card" style="box-shadow: var(--shadow-soft)">
         <div class="scroll">
@@ -1621,7 +1631,7 @@
         </h2>
         <div class="faint" style="font-size: 11px">
           Format: Front / Back / Sfat audio • Taie și pune în Anki • Audio:
-          DictZone
+          DictZone + SZTAKI
         </div>
       </div>
       <div class="anki">
@@ -1641,7 +1651,7 @@
       <div class="anki-note">
         <p>
           <strong>Cum le imporți în Anki:</strong> Copiază coloana Front/Back
-          în CSV. Pentru câmpul Audio poți folosi înregistrările DictZone
+          în CSV. Pentru câmpul Audio poți folosi înregistrările externe
           asociate butoanelor de mai sus. Repetă 15 min/zi.
         </p>
         <div class="anki-actions">
@@ -1656,8 +1666,14 @@
     <footer>
       <div class="foot">
         <div>
-          Creat pentru vorbitori de română — Octombrie 2026 — Sursă audio:
-          DictZone.com<br />
+          Creat pentru vorbitori de română — Octombrie 2026 —
+          <span class="audio-sources">Surse audio:
+            <a href="https://dictzone.com/romanian-hungarian-dictionary/" target="_blank"
+              rel="noopener noreferrer">DictZone</a>
+            și
+            <a href="https://szotar.sztaki.hu/en/home" target="_blank"
+              rel="noopener noreferrer">SZTAKI</a>
+          </span><br />
           <span style="font-size: 10px">Design print-friendly A4 • Fonturi sistem • Fără trackere • Poți
             printa color sau alb-negru.</span>
         </div>
@@ -2060,7 +2076,8 @@
     const audioWord = (word, label = word) => {
       const url = DICTZONE_AUDIO[word] || DICTZONE_AUDIO[word.toLowerCase()];
       if (!url) return `<span class="audio-unavailable" lang="hu" title="Înregistrare indisponibilă pe DictZone">${esc(label)}</span>`;
-      return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția DictZone pentru ${esc(word)}" title="Pronunție nativă DictZone">${speakerIcon}</button></span>`;
+      const source = url.includes("szotar.sztaki.hu") ? "SZTAKI" : "DictZone";
+      return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția ${source} pentru ${esc(word)}" title="Pronunție ${source}">${speakerIcon}</button></span>`;
     };
     const speakable = (text, label = text) => {
       if (DICTZONE_AUDIO[text] || DICTZONE_AUDIO[text.toLowerCase()]) return audioWord(text, label);
