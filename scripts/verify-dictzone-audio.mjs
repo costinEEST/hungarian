@@ -8,7 +8,7 @@ const valueAfter = (flag) => {
   const index = args.indexOf(flag);
   return index === -1 ? undefined : args[index + 1];
 };
-const sourcePath = valueAfter("--source") || "index.html";
+const sourcePath = valueAfter("--source") || "alfabet-maghiar.html";
 const onlyWord = valueAfter("--word");
 const delayMs = Number(valueAfter("--delay") || 1500);
 const retries = Number(valueAfter("--retries") || 2);
