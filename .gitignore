@@ -150,3 +150,6 @@ vite.config.ts.timestamp-*
 
 # Local
 tmp
+
+# macOS Finder metadata
+.DS_Store
