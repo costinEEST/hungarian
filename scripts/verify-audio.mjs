@@ -20,7 +20,12 @@ if (!script) throw new Error(`No inline <script> found in ${sourcePath}`);
 const mapStart = script.indexOf("const DICTZONE_AUDIO");
 const mapEnd = script.indexOf("const speakerIcon");
 if (mapStart === -1 || mapEnd === -1) throw new Error("Could not locate DICTZONE_AUDIO.");
-const audio = new Function(`${script.slice(mapStart, mapEnd)}; return DICTZONE_AUDIO;`)();
+const audio = new Function(`
+  ${script.slice(mapStart, mapEnd)}
+  return Object.fromEntries(
+    Object.entries(DICTZONE_AUDIO).map(([word, value]) => [word, getAudioUrl(value)]),
+  );
+`)();
 const entries = onlyWord
   ? Object.entries(audio).filter(([word]) => word.toLocaleLowerCase("hu") === onlyWord.toLocaleLowerCase("hu"))
   : Object.entries(audio);
