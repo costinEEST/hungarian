@@ -1742,8 +1742,8 @@
           printabil
         </h2>
         <div class="faint" style="font-size: 11px">
-          Format: Front / Back / Sfat audio • Taie și pune în Anki • Audio:
-          DictZone + SZTAKI
+          Format: Front / Back / Sfat audio • Taie și pune în Anki • Surse
+          audio: DictZone, SZTAKI, Wikimedia Commons și Forvo
         </div>
       </div>
       <div class="anki">
@@ -1779,11 +1779,14 @@
       <div class="foot">
         <div>
           Creat pentru vorbitori de română — Octombrie 2026 —
-          <span class="audio-sources">Surse audio:
+          <span class="audio-sources">Înregistrări audio oferite de:
             <a href="https://dictzone.com/romanian-hungarian-dictionary/" target="_blank"
-              rel="noopener noreferrer">DictZone</a>
+              rel="noopener noreferrer">DictZone</a>,
+            <a href="https://szotar.sztaki.hu/en/home" target="_blank" rel="noopener noreferrer">SZTAKI</a>,
+            <a href="https://commons.wikimedia.org/" target="_blank"
+              rel="noopener noreferrer">Wikimedia Commons</a>
             și
-            <a href="https://szotar.sztaki.hu/en/home" target="_blank" rel="noopener noreferrer">SZTAKI</a>
+            <a href="https://forvo.com/languages/hu/" target="_blank" rel="noopener noreferrer">Forvo</a>
           </span><br />
           <span style="font-size: 10px">Design print-friendly A4 • Fonturi sistem • Fără trackere • Poți
             printa color sau alb-negru.</span>
@@ -2144,98 +2147,120 @@
         (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c],
       );
     const DICTZONE_AUDIO_BASE = "https://dictzone.com/s/hu/";
+    const FORVO_AUDIO_BASE = "https://audio12.forvo.com/audios/mp3/";
+    const SZTAKI_AUDIO_BASE = "https://szotar.sztaki.hu/speech/cache/hun/";
+    const WIKIMEDIA_AUDIO_BASE =
+      "https://upload.wikimedia.org/wikipedia/commons/transcoded/";
     const DICTZONE_AUDIO = {
-      alma: "1/2mc.mp3",
-      álom: "1/2qt.mp3",
-      baba: "4/172.mp3",
+      alma: "wikimedia:1/15/Hu-alma.ogg/Hu-alma.ogg.mp3",
+      álom: "wikimedia:9/96/Hu-%C3%A1lom.ogg/Hu-%C3%A1lom.ogg.mp3",
+      baba: "wikimedia:2/2d/Hu-baba.ogg/Hu-baba.ogg.mp3",
       cica: "7/2fz.mp3",
-      csoki: "8/2md.mp3",
-      dél: "9/1gv.mp3",
-      edz: "a/1ws.mp3",
+      csoki: "forvo:r/c/rc_9215072_63_2101329_1.mp3",
+      dél: "wikimedia:5/50/Hu-d%C3%A9l.ogg/Hu-d%C3%A9l.ogg.mp3",
+      edz: "wikimedia:b/b3/Hu-edz.ogg/Hu-edz.ogg.mp3",
       dzsem: "a/1hf.mp3",
-      ember: "d/2nt.mp3",
-      élet: "c/jd.mp3",
-      fa: "f/24n.mp3",
+      ember: "wikimedia:f/f4/Hu-ember.ogg/Hu-ember.ogg.mp3",
+      élet: "wikimedia:8/8a/Hu-%C3%A9let.ogg/Hu-%C3%A9let.ogg.mp3",
+      fa: "wikimedia:4/43/Hu-fa.ogg/Hu-fa.ogg.mp3",
       gól: "k/1lg.mp3",
-      gyár: "l/c7.mp3",
-      ház: "n/1f3.mp3",
+      gyár: "wikimedia:b/be/Hu-gy%C3%A1r.ogg/Hu-gy%C3%A1r.ogg.mp3",
+      ház: "wikimedia:d/d9/Hu-h%C3%A1z.ogg/Hu-h%C3%A1z.ogg.mp3",
       ital: "q/2te.mp3",
-      ír: "q/1p8.mp3",
-      jó: "r/1rf.mp3",
+      ír: "wikimedia:f/fc/Hu-%C3%ADr.ogg/Hu-%C3%ADr.ogg.mp3",
+      jó: "wikimedia:f/f4/Hu-j%C3%B3.ogg/Hu-j%C3%B3.ogg.mp3",
       "jó napot":
-        "https://szotar.sztaki.hu/speech/cache/hun/6e/5b/j%25C3%25B3_napot%2521___6e5b14874fc3cbdf04a4e507c741a63f.mp3",
-      kép: "t/1se.mp3",
-      lé: "z/1lc.mp3",
-      hely: "n/26s.mp3",
-      ma: "11/1ak.mp3",
-      nap: "16/25z.mp3",
-      nyár: "18/2gf.mp3",
-      orvos: "1a/1qg.mp3",
+        "sztaki:6e/5b/j%25C3%25B3_napot%2521___6e5b14874fc3cbdf04a4e507c741a63f.mp3",
+      kép: "wikimedia:1/12/Hu-k%C3%A9p.ogg/Hu-k%C3%A9p.ogg.mp3",
+      lé: "wikimedia:0/09/Hu-l%C3%A9.ogg/Hu-l%C3%A9.ogg.mp3",
+      hely: "wikimedia:3/35/Hu-hely.ogg/Hu-hely.ogg.mp3",
+      ma: "wikimedia:8/8e/Hu-ma.ogg/Hu-ma.ogg.mp3",
+      nap: "wikimedia:f/fa/Hu-nap.ogg/Hu-nap.ogg.mp3",
+      nyár: "wikimedia:1/10/Hu-ny%C3%A1r.ogg/Hu-ny%C3%A1r.ogg.mp3",
+      orvos: "wikimedia:9/93/Hu-orvos.ogg/Hu-orvos.ogg.mp3",
       óvoda: "1b/vt.mp3",
-      öröm: "1a/17n.mp3",
-      ő: "19/zg.mp3",
-      pár: "1b/21l.mp3",
-      rózsa: "1f/25y.mp3",
-      só: "1g/2uu.mp3",
-      szó: "1k/11q.mp3",
-      tó: "1n/1nx.mp3",
-      tyúk: "1p/bw.mp3",
-      utca: "1q/f9.mp3",
-      út: "1q/5s.mp3",
-      ül: "1p/28t.mp3",
-      űr: "1p/2oi.mp3",
-      víz: "1t/p3.mp3",
+      öröm: "wikimedia:a/ae/Hu-%C3%B6r%C3%B6m.ogg/Hu-%C3%B6r%C3%B6m.ogg.mp3",
+      ő: "wikimedia:e/ea/Hu-%C5%91.ogg/Hu-%C5%91.ogg.mp3",
+      pár: "wikimedia:0/04/Hu-p%C3%A1r.ogg/Hu-p%C3%A1r.ogg.mp3",
+      rózsa: "wikimedia:c/cb/Hu-r%C3%B3zsa.ogg/Hu-r%C3%B3zsa.ogg.mp3",
+      só: "wikimedia:4/43/Hu-s%C3%B3.ogg/Hu-s%C3%B3.ogg.mp3",
+      szó: "wikimedia:7/75/Hu-sz%C3%B3.ogg/Hu-sz%C3%B3.ogg.mp3",
+      tó: "wikimedia:c/cf/Hu-t%C3%B3.ogg/Hu-t%C3%B3.ogg.mp3",
+      tyúk: "wikimedia:3/3e/Hu-ty%C3%BAk.ogg/Hu-ty%C3%BAk.ogg.mp3",
+      utca: "wikimedia:d/d2/Hu-utca.ogg/Hu-utca.ogg.mp3",
+      út: "wikimedia:0/0a/Hu-%C3%BAt.ogg/Hu-%C3%BAt.ogg.mp3",
+      ül: "wikimedia:c/c3/Hu-%C3%BCl.ogg/Hu-%C3%BCl.ogg.mp3",
+      űr: "wikimedia:2/27/Hu-%C5%B1r.ogg/Hu-%C5%B1r.ogg.mp3",
+      víz: "wikimedia:a/a6/Hu-v%C3%ADz.ogg/Hu-v%C3%ADz.ogg.mp3",
       zár: "1t/2nk.mp3",
-      zsír: "1u/vg.mp3",
-      kor: "x/10q.mp3",
-      kór: "https://szotar.sztaki.hu/speech/cache/hun/4e/40/k%25C3%25B3r___4e40e892217098c8d440ac810c46291e.mp3",
-      kör: "x/10s.mp3",
-      ver: "1s/ep.mp3",
-      vér: "1s/eq.mp3",
-      szel: "1i/2be.mp3",
-      szél: "1i/2bf.mp3",
+      zsír: "wikimedia:d/da/Hu-zs%C3%ADr.ogg/Hu-zs%C3%ADr.ogg.mp3",
+      kor: "wikimedia:a/af/Hu-kor.ogg/Hu-kor.ogg.mp3",
+      kór: "sztaki:4e/40/k%25C3%25B3r___4e40e892217098c8d440ac810c46291e.mp3",
+      kör: "wikimedia:c/cd/Hu-k%C3%B6r.ogg/Hu-k%C3%B6r.ogg.mp3",
+      ver: "wikimedia:c/c9/Hu-ver.ogg/Hu-ver.ogg.mp3",
+      vér: "wikimedia:b/b2/Hu-v%C3%A9r.ogg/Hu-v%C3%A9r.ogg.mp3",
+      szel: "wikimedia:d/d1/Hu-szel.ogg/Hu-szel.ogg.mp3",
+      szél: "wikimedia:f/f8/Hu-sz%C3%A9l.ogg/Hu-sz%C3%A9l.ogg.mp3",
       kora: "x/10q.mp3",
       kóra: "o/2rk.mp3",
       tör: "1n/329.mp3",
       tőr: "1n/32a.mp3",
       szár: "1i/12p.mp3",
-      meggy: "12/2uc.mp3",
-      megy: "13/2v1.mp3",
-      var: "1r/1en.mp3",
-      vár: "1r/1eo.mp3",
-      üt: "1q/5t.mp3",
+      meggy: "wikimedia:d/d9/Hu-meggy.ogg/Hu-meggy.ogg.mp3",
+      megy: "wikimedia:5/53/Hu-megy.ogg/Hu-megy.ogg.mp3",
+      var: "wikimedia:2/2e/Hu-var.ogg/Hu-var.ogg.mp3",
+      vár: "wikimedia:0/0a/Hu-v%C3%A1r.ogg/Hu-v%C3%A1r.ogg.mp3",
+      üt: "wikimedia:f/f5/Hu-%C3%BCt.ogg/Hu-%C3%BCt.ogg.mp3",
       fűt: "j/2k3.mp3",
-      örül: "1a/1n5.mp3",
+      örül: "wikimedia:1/12/Hu-%C3%B6r%C3%BCl.ogg/Hu-%C3%B6r%C3%BCl.ogg.mp3",
       őrül: "1a/1na.mp3",
-      kar: "s/208.mp3",
-      kár: "s/20a.mp3",
-      hal: "m/ft.mp3",
-      hál: "m/fv.mp3",
-      hála: "m/fw.mp3",
-      szia: "1j/2hf.mp3",
-      köszönöm: "x/29n.mp3",
-      sör: "1h/bp.mp3",
+      kar: "wikimedia:3/3a/Hu-kar.ogg/Hu-kar.ogg.mp3",
+      kár: "wikimedia:1/15/Hu-k%C3%A1r.ogg/Hu-k%C3%A1r.ogg.mp3",
+      hal: "wikimedia:1/19/Hu-hal.ogg/Hu-hal.ogg.mp3",
+      hál: "wikimedia:5/58/Hu-h%C3%A1l.ogg/Hu-h%C3%A1l.ogg.mp3",
+      hála: "forvo:3/r/3r_9066377_63_1562790_1.mp3",
+      szia: "wikimedia:d/df/Hu-szia.ogg/Hu-szia.ogg.mp3",
+      köszönöm: "wikimedia:4/4a/Hu-k%C3%B6sz%C3%B6n%C3%B6m.ogg/Hu-k%C3%B6sz%C3%B6n%C3%B6m.ogg.mp3",
+      sör: "wikimedia:8/87/Hu-s%C3%B6r.ogg/Hu-s%C3%B6r.ogg.mp3",
       szeretlek: "1j/1n4.mp3",
       "egészségedre!": "a/25k.mp3",
-      pálinka: "1b/1eo.mp3",
-      térkép: "1m/2jf.mp3",
-      család: "8/ex.mp3",
-      Budapest: "7/wm.mp3",
-      Magyarország: "11/2fv.mp3",
-      igen: "p/2so.mp3",
-      nem: "17/og.mp3",
+      pálinka:
+        "wikimedia:5/5b/Hu-p%C3%A1linka.ogg/Hu-p%C3%A1linka.ogg.mp3",
+      kürtőskalács:
+        "wikimedia:e/e2/Hungarian_says_K%C3%BCrt%C5%91skal%C3%A1cs.wav/Hungarian_says_K%C3%BCrt%C5%91skal%C3%A1cs.wav.mp3",
+      térkép:
+        "wikimedia:2/26/LL-Q9067_%28hun%29-Procrastineur49-t%C3%A9rk%C3%A9p.wav/LL-Q9067_%28hun%29-Procrastineur49-t%C3%A9rk%C3%A9p.wav.mp3",
+      család: "wikimedia:e/ea/Hu-csal%C3%A1d.ogg/Hu-csal%C3%A1d.ogg.mp3",
+      Budapest: "wikimedia:d/d9/Hu-Budapest.ogg/Hu-Budapest.ogg.mp3",
+      Magyarország: "wikimedia:2/20/Hu-Magyarorsz%C3%A1g.ogg/Hu-Magyarorsz%C3%A1g.ogg.mp3",
+      igen: "wikimedia:a/ab/Hu-igen.ogg/Hu-igen.ogg.mp3",
+      nem: "wikimedia:8/82/Hu-nem.ogg/Hu-nem.ogg.mp3",
       "hol van ...?": "1w/ig.mp3",
     };
-    const getAudioUrl = (value) =>
-      value.startsWith("https://") ? value : `${DICTZONE_AUDIO_BASE}${value}`;
+    const getAudioUrl = (value) => {
+      if (value.startsWith("https://")) return value;
+      if (value.startsWith("forvo:"))
+        return `${FORVO_AUDIO_BASE}${value.slice("forvo:".length)}`;
+      if (value.startsWith("sztaki:"))
+        return `${SZTAKI_AUDIO_BASE}${value.slice("sztaki:".length)}`;
+      if (value.startsWith("wikimedia:"))
+        return `${WIKIMEDIA_AUDIO_BASE}${value.slice("wikimedia:".length)}`;
+      return `${DICTZONE_AUDIO_BASE}${value}`;
+    };
     const speakerIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.95v8.1A4.5 4.5 0 0 0 16.5 12zm0-8.18v2.06a7 7 0 0 1 0 12.24v2.06a9 9 0 0 0 0-16.36z"/></svg>`;
     const audioWord = (word, label = word) => {
       const audioPath =
         DICTZONE_AUDIO[word] || DICTZONE_AUDIO[word.toLowerCase()];
       if (!audioPath)
-        return `<span class="audio-unavailable" lang="hu" title="Înregistrare indisponibilă pe DictZone">${esc(label)}</span>`;
+        return `<span class="audio-unavailable" lang="hu" title="Înregistrare indisponibilă">${esc(label)}</span>`;
       const url = getAudioUrl(audioPath);
-      const source = url.includes("szotar.sztaki.hu") ? "SZTAKI" : "DictZone";
+      const source = url.includes("szotar.sztaki.hu")
+        ? "SZTAKI"
+        : url.includes("forvo.com")
+          ? "Forvo"
+          : url.includes("upload.wikimedia.org")
+            ? "Wikimedia Commons"
+            : "DictZone";
       return `<span class="speakable" lang="hu"><span>${esc(label)}</span><button class="speak-btn" type="button" data-audio="${url}" data-word="${esc(word)}" aria-label="Redă pronunția ${source} pentru ${esc(word)}" aria-pressed="false" title="Pronunție ${source}">${speakerIcon}</button></span>`;
     };
     const speakable = (text, label = text) => {
@@ -2322,7 +2347,7 @@
       .map(ankiRow)
       .join("");
 
-    // Native Hungarian recordings indexed from DictZone dictionary entries.
+    // Native Hungarian recordings from DictZone, SZTAKI, Wikimedia Commons, and Forvo.
     const audioPlayer = new Audio();
     const audioStatus = document.getElementById("audio-status");
     let activeSpeakButton = null;
@@ -2334,7 +2359,11 @@
     const playHungarianAudio = async (button) => {
       audioPlayer.pause();
       finishSpeaking(activeSpeakButton);
-      audioPlayer.src = button.dataset.audio;
+      const audioUrl = button.dataset.audio;
+      if (new URL(audioUrl, window.location.href).hostname === "upload.wikimedia.org")
+        audioPlayer.crossOrigin = "anonymous";
+      else audioPlayer.removeAttribute("crossorigin");
+      audioPlayer.src = audioUrl;
       activeSpeakButton = button;
       button.classList.add("is-speaking");
       button.setAttribute("aria-pressed", "true");
