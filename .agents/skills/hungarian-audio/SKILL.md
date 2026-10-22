@@ -95,6 +95,14 @@ pages linked from `index.html`:
 - Keep section anchor offsets large enough that the sticky bar does not cover
   the destination heading. Respect reduced-motion preferences when using
   smooth scrolling or playback animation.
+- `cuvinte-maghiare-cu-mai-multe-sensuri.md` is the maintained data source for
+  its matching HTML lesson. Keep the HTML viewer's parser, displayed total,
+  alphabetical groups, and error state synchronized with that Markdown table;
+  do not duplicate the 343 vocabulary rows by hand in the HTML.
+- When adding or removing a lesson page, update its card and section count in
+  `index.html`, plus the JSON-LD `numberOfItems`, item positions, names, and
+  canonical URLs. All HTML pages use `Constantin Câmpean` in author metadata
+  and structured data.
 
 After editing, format-check the skill with:
 
