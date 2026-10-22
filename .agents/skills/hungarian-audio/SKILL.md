@@ -66,6 +66,40 @@ treat network denial or rate limiting as evidence that a recording is invalid.
   attribute for non-Wikimedia sources rather than applying this globally,
   because DictZone or SZTAKI may not return compatible CORS headers.
 
-After editing, run the scoped URL verifier, parse the final inline script to
-catch JavaScript syntax errors, and run `git diff --check`. Report which source
-and format were selected; do not commit unless the user requests it.
+## Preserve the approved lesson-page UX
+
+Audio work must remain compatible with the shared behavior of the HTML lesson
+pages linked from `index.html`:
+
+- The sticky section bar is the only section-navigation control. Keep its
+  links on one horizontally scrollable row, prevent pills from shrinking or
+  wrapping, and do not add per-section “back to top” actions.
+- The `mode-toggle` switches to a focused Hungarian-only view built from
+  content marked with `lang="hu"`. Keep `aria-pressed` and the visible button
+  label synchronized.
+- In Hungarian-only mode, preserve a mapped recording as a compact circular
+  speaker button beside its word or phrase. Reuse the existing `.speak-btn`
+  element and delegated playback handler; never expose the raw audio URL.
+- Do not render empty or disabled audio controls for content without a mapped
+  recording. Keep those entries visually quiet.
+- Keep `#audio-status` available to assistive technology while Hungarian-only
+  mode hides the rest of the original lesson content.
+- On small screens, stack table cells vertically and center each row. Remove
+  scroll-container behavior from the stacked table, but allow an individual
+  unusually long value to wrap or scroll locally rather than widening the
+  page.
+- Keep section anchor offsets large enough that the sticky bar does not cover
+  the destination heading. Respect reduced-motion preferences when using
+  smooth scrolling or playback animation.
+
+After editing, format-check the skill with:
+
+```bash
+npx --yes prettier --check .agents/skills/hungarian-audio/SKILL.md
+```
+
+Prettier verifies that the Markdown and YAML frontmatter parse and follow the
+repository's formatting convention; it does not enforce the full Codex skill
+schema. Also parse the final inline JavaScript and run `git diff --check`. When
+an audio mapping changed, run the scoped URL verifier and report which source
+and format were selected. Do not commit unless the user requests it.
