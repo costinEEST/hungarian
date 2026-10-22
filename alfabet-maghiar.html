@@ -563,6 +563,7 @@
     /* sections */
     section {
       margin-top: 40px;
+      scroll-margin-top: 76px;
     }
 
     .sec-head {
@@ -1393,6 +1394,39 @@
       }
     }
 
+    .study-nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      backdrop-filter: blur(12px);
+    }
+
+    .study-nav .nav-row { display: flex; align-items: center; gap: 12px; padding-block: 9px; }
+    .study-nav ul { display: flex; flex: 1 1 auto; min-width: 0; gap: 8px; margin: 0; padding: 2px; overflow-x: auto; overscroll-behavior-inline: contain; list-style: none; scrollbar-width: thin; }
+    .study-nav li { flex: 0 0 auto; }
+    .study-nav a, .mode-toggle { display: block; padding: 8px 11px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-xs); font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .mode-toggle { flex: none; min-height: 40px; border-color: var(--hu-green); background: var(--green-bg); cursor: pointer; }
+    .mode-toggle[aria-pressed="true"] { background: var(--hu-green); color: #fff; }
+    .hu-reading { display: none; }
+    .hu-only header, .hu-only #main-content > :not(.hu-reading):not(#audio-status), .hu-only footer { display: none; }
+    .hu-only .study-nav li { display: none; }
+    .hu-only .hu-reading { display: block; margin-top: 28px; }
+    .hu-reading-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .hu-reading-list li { display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 12px; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); font-size: var(--fs-lg); font-weight: 650; text-align: center; }
+    .hu-reading-list li.has-audio { gap: 10px; padding-left: 18px; }
+    .hu-reading-text { min-width: 0; overflow-wrap: anywhere; }
+    .hu-reading-list .speak-btn { flex: 0 0 auto; width: 36px; height: 36px; color: var(--hu-green); }
+    .hu-reading-list .speak-btn svg { width: 18px; height: 18px; }
+
+    @media (max-width: 560px) {
+      .study-nav .nav-row { gap: 8px; }
+      .mode-toggle { font-size: 0.75rem; }
+      .sec-head { align-items: center; gap: 10px; }
+      .hu-reading-list { grid-template-columns: 1fr; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1513,6 +1547,18 @@
     </div>
   </header>
 
+  <nav class="study-nav" aria-label="Secțiunile fișei">
+    <div class="wrap nav-row">
+      <ul>
+        <li><a href="#alfabet">Alfabet</a></li>
+        <li><a href="#reguli">Reguli</a></li>
+        <li><a href="#perechi">Perechi minimale</a></li>
+        <li><a href="#anki">Carduri Anki</a></li>
+      </ul>
+      <button class="mode-toggle" type="button" aria-pressed="false">Doar maghiară</button>
+    </div>
+  </nav>
+
   <main class="wrap" id="main-content" tabindex="-1">
     <div class="sr-only" id="audio-status" role="status" aria-live="polite"></div>
     <!-- Intro -->
@@ -1563,7 +1609,7 @@
     </div>
 
     <!-- 1. Alphabet -->
-    <section>
+    <section id="alfabet">
       <div class="sec-head">
         <h2 class="sec-title">
           <span class="num">1</span>Alfabetul complet — 44 litere
@@ -1604,7 +1650,7 @@
     <div class="print-break"></div>
 
     <!-- 2. Rules -->
-    <section>
+    <section id="reguli">
       <div class="sec-head">
         <h2 class="sec-title">
           <span class="num">2</span>3 Reguli de Aur pentru Români
@@ -1696,7 +1742,7 @@
     </section>
 
     <!-- 3. Minimal pairs -->
-    <section>
+    <section id="perechi">
       <div class="sec-head">
         <h2 class="sec-title">
           <span class="num">3</span>Minimal Pairs — Antrenament de ureche
@@ -1735,7 +1781,7 @@
     </section>
 
     <!-- 4. Anki -->
-    <section>
+    <section id="anki">
       <div class="sec-head" style="align-items: flex-end">
         <h2 class="sec-title">
           <span class="num">4</span>Primele 20 carduri Anki — preview
@@ -2305,7 +2351,7 @@
     document.getElementById("alpha-body").innerHTML = ALPHABET.map(
       ([l, k, ipa, ro, ex, tr, trap]) => `
   <tr class="${kindCls(k)}">
-    <td><span class="letter">${esc(l)}</span>${badge(k)}</td>
+    <td><span class="letter" lang="hu">${esc(l)}</span>${badge(k)}</td>
     <td class="mono soft" style="font-size:13px">${esc(ipa)}</td>
     <td>${esc(ro)}</td>
     <td><b style="font-weight:600">${speakable(ex)}</b> <span class="soft">= ${esc(tr)}</span></td>
@@ -2315,7 +2361,7 @@
     document.getElementById("alpha-mobile").innerHTML = ALPHABET.map(
       ([l, k, ipa, ro, ex, tr, trap]) => `
   <div class="m-item ${kindCls(k)}">
-    <span class="letter">${esc(l)}</span>
+    <span class="letter" lang="hu">${esc(l)}</span>
     <div style="min-width:0">
       <div><span class="mono ipa">${esc(ipa)}</span>${badge(k)}</div>
       <p>${esc(ro)}</p>
@@ -2406,6 +2452,55 @@
       a.remove();
       setTimeout(() => URL.revokeObjectURL(a.href), 1000);
     });
+  </script>
+  <script>
+    (() => {
+      const toggle = document.querySelector('.mode-toggle');
+      const main = document.getElementById('main-content');
+      const reading = document.createElement('section');
+      reading.className = 'hu-reading';
+      reading.id = 'doar-maghiara';
+      reading.setAttribute('aria-labelledby', 'hu-reading-title');
+      reading.innerHTML = '<div class="sec-head"><h2 class="sec-title" id="hu-reading-title" lang="hu">Magyar tartalom</h2></div><ul class="hu-reading-list" lang="hu"></ul>';
+      main.append(reading);
+
+      const buildReadingList = () => {
+        const list = reading.querySelector('.hu-reading-list');
+        const entries = new Map();
+        document.querySelectorAll('#main-content [lang="hu"]').forEach((node) => {
+          if (node.closest('.hu-reading') || node.parentElement?.closest('[lang="hu"]')) return;
+          const value = node.textContent.trim();
+          if (!value) return;
+          const audioButton = node.matches('.speak-btn[data-audio]')
+            ? node
+            : node.querySelector('.speak-btn[data-audio]');
+          const previous = entries.get(value);
+          if (!previous || (!previous.audioButton && audioButton)) {
+            entries.set(value, { value, audioButton });
+          }
+        });
+        list.replaceChildren(...Array.from(entries.values(), ({ value, audioButton }) => {
+          const item = document.createElement('li');
+          const text = document.createElement('span');
+          text.className = 'hu-reading-text';
+          text.textContent = value;
+          item.append(text);
+          if (audioButton) {
+            item.classList.add('has-audio');
+            item.append(audioButton.cloneNode(true));
+          }
+          return item;
+        }));
+      };
+
+      toggle.addEventListener('click', () => {
+        const enabled = !document.body.classList.contains('hu-only');
+        if (enabled) buildReadingList();
+        document.body.classList.toggle('hu-only', enabled);
+        toggle.setAttribute('aria-pressed', String(enabled));
+        toggle.textContent = enabled ? 'Arată tot' : 'Doar maghiară';
+      });
+    })();
   </script>
 </body>
 

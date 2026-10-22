@@ -19,10 +19,11 @@
   <style>
     :root{color-scheme:light dark;--bg:#fbfaf7;--surface:#fff;--soft:#f4f2ec;--ink:#20201d;--muted:#62615b;--line:#dedbd2;--accent:#315f3d;--accent-soft:#e8f2e9;--blue:#174ea6;--shadow:0 10px 30px rgba(30,30,26,.07);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     @media(prefers-color-scheme:dark){:root{--bg:#151512;--surface:#1f1f1b;--soft:#292823;--ink:#f4f2ec;--muted:#b8b5ac;--line:#3b3932;--accent:#8cc798;--accent-soft:#213629;--blue:#8ab4f8;--shadow:0 10px 30px rgba(0,0,0,.28)}}
-    *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font-size:clamp(1rem,.96rem + .2vw,1.125rem);line-height:1.6}a{color:inherit}.wrap{width:min(100% - 32px,1120px);margin-inline:auto}.skip{position:fixed;z-index:20;top:8px;left:8px;padding:10px 14px;background:var(--ink);color:var(--bg);border-radius:8px;transform:translateY(-160%)}.skip:focus{transform:none}:where(a,[tabindex]):focus-visible{outline:3px solid var(--blue);outline-offset:3px}.flag{height:6px;background:linear-gradient(90deg,#ce2939 0 33.333%,#fff 33.333% 66.666%,#477050 66.666%)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font-size:clamp(1rem,.96rem + .2vw,1.125rem);line-height:1.6}a{color:inherit}.wrap{width:min(100% - 32px,1120px);margin-inline:auto}.skip{position:fixed;z-index:20;top:8px;left:8px;padding:10px 14px;background:var(--ink);color:var(--bg);border-radius:8px;transform:translateY(-160%)}.skip:focus{transform:none}:where(a,button,[tabindex]):focus-visible{outline:3px solid var(--blue);outline-offset:3px}.flag{height:6px;background:linear-gradient(90deg,#ce2939 0 33.333%,#fff 33.333% 66.666%,#477050 66.666%)}
     header{padding:clamp(42px,7vw,82px) 0 34px;border-bottom:1px solid var(--line)}.back{display:inline-block;margin-bottom:22px;color:var(--muted);text-underline-offset:3px}.eyebrow{margin:0 0 10px;color:var(--accent);font-size:.78rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{max-width:20ch;margin:0;font-size:clamp(2rem,1.5rem + 2.8vw,3.8rem);line-height:1.08;letter-spacing:-.035em}.lede{max-width:67ch;margin:18px 0 0;color:var(--muted);font-size:clamp(1.05rem,.98rem + .35vw,1.3rem)}nav h2{margin:28px 0 8px;font-size:.92rem}nav ul{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}nav a{display:block;padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:.85rem;text-decoration:none}nav a:hover{text-decoration:underline;text-underline-offset:3px}
-    main{padding-block:14px 72px}section{scroll-margin-top:20px;margin-top:48px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}h2{margin:0;font-size:clamp(1.35rem,1.15rem + .8vw,1.9rem)}.count{color:var(--muted);font-size:.82rem;white-space:nowrap}.note{max-width:78ch;margin:16px 0;color:var(--muted)}.table-scroll{margin-top:18px;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;font-size:clamp(.88rem,.83rem + .2vw,1rem)}caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}thead th{position:sticky;top:0;background:var(--soft);color:var(--muted);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}tbody th{min-width:15rem;font-weight:650}td:nth-child(2){min-width:15rem;color:var(--muted)}td:last-child{min-width:18rem}tbody tr:last-child>*{border-bottom:0}tbody tr:nth-child(even){background:color-mix(in srgb,var(--soft) 55%,transparent)}footer{border-top:1px solid var(--line);padding:28px 0 46px;color:var(--muted)}footer p{margin:0}.footer-links{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}.footer-links a{text-underline-offset:3px}
-    @media(max-width:560px){.section-head{align-items:flex-start;flex-direction:column;gap:2px}th,td{padding:10px 12px}tbody th,td:nth-child(2),td:last-child{min-width:13rem}}
+    main{padding-block:14px 72px}section{scroll-margin-top:76px;margin-top:48px}.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding-bottom:10px;border-bottom:1px solid var(--line)}.section-head h2{min-width:0}h2{margin:0;font-size:clamp(1.35rem,1.15rem + .8vw,1.9rem)}.count{color:var(--muted);font-size:.82rem;white-space:nowrap}.note{max-width:78ch;margin:16px 0;color:var(--muted)}.table-scroll{margin-top:18px;overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;font-size:clamp(.88rem,.83rem + .2vw,1rem)}caption{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}thead th{position:sticky;top:0;background:var(--soft);color:var(--muted);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}tbody th{min-width:15rem;font-weight:650}td:nth-child(2){min-width:15rem;color:var(--muted)}td:last-child{min-width:18rem}tbody tr:last-child>*{border-bottom:0}tbody tr:nth-child(even){background:color-mix(in srgb,var(--soft) 55%,transparent)}footer{border-top:1px solid var(--line);padding:28px 0 46px;color:var(--muted)}footer p{margin:0}.footer-links{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}.footer-links a{text-underline-offset:3px}
+    .study-nav{position:sticky;top:0;z-index:10;padding:10px 0;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px)}.study-nav .nav-row{display:flex;align-items:center;gap:12px}.study-nav h2{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}.study-nav ul{display:flex;flex:1 1 auto;min-width:0;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding:2px}.study-nav li{flex:0 0 auto}.study-nav a{white-space:nowrap}.mode-toggle{flex:none;min-height:40px;padding:8px 12px;border:1px solid var(--accent);border-radius:999px;background:var(--accent-soft);color:var(--ink);font:inherit;font-size:.84rem;font-weight:700;cursor:pointer;white-space:nowrap}.mode-toggle[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.hu-only header,.hu-only main .note,.hu-only main section:first-child,.hu-only main .section-head,.hu-only main thead,.hu-only main td,.hu-only footer{display:none}.hu-only main{padding-top:4px}.hu-only main section{margin-top:12px}.hu-only .table-scroll{box-shadow:none}.hu-only tbody th[lang="hu"]{font-size:1.12rem;text-align:center}.hu-only .count{display:none}
+    @media(max-width:560px){.wrap{width:min(100% - 24px,1120px)}header{padding-bottom:22px}.study-nav{padding-block:8px}.study-nav .nav-row{gap:8px}.study-nav ul{margin-inline:-2px}.study-nav a{padding:7px 10px;font-size:.78rem}.mode-toggle{min-height:36px;padding:7px 10px;font-size:.76rem}.section-head{align-items:center;flex-direction:row;gap:10px}.table-scroll{overflow:visible;border-radius:18px}table,tbody{display:block;width:100%}thead{display:none}tbody tr{display:flex;flex-direction:column;align-items:center;gap:0;padding:18px 14px;text-align:center;border-bottom:1px solid var(--line)}tbody tr:last-child{border-bottom:0}th,td{display:block;width:100%;min-width:0!important;padding:5px 0;border:0;text-align:center;overflow-wrap:anywhere}tbody th{font-size:1.08rem}td:nth-child(2){color:var(--muted)}.hu-only tbody tr{padding-block:15px}.hu-only tbody th[lang="hu"]{padding:0}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media(forced-colors:active){nav a,.table-scroll{border:1px solid CanvasText}}
   </style>
 </head>
@@ -34,7 +35,8 @@
     <p class="eyebrow">Română → Maghiară</p>
     <h1>336 de expresii uzuale în maghiară</h1>
     <p class="lede">Listă de 336 de fraze uzuale, grupate pe 10 teme, cu pronunția aproximativă în litere românești.  Pronunția este orientativă și gândită pentru vorbitorii de română.</p>
-    <nav aria-labelledby="teme-title"><h2 id="teme-title">Sari la o temă</h2><ul>
+  </div></header>
+  <nav class="study-nav" aria-labelledby="teme-title"><div class="wrap nav-row"><h2 id="teme-title">Sari la o temă</h2><ul>
       <li><a href="#pronuntie">Pronunție</a></li>
       <li><a href="#salutari-si-politete">Salutări și politețe</a></li>
           <li><a href="#prezentare-si-cunoastere">Prezentare și cunoaștere</a></li>
@@ -46,8 +48,7 @@
           <li><a href="#cazare">Cazare</a></li>
           <li><a href="#sanatate-si-urgente">Sănătate și urgențe</a></li>
           <li><a href="#sentimente-si-opinii">Sentimente și opinii</a></li>
-    </ul></nav>
-  </div></header>
+    </ul><button class="mode-toggle" type="button" aria-pressed="false">Doar maghiară</button></div></nav>
   <main class="wrap" id="continut" tabindex="-1">
   <section id="pronuntie" aria-labelledby="pronuntie-title">
     <div class="section-head"><h2 id="pronuntie-title">Pronunție</h2></div>
@@ -555,5 +556,16 @@
   </section>
   </main>
   <footer><div class="wrap"><p>Expresiile sunt o resursă orientativă pentru studiu.</p><div class="footer-links"><a href="./">Înapoi la toate resursele</a><a href="https://github.com/costinEEST/hungarian/issues" target="_blank" rel="noopener noreferrer">Trimite feedback ↗</a></div></div></footer>
+  <script>
+    (() => {
+      const toggle = document.querySelector('.mode-toggle');
+      toggle.addEventListener('click', () => {
+        const enabled = !document.body.classList.contains('hu-only');
+        document.body.classList.toggle('hu-only', enabled);
+        toggle.setAttribute('aria-pressed', String(enabled));
+        toggle.textContent = enabled ? 'Arată tot' : 'Doar maghiară';
+      });
+    })();
+  </script>
 </body>
 </html>
