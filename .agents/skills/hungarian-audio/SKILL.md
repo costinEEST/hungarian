@@ -66,21 +66,8 @@ treat network denial or rate limiting as evidence that a recording is invalid.
   attribute for non-Wikimedia sources rather than applying this globally,
   because DictZone or SZTAKI may not return compatible CORS headers.
 
-## Preserve the approved lesson-page UX
+## Preserve the audio experience
 
-Audio work must remain compatible with the shared behavior of the HTML lesson
-pages linked from `index.html`:
-
-- The sticky section bar is the only section-navigation control. Keep its
-  links on one horizontally scrollable row, prevent pills from shrinking or
-  wrapping, and do not add per-section “back to top” actions.
-- Every lesson page linked from `index.html` has a visible
-  `← Toate resursele` link at the start of its header using `href="./"`.
-  Keep any footer link to the collection as secondary, redundant navigation;
-  do not put the home link in the sticky section bar.
-- The `mode-toggle` switches to a focused Hungarian-only view built from
-  content marked with `lang="hu"`. Keep `aria-pressed` and the visible button
-  label synchronized.
 - In Hungarian-only mode, preserve a mapped recording as a compact circular
   speaker button beside its word or phrase. Reuse the existing `.speak-btn`
   element and delegated playback handler; never expose the raw audio URL.
@@ -88,21 +75,8 @@ pages linked from `index.html`:
   recording. Keep those entries visually quiet.
 - Keep `#audio-status` available to assistive technology while Hungarian-only
   mode hides the rest of the original lesson content.
-- On small screens, stack table cells vertically and center each row. Remove
-  scroll-container behavior from the stacked table, but allow an individual
-  unusually long value to wrap or scroll locally rather than widening the
-  page.
-- Keep section anchor offsets large enough that the sticky bar does not cover
-  the destination heading. Respect reduced-motion preferences when using
-  smooth scrolling or playback animation.
-- `cuvinte-maghiare-cu-mai-multe-sensuri.md` is the maintained data source for
-  its matching HTML lesson. Keep the HTML viewer's parser, displayed total,
-  alphabetical groups, and error state synchronized with that Markdown table;
-  do not duplicate the 343 vocabulary rows by hand in the HTML.
-- When adding or removing a lesson page, update its card and section count in
-  `index.html`, plus the JSON-LD `numberOfItems`, item positions, names, and
-  canonical URLs. All HTML pages use `Constantin Câmpean` in author metadata
-  and structured data.
+- Preserve reduced-motion handling for playback animation. Keep buttons at
+  least 44 by 44 CSS pixels on coarse pointers and retain visible focus.
 
 After editing, format-check the skill with:
 
@@ -112,6 +86,6 @@ npx --yes prettier --check .agents/skills/hungarian-audio/SKILL.md
 
 Prettier verifies that the Markdown and YAML frontmatter parse and follow the
 repository's formatting convention; it does not enforce the full Codex skill
-schema. Also parse the final inline JavaScript and run `git diff --check`. When
+schema. Also parse changed inline JavaScript and run `git diff --check`. When
 an audio mapping changed, run the scoped URL verifier and report which source
 and format were selected. Do not commit unless the user requests it.

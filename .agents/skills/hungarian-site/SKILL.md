@@ -1,0 +1,69 @@
+---
+name: hungarian-site
+description: Maintain the Hungarian learning website's lesson pages, navigation, responsive layouts, Hungarian-only reading mode, accessibility, generated content, and index metadata. Use for structural or behavioral changes to the site's HTML, CSS, or JavaScript; use hungarian-audio as well when pronunciation recordings or playback are involved.
+---
+
+# Hungarian lesson-site maintenance
+
+Run commands from the repository root. Preserve the established visual system
+and Romanian-to-Hungarian learning flow unless the user requests a redesign.
+
+## Preserve shared page behavior
+
+- Keep the visible `← Toate resursele` link at the start of every lesson-page
+  header with `href="./"`. A footer link may remain as secondary navigation;
+  do not put the home link in the sticky section bar.
+- Use the sticky section bar as the only section-navigation control. Keep its
+  links on one horizontally scrollable row, prevent pills from shrinking or
+  wrapping, and keep anchor offsets large enough to clear the bar.
+- On small screens, stack table cells vertically and center each row. Remove
+  scroll-container behavior from the stacked table, but let unusually long
+  values wrap or scroll locally instead of widening the page.
+- Respect reduced-motion preferences. Retain visible keyboard focus and touch
+  targets appropriate for coarse pointers.
+
+## Build a reliable Hungarian-only mode
+
+- Build the mode as one dedicated, continuous `lang="hu"` reading surface
+  containing ordinary text blocks. Hide source tables or lesson cards as whole
+  units; do not simulate the mode by hiding individual cells, headers, or
+  captions.
+- Visually hidden Romanian captions remain part of cross-table selections and
+  can make browser Read Aloud switch language or stop. Verify the selected text
+  contains only Hungarian and does not cross table semantics.
+- Keep the toggle's visible label and `aria-pressed` synchronized, give it
+  `aria-controls`, clear stale text selections when switching modes, and expose
+  only the active view to the accessibility tree.
+- Build the reading surface from the maintained source data rather than
+  duplicating lesson entries. For asynchronous content, keep the toggle
+  disabled until parsing succeeds and preserve a visible error state on
+  failure.
+- When a page has mapped pronunciation audio, preserve its compact speaker
+  controls and live status region. Use the `hungarian-audio` skill for changes
+  to recordings, providers, audio mappings, or playback behavior.
+
+## Preserve repository data relationships
+
+- `cuvinte-maghiare-cu-mai-multe-sensuri.md` is the maintained source for its
+  HTML viewer. Keep its parser, displayed total, alphabetical groups, reading
+  view, and error state synchronized; do not duplicate its vocabulary rows in
+  HTML.
+- When adding or removing a lesson page, update its `index.html` card and
+  section count plus the JSON-LD `numberOfItems`, positions, names, and
+  canonical URLs.
+- Keep `Constantin Câmpean` as the author in HTML metadata and structured data.
+
+## Validate changes
+
+- Parse every changed inline script and run `git diff --check`.
+- Exercise both toggle states in a browser. Check the phrase count, selected
+  text, computed language, accessibility tree, console, and async failure path
+  when applicable.
+- Run a Lighthouse snapshot for accessibility and best-practices changes.
+- Format-check this skill with:
+
+```bash
+npx --yes prettier --check .agents/skills/hungarian-site/SKILL.md
+```
+
+Do not commit unless the user requests it.
