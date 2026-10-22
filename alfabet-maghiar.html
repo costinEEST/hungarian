@@ -250,6 +250,19 @@
       padding: 16px 8px;
     }
 
+    .home-link {
+      display: inline-block;
+      margin-bottom: 12px;
+      color: var(--ink-soft);
+      font-size: var(--fs-sm);
+      font-weight: 600;
+      text-underline-offset: 3px;
+    }
+
+    .home-link:hover {
+      color: var(--ink);
+    }
+
     @media (min-width: 768px) {
       .head {
         padding: 20px 0;
@@ -1517,6 +1530,7 @@
   <header>
     <div class="wrap head">
       <div style="flex: 1; min-width: 0">
+        <a class="home-link" href="./">← Toate resursele</a>
         <div class="flags" aria-hidden="true">
           <div class="flag">
             <i style="background: var(--hu-red)"></i><i

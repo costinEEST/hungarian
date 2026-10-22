@@ -74,6 +74,10 @@ pages linked from `index.html`:
 - The sticky section bar is the only section-navigation control. Keep its
   links on one horizontally scrollable row, prevent pills from shrinking or
   wrapping, and do not add per-section “back to top” actions.
+- Every lesson page linked from `index.html` has a visible
+  `← Toate resursele` link at the start of its header using `href="./"`.
+  Keep any footer link to the collection as secondary, redundant navigation;
+  do not put the home link in the sticky section bar.
 - The `mode-toggle` switches to a focused Hungarian-only view built from
   content marked with `lang="hu"`. Keep `aria-pressed` and the visible button
   label synchronized.
