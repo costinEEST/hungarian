@@ -1,6 +1,6 @@
 ---
 name: hungarian-site
-description: Maintain the Hungarian learning website's lesson pages, navigation, responsive layouts, Hungarian-only reading mode, accessibility, generated content, and index metadata. Use for structural or behavioral changes to the site's HTML, CSS, or JavaScript; use hungarian-audio as well when pronunciation recordings or playback are involved.
+description: Maintain the Hungarian learning website's lesson pages, Markdown vocabulary sources, navigation, responsive layouts, Hungarian-only reading mode, accessibility, generated content, and index metadata. Use for vocabulary review or structural and behavioral changes to the site's Markdown, HTML, CSS, or JavaScript; use hungarian-audio as well when pronunciation recordings or playback are involved.
 ---
 
 # Hungarian lesson-site maintenance
@@ -53,8 +53,41 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   canonical URLs.
 - Keep `Constantin Câmpean` as the author in HTML metadata and structured data.
 
+## Review new vocabulary sources
+
+Before publishing or generating a page from a newly added Markdown vocabulary
+or phrase source:
+
+- Parse every maintained entry and report the exact entry and section totals.
+- Check for exact duplicates and likely duplicates after normalizing case,
+  surrounding whitespace, punctuation, and Unicode composition. Review matches
+  across sections as well as within one table. Do not remove repeated Hungarian
+  forms automatically when they intentionally teach different meanings or
+  contexts; identify them and explain why they are retained.
+- Review every Hungarian-to-Romanian meaning for correctness, natural Romanian,
+  and alignment with the specific Hungarian form or phrase. Also flag misleading
+  omissions, ambiguous translations presented as universal, and obvious
+  spelling or grammatical errors. Pronunciation review is separate unless the
+  task includes it.
+- Say clearly what is wrong before or while correcting it. Distinguish definite
+  errors from context-dependent or stylistic suggestions, and summarize every
+  source correction in the handoff.
+- Recompute visible totals and metadata after corrections rather than trusting
+  approximate counts in a heading.
+
+Use dictionaries approved for this repository when verifying meanings. Record
+newly approved dictionaries in the list below with their role or limitations;
+do not silently treat an unapproved source as the repository standard. If no
+approved dictionary covers an entry, still perform the linguistic review and
+state that dictionary verification remains pending rather than claiming it was
+completed.
+
+Approved dictionaries: none recorded yet.
+
 ## Validate changes
 
+- For each new vocabulary Markdown source, retain evidence of the duplicate
+  scan and Romanian-meaning review in the task report.
 - Parse every changed inline script and run `git diff --check`.
 - Exercise both toggle states in a browser. Check the phrase count, selected
   text, computed language, accessibility tree, console, and async failure path
