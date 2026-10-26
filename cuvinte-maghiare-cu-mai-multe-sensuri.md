@@ -288,58 +288,59 @@
 | 286 | szín       | siin       | culoare; scenă (teatru); șopron; fața (unei țesături)                                                    |
 | 287 | szív       | siiv       | inimă; (el) suge, trage (aer, fum)                                                                       |
 | 288 | szó        | soo        | cuvânt; cuvântul (dreptul de a vorbi); promisiune (szavamat adom = îmi dau cuvântul)                     |
-| 289 | szög       | sög        | unghi; cui                                                                                               |
-| 290 | szövet     | sövet      | țesătură, stofă; țesut (biologic)                                                                        |
-| 291 | szűz       | süüz       | fecioară; Fecioara (zodie); virgin, neatins                                                              |
-| 292 | tábla      | taablo     | tablă (de scris); panou, placă; tabletă (de ciocolată); tablă (de șah)                                   |
-| 293 | tag        | tog        | membru; mădular; termen, parte (a unei expresii)                                                         |
-| 294 | tálca      | taalțo     | tavă; bara de activități (pe calculator)                                                                 |
-| 295 | talp       | tolp       | talpă (de picior); talpă (de pantof); bază, temelie                                                      |
-| 296 | tár        | taar       | depozit, magazie; încărcător (de armă); memorie, stocare (adattár)                                       |
-| 297 | tárca      | taarțo     | portofel; portofoliu (ministerial); foileton                                                             |
-| 298 | tárcsa     | taarcio    | disc; cadranul telefonului; disc de frână                                                                |
-| 299 | tárgy      | taarghi    | obiect; materie, disciplină (școlară); complement direct (gramatică)                                     |
-| 300 | tart       | tort       | ține; durează; consideră (vminek tart); se îndreaptă spre; crește (animale)                              |
-| 301 | tenger     | tengher    | mare; mulțime enormă (egy tenger = o mare de)                                                            |
-| 302 | tér        | teer       | piață (publică); spațiu; (el) se întoarce, revine (tér vissza)                                           |
-| 303 | terem      | terem      | sală; (el) crește, rodește, se produce                                                                   |
-| 304 | termés     | termeeș    | rod, fruct; recoltă                                                                                      |
-| 305 | tétel      | teetel     | teoremă; subiect (de examen); articol, poziție (într-o listă); parte (a unei simfonii)                   |
-| 306 | tető       | tetöö      | acoperiș; capac; vârf, culme (de munte)                                                                  |
-| 307 | tiszta     | tisto      | curat; pur, clar; limpede                                                                                |
-| 308 | tok        | tok        | toc, teacă, husă; sturion (tokhal)                                                                       |
-| 309 | toll       | toll       | pix, stilou; pană (de pasăre)                                                                            |
-| 310 | tompa      | tompo      | tocit, bont; înfundat (sunet); obtuz (unghi)                                                             |
-| 311 | torok      | torok      | gât (interior), gâtlej; trecătoare îngustă                                                               |
-| 312 | tő         | töö        | bază, rădăcină; tulpină, fir (egy tő saláta = o căpățână de salată); rădăcina cuvântului (szótő)         |
-| 313 | tök        | tök        | dovleac; culoare la cărțile de joc ungurești; complet, foarte (tök jó = foarte bun, colocvial)           |
-| 314 | tőke       | tööke      | capital; buturugă; butuc (de vie)                                                                        |
-| 315 | török      | török      | turc, turcesc; (eu) sparg (tör → török)                                                                  |
-| 316 | törzs      | törj       | trunchi; trib; tulpină (bacteriană); stat-major (törzskar)                                               |
-| 317 | tükör      | tükör      | oglindă; luciul apei; oglindă (de text, de pagină)                                                       |
-| 318 | tűz        | tüüz       | foc; (el) prinde cu ac, înfige; (soarele) arde, bate puternic                                            |
-| 319 | udvar      | udvor      | curte (a casei); curte (regală); halou (în jurul lunii)                                                  |
-| 320 | ujj        | uii        | deget; mânecă                                                                                            |
-| 321 | út         | uut        | drum; cale; călătorie                                                                                    |
-| 322 | ügy        | üghi       | chestiune; caz, dosar; cauză (pe care o susții)                                                          |
-| 323 | üllő       | üllöö      | nicovală; nicovala (os al urechii)                                                                       |
-| 324 | üres       | üreș       | gol; liber (loc); deșert, fără conținut (vorbe goale)                                                    |
-| 325 | üveg       | üveg       | sticlă (material); sticlă (recipient); borcan                                                            |
-| 326 | vagy       | voghi      | sau; (tu) ești                                                                                           |
-| 327 | vagyon     | voghion    | avere; (arhaic) există, este                                                                             |
-| 328 | vár        | vaar       | castel, cetate; (el/ea) așteaptă                                                                         |
-| 329 | vér        | veer       | sânge; neam, descendență                                                                                 |
-| 330 | vers       | verș       | poezie; vers; verset (biblic)                                                                            |
-| 331 | vet        | vet        | aruncă; seamănă (semințe); face patul (ágyat vet)                                                        |
-| 332 | vevő       | vevöö      | cumpărător, client; receptor (radio)                                                                     |
-| 333 | vezér      | vezeer     | conducător, lider; regină (la șah)                                                                       |
-| 334 | vezet      | vezet      | conduce (mașina); conduce (o firmă); (drumul) duce; (curentul) e condus                                  |
-| 335 | vezeték    | vezeteek   | cablu, conductor; conductă; nume de familie (vezetéknév)                                                 |
-| 336 | vihar      | vihor      | furtună; scandal, tumult                                                                                 |
-| 337 | világ      | vilaag     | lume; lumină (arhaic)                                                                                    |
-| 338 | világos    | vilaagoș   | luminos; deschis (la culoare); clar, evident; bere blondă                                                |
-| 339 | villa      | villo      | furculiță; vilă; furcă                                                                                   |
-| 340 | vonal      | vonol      | linie; linie telefonică; linie (de transport), traseu                                                    |
-| 341 | zár        | zaar       | încuietoare, broască; (el) încuie, închide; carantină, blocaj (zár alá vesz)                             |
-| 342 | zöld       | zöld       | verde; necopt; ecologist; începător, naiv                                                                |
-| 343 | zsír       | jiir       | grăsime, untură; mișto, perfect (argou)                                                                  |
+| 289 | sző        | söö        | țese; urzește, plănuiește (figurat: tervet sző = urzește un plan)                                        |
+| 290 | szög       | sög        | unghi; cui                                                                                               |
+| 291 | szövet     | sövet      | țesătură, stofă; țesut (biologic)                                                                        |
+| 292 | szűz       | süüz       | fecioară; Fecioara (zodie); virgin, neatins                                                              |
+| 293 | tábla      | taablo     | tablă (de scris); panou, placă; tabletă (de ciocolată); tablă (de șah)                                   |
+| 294 | tag        | tog        | membru; mădular; termen, parte (a unei expresii)                                                         |
+| 295 | tálca      | taalțo     | tavă; bara de activități (pe calculator)                                                                 |
+| 296 | talp       | tolp       | talpă (de picior); talpă (de pantof); bază, temelie                                                      |
+| 297 | tár        | taar       | depozit, magazie; încărcător (de armă); memorie, stocare (adattár)                                       |
+| 298 | tárca      | taarțo     | portofel; portofoliu (ministerial); foileton                                                             |
+| 299 | tárcsa     | taarcio    | disc; cadranul telefonului; disc de frână                                                                |
+| 300 | tárgy      | taarghi    | obiect; materie, disciplină (școlară); complement direct (gramatică)                                     |
+| 301 | tart       | tort       | ține; durează; consideră (vminek tart); se îndreaptă spre; crește (animale)                              |
+| 302 | tenger     | tengher    | mare; mulțime enormă (egy tenger = o mare de)                                                            |
+| 303 | tér        | teer       | piață (publică); spațiu; (el) se întoarce, revine (tér vissza)                                           |
+| 304 | terem      | terem      | sală; (el) crește, rodește, se produce                                                                   |
+| 305 | termés     | termeeș    | rod, fruct; recoltă                                                                                      |
+| 306 | tétel      | teetel     | teoremă; subiect (de examen); articol, poziție (într-o listă); parte (a unei simfonii)                   |
+| 307 | tető       | tetöö      | acoperiș; capac; vârf, culme (de munte)                                                                  |
+| 308 | tiszta     | tisto      | curat; pur, clar; limpede                                                                                |
+| 309 | tok        | tok        | toc, teacă, husă; sturion (tokhal)                                                                       |
+| 310 | toll       | toll       | pix, stilou; pană (de pasăre)                                                                            |
+| 311 | tompa      | tompo      | tocit, bont; înfundat (sunet); obtuz (unghi)                                                             |
+| 312 | torok      | torok      | gât (interior), gâtlej; trecătoare îngustă                                                               |
+| 313 | tő         | töö        | bază, rădăcină; tulpină, fir (egy tő saláta = o căpățână de salată); rădăcina cuvântului (szótő)         |
+| 314 | tök        | tök        | dovleac; culoare la cărțile de joc ungurești; complet, foarte (tök jó = foarte bun, colocvial)           |
+| 315 | tőke       | tööke      | capital; buturugă; butuc (de vie)                                                                        |
+| 316 | török      | török      | turc, turcesc; (eu) sparg (tör → török)                                                                  |
+| 317 | törzs      | törj       | trunchi; trib; tulpină (bacteriană); stat-major (törzskar)                                               |
+| 318 | tükör      | tükör      | oglindă; luciul apei; oglindă (de text, de pagină)                                                       |
+| 319 | tűz        | tüüz       | foc; (el) prinde cu ac, înfige; (soarele) arde, bate puternic                                            |
+| 320 | udvar      | udvor      | curte (a casei); curte (regală); halou (în jurul lunii)                                                  |
+| 321 | ujj        | uii        | deget; mânecă                                                                                            |
+| 322 | út         | uut        | drum; cale; călătorie                                                                                    |
+| 323 | ügy        | üghi       | chestiune; caz, dosar; cauză (pe care o susții)                                                          |
+| 324 | üllő       | üllöö      | nicovală; nicovala (os al urechii)                                                                       |
+| 325 | üres       | üreș       | gol; liber (loc); deșert, fără conținut (vorbe goale)                                                    |
+| 326 | üveg       | üveg       | sticlă (material); sticlă (recipient); borcan                                                            |
+| 327 | vagy       | voghi      | sau; (tu) ești                                                                                           |
+| 328 | vagyon     | voghion    | avere; (arhaic) există, este                                                                             |
+| 329 | vár        | vaar       | castel, cetate; (el/ea) așteaptă                                                                         |
+| 330 | vér        | veer       | sânge; neam, descendență                                                                                 |
+| 331 | vers       | verș       | poezie; vers; verset (biblic)                                                                            |
+| 332 | vet        | vet        | aruncă; seamănă (semințe); face patul (ágyat vet)                                                        |
+| 333 | vevő       | vevöö      | cumpărător, client; receptor (radio)                                                                     |
+| 334 | vezér      | vezeer     | conducător, lider; regină (la șah)                                                                       |
+| 335 | vezet      | vezet      | conduce (mașina); conduce (o firmă); (drumul) duce; (curentul) e condus                                  |
+| 336 | vezeték    | vezeteek   | cablu, conductor; conductă; nume de familie (vezetéknév)                                                 |
+| 337 | vihar      | vihor      | furtună; scandal, tumult                                                                                 |
+| 338 | világ      | vilaag     | lume; lumină (arhaic)                                                                                    |
+| 339 | világos    | vilaagoș   | luminos; deschis (la culoare); clar, evident; bere blondă                                                |
+| 340 | villa      | villo      | furculiță; vilă; furcă                                                                                   |
+| 341 | vonal      | vonol      | linie; linie telefonică; linie (de transport), traseu                                                    |
+| 342 | zár        | zaar       | încuietoare, broască; (el) încuie, închide; carantină, blocaj (zár alá vesz)                             |
+| 343 | zöld       | zöld       | verde; necopt; ecologist; începător, naiv                                                                |
+| 344 | zsír       | jiir       | grăsime, untură; mișto, perfect (argou)                                                                  |
