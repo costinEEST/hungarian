@@ -88,7 +88,12 @@ Approved dictionaries: none recorded yet.
 
 - For each new vocabulary Markdown source, retain evidence of the duplicate
   scan and Romanian-meaning review in the task report.
-- Parse every changed inline script and run `git diff --check`.
+- For JSON-backed flashcards, run
+  `node scripts/validate-flashcards.mjs <deck.json>`.
+  Review every reported duplicate rather than deleting it automatically.
+- Parse executable inline scripts with
+  `node scripts/check-inline-scripts.mjs <page.html>`
+  and run `git diff --check`.
 - Exercise both toggle states in a browser. Check the phrase count, selected
   text, computed language, accessibility tree, console, and async failure path
   when applicable.
@@ -98,5 +103,35 @@ Approved dictionaries: none recorded yet.
 ```bash
 npx --yes prettier --check .agents/skills/hungarian-site/SKILL.md
 ```
+
+## Reuse source-extraction tools
+
+- To inspect a PDF without retaining a local copy, run
+  `scripts/extract-pdf-text.sh <path-or-URL> [page-number|all]`.
+  The helper downloads into a unique temporary directory, installs `pypdf`
+  there only when needed, emits extracted text to stdout, and cleans its PDF,
+  dependency directory, bytecode, and pip cache on exit.
+- Redirect the helper's stdout only when the extracted text is a maintained
+  project artifact. Otherwise inspect it directly and let the helper clean up.
+- Preview fetch-backed pages from the repository root with
+  `python3 -m http.server <port> --bind 127.0.0.1`; stop the server after browser
+  checks finish.
+
+## Clean up task artifacts
+
+- Put downloads, extracted text, generated script fragments, test reports, and
+  one-off dependencies in a task-specific `mktemp` directory, never beside
+  maintained sources.
+- Register cleanup with a shell `trap` as soon as the temporary directory is
+  created. Delete only the explicit task directory; never use an unresolved
+  variable, broad glob, repository root, home directory, or shared `/tmp` as a
+  removal target.
+- Prefer helpers that stream results or parse in memory. The validation scripts
+  above create no temporary files.
+- Keep task-specific environment variables scoped to a single command or
+  subprocess. Unset any variable exported into the interactive shell before
+  handoff, stop local servers, and remove all task-owned temporary artifacts.
+- Before finishing, inspect `git status` and the task's known temporary paths so
+  generated files cannot be mistaken for maintained project sources.
 
 Do not commit unless the user requests it.
