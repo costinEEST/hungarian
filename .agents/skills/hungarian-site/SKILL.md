@@ -34,6 +34,11 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
 - Keep the toggle's visible label and `aria-pressed` synchronized, give it
   `aria-controls`, clear stale text selections when switching modes, and expose
   only the active view to the accessibility tree.
+- Test a whole-page selection, not only the main content. Global skip links,
+  status text, navigation (including visually hidden headings), headers, and
+  footers outside the main view can still leak Romanian into browser Read
+  Aloud; hide them in Hungarian-only mode. If the visible toggle remains, use a
+  Hungarian active-state label and `lang="hu"`.
 - Build the reading surface from the maintained source data rather than
   duplicating lesson entries. For asynchronous content, keep the toggle
   disabled until parsing succeeds and preserve a visible error state on
@@ -48,6 +53,10 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   HTML viewer. Keep its parser, displayed total, alphabetical groups, reading
   view, and error state synchronized; do not duplicate its vocabulary rows in
   HTML.
+- `orase-romanesti-cu-nume-maghiare.md` is the single maintained source for its
+  HTML viewer. Keep its narrative, explanatory tables, 143-row city table,
+  county groups, and Hungarian reading view synchronized; do not restore a
+  separate guide source or duplicate those sections in HTML.
 - When adding or removing a lesson page, update its `index.html` card and
   section count plus the JSON-LD `numberOfItems`, positions, names, and
   canonical URLs.

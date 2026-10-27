@@ -373,6 +373,7 @@
       border-bottom: 0;
     }
 
+    .hu-only .skip,
     .hu-only header,
     .hu-only footer,
     .hu-only .study-nav ul {
@@ -641,7 +642,8 @@
         topicsElement.hidden = enabled;
         readingView.hidden = !enabled;
         toggle.setAttribute("aria-pressed", String(enabled));
-        toggle.textContent = enabled ? "Arată tot" : "Doar maghiară";
+        toggle.textContent = enabled ? "Teljes nézet" : "Doar maghiară";
+        toggle.lang = enabled ? "hu" : "ro";
       });
     })();
   </script>

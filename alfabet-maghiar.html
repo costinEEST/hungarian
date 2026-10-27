@@ -59,7 +59,7 @@
       --surface-2: #f6f5f1;
       --ink: #141413;
       --ink-soft: #6b6a63;
-      --ink-faint: #74736e;
+      --ink-faint: #6f6e69;
       --line: #e8e6df;
       --line-strong: #d6d3ca;
       --hu-red: #ce2939;
@@ -69,7 +69,7 @@
       --ro-red: #ce1126;
       --blue: #2563eb;
       --blue-bg: #eff6ff;
-      --red: #dc2626;
+      --red: #d11f1f;
       --red-bg: #fef2f2;
       --green: #15803d;
       --green-bg: #f0fdf4;
@@ -1132,7 +1132,7 @@
 
     .anki-head span:last-child {
       font-size: 10px;
-      opacity: 0.7;
+      opacity: 1;
     }
 
     .arow {
@@ -1423,7 +1423,7 @@
     .mode-toggle { flex: none; min-height: 40px; border-color: var(--hu-green); background: var(--green-bg); cursor: pointer; }
     .mode-toggle[aria-pressed="true"] { background: var(--hu-green); color: #fff; }
     .hu-reading { margin-top: 28px; }
-    .hu-only header, .hu-only #main-content > :not(.hu-reading):not(#audio-status), .hu-only footer { display: none; }
+    .hu-only .skip-link, .hu-only header, .hu-only #main-content > :not(.hu-reading):not(#audio-status), .hu-only footer { display: none; }
     .hu-only .study-nav li { display: none; }
     .hu-reading-list { margin-top: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
     .hu-reading-list p { display: flex; align-items: center; justify-content: center; min-height: 58px; margin: 0; padding: 12px; overflow-x: auto; border-bottom: 1px solid var(--line); font-size: var(--fs-lg); font-weight: 650; text-align: center; }
@@ -2427,25 +2427,34 @@
       activeSpeakButton = button;
       button.classList.add("is-speaking");
       button.setAttribute("aria-pressed", "true");
-      audioStatus.textContent = `Se redă pronunția pentru ${button.dataset.word}.`;
+      audioStatus.lang = document.body.classList.contains("hu-only") ? "hu" : "ro";
+      audioStatus.textContent = document.body.classList.contains("hu-only")
+        ? `Kiejtés lejátszása: ${button.dataset.word}.`
+        : `Se redă pronunția pentru ${button.dataset.word}.`;
       try {
         await audioPlayer.play();
       } catch {
         finishSpeaking(button);
-        audioStatus.textContent = `Înregistrarea pentru ${button.dataset.word} nu a putut fi redată.`;
+        audioStatus.textContent = document.body.classList.contains("hu-only")
+          ? `Nem sikerült lejátszani ezt a hangfelvételt: ${button.dataset.word}.`
+          : `Înregistrarea pentru ${button.dataset.word} nu a putut fi redată.`;
       }
     };
     audioPlayer.addEventListener("ended", () => {
       const word = activeSpeakButton?.dataset.word;
       finishSpeaking(activeSpeakButton);
       if (word)
-        audioStatus.textContent = `Redarea pentru ${word} s-a încheiat.`;
+        audioStatus.textContent = document.body.classList.contains("hu-only")
+          ? `A lejátszás véget ért: ${word}.`
+          : `Redarea pentru ${word} s-a încheiat.`;
     });
     audioPlayer.addEventListener("error", () => {
       const word = activeSpeakButton?.dataset.word;
       finishSpeaking(activeSpeakButton);
       if (word)
-        audioStatus.textContent = `Înregistrarea pentru ${word} nu a putut fi redată.`;
+        audioStatus.textContent = document.body.classList.contains("hu-only")
+          ? `Nem sikerült lejátszani ezt a hangfelvételt: ${word}.`
+          : `Înregistrarea pentru ${word} nu a putut fi redată.`;
     });
     document.addEventListener("click", (event) => {
       const button = event.target.closest(".speak-btn");
@@ -2502,7 +2511,10 @@
           item.append(text);
           if (audioButton) {
             item.classList.add('has-audio');
-            item.append(audioButton.cloneNode(true));
+            const clone = audioButton.cloneNode(true);
+            clone.setAttribute('aria-label', `Kiejtés lejátszása: ${value}`);
+            clone.title = 'Kiejtés';
+            item.append(clone);
           }
           return item;
         }));
@@ -2515,7 +2527,10 @@
         document.body.classList.toggle('hu-only', enabled);
         reading.hidden = !enabled;
         toggle.setAttribute('aria-pressed', String(enabled));
-        toggle.textContent = enabled ? 'Arată tot' : 'Doar maghiară';
+        toggle.textContent = enabled ? 'Teljes nézet' : 'Doar maghiară';
+        toggle.lang = enabled ? 'hu' : 'ro';
+        audioStatus.textContent = '';
+        audioStatus.lang = enabled ? 'hu' : 'ro';
       });
     })();
   </script>
