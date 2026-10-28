@@ -238,6 +238,64 @@
       opacity: 0.6;
     }
 
+    .reading-tools {
+      display: flex;
+      flex: none;
+      align-items: stretch;
+      overflow: hidden;
+      border: 1px solid var(--accent);
+      border-radius: 999px;
+      background: var(--accent-soft);
+    }
+
+    .reading-tools .mode-toggle {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .reading-tools .mode-toggle[aria-pressed="true"] {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .reading-tools .read-help {
+      display: grid;
+      flex: none;
+      width: 40px;
+      min-height: 40px;
+      padding: 0;
+      place-items: center;
+      border: 0;
+      border-left: 1px solid var(--accent);
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .read-aloud-popover {
+      position: fixed;
+      top: var(--help-top, 80px);
+      right: var(--help-right, 16px);
+      bottom: auto;
+      left: auto;
+      width: min(26rem, calc(100vw - 32px));
+      margin: 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+
+    .read-aloud-popover p { margin: 8px 0 0; }
+    .hu-only .read-help { display: none; }
+
     main {
       padding-block: 16px 72px;
     }
@@ -516,11 +574,16 @@
   <nav class="study-nav" aria-label="Teme de vocabular">
     <div class="wrap nav-row">
       <ul id="topic-links"></ul>
-      <button class="mode-toggle" type="button" aria-pressed="false" aria-controls="continut" disabled>
-        Doar maghiară
-      </button>
+      <div class="reading-tools" role="group" aria-label="Mod de citire">
+        <button class="mode-toggle" type="button" aria-pressed="false" aria-controls="continut" disabled>
+          Doar maghiară
+        </button>
+        <button class="read-help" type="button" popovertarget="read-aloud-help" aria-label="Instrucțiuni pentru citirea cu voce tare"><span aria-hidden="true">ⓘ</span></button>
+      </div>
     </div>
   </nav>
+  <div class="read-aloud-popover" id="read-aloud-help" popover="auto"><strong>Citește cu voce tare în Microsoft Edge</strong><p>Activează „Doar maghiară”, selectează textul dorit, apoi fă clic dreapta și alege „Read aloud selection” / „Citiți cu voce tare selecția”.</p></div>
+  <script>const positionReadHelp=()=>{const trigger=document.querySelector('.reading-tools');const popover=document.getElementById('read-aloud-help');const rect=trigger.getBoundingClientRect();popover.style.setProperty('--help-top',`${rect.bottom+8}px`);popover.style.setProperty('--help-right',`${Math.max(12,innerWidth-rect.right)}px`)};document.querySelector('.read-help').addEventListener('click',positionReadHelp);addEventListener('resize',()=>{if(document.getElementById('read-aloud-help').matches(':popover-open'))positionReadHelp()});</script>
   <main class="wrap" id="continut" tabindex="-1">
     <p class="status" id="status" role="status">Se încarcă vocabularul…</p>
     <div id="topics"></div>
@@ -637,6 +700,7 @@
         });
       toggle.addEventListener("click", () => {
         const enabled = !document.body.classList.contains("hu-only");
+        document.getElementById("read-aloud-help").hidePopover();
         getSelection()?.removeAllRanges();
         document.body.classList.toggle("hu-only", enabled);
         topicsElement.hidden = enabled;

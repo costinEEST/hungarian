@@ -34,6 +34,25 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
 - Keep the toggle's visible label and `aria-pressed` synchronized, give it
   `aria-controls`, clear stale text selections when switching modes, and expose
   only the active view to the accessibility tree.
+- Present each Hungarian-only toggle and its icon-only help button as two
+  adjoining segments in one outlined capsule. Put the toggle first, separate
+  the help segment with a vertical border, and wrap both in a group named
+  `Mod de citire` so their relationship is visually and semantically clear.
+  Preserve a solid, high-contrast background and contrasting text on the
+  toggle segment while `aria-pressed="true"`; group-level transparent
+  backgrounds must not override the selected-state rule.
+  Give the help button the accessible name
+  `Instrucțiuni pentru citirea cu voce tare` and use a
+  click/touch/keyboard-operated `popover="auto"`, not a hover-only tooltip or
+  a long `aria-label`. Position the popover beside the group and explain that
+  in Microsoft Edge the learner should enable `Doar maghiară`, select the
+  desired text, right-click, and choose `Read aloud selection` /
+  `Citiți cu voce tare selecția`.
+- Close the Read Aloud help popover before changing modes and hide its trigger
+  in Hungarian-only mode so Romanian instructions cannot leak into whole-page
+  selection or the reading surface. Keep the trigger at least 40 by 40 CSS
+  pixels, keyboard focus visible, and the popover light-dismissible with
+  `Escape` or an outside click.
 - Test a whole-page selection, not only the main content. Global skip links,
   status text, navigation (including visually hidden headings), headers, and
   footers outside the main view can still leak Romanian into browser Read

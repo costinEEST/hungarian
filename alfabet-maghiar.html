@@ -1422,9 +1422,15 @@
     .study-nav a, .mode-toggle { display: block; padding: 8px 11px; border: 1px solid var(--line-strong); border-radius: 999px; background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-xs); font-weight: 700; text-decoration: none; white-space: nowrap; }
     .mode-toggle { flex: none; min-height: 40px; border-color: var(--hu-green); background: var(--green-bg); cursor: pointer; }
     .mode-toggle[aria-pressed="true"] { background: var(--hu-green); color: #fff; }
+    .reading-tools { display: flex; flex: none; align-items: stretch; overflow: hidden; border: 1px solid var(--hu-green); border-radius: 999px; background: var(--green-bg); }
+    .reading-tools .mode-toggle { border: 0; border-radius: 0; background: transparent; }
+    .reading-tools .mode-toggle[aria-pressed="true"] { background: var(--hu-green); color: #fff; }
+    .reading-tools .read-help { display: grid; flex: none; width: 40px; min-height: 40px; padding: 0; place-items: center; border: 0; border-left: 1px solid var(--hu-green); background: transparent; color: var(--ink); font: inherit; font-size: 1.15rem; font-weight: 700; line-height: 1; cursor: pointer; }
+    .read-aloud-popover { position: fixed; top: var(--help-top, 80px); right: var(--help-right, 16px); bottom: auto; left: auto; width: min(26rem, calc(100vw - 32px)); margin: 0; padding: 18px 20px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+    .read-aloud-popover p { margin: 8px 0 0; }
     .hu-reading { margin-top: 28px; }
     .hu-only .skip-link, .hu-only header, .hu-only #main-content > :not(.hu-reading):not(#audio-status), .hu-only footer { display: none; }
-    .hu-only .study-nav li { display: none; }
+    .hu-only .study-nav li, .hu-only .read-help { display: none; }
     .hu-reading-list { margin-top: 18px; overflow: hidden; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); }
     .hu-reading-list p { display: flex; align-items: center; justify-content: center; min-height: 58px; margin: 0; padding: 12px; overflow-x: auto; border-bottom: 1px solid var(--line); font-size: var(--fs-lg); font-weight: 650; text-align: center; }
     .hu-reading-list p:nth-child(even) { background: var(--surface-2); }
@@ -1569,9 +1575,11 @@
         <li><a href="#perechi">Perechi minimale</a></li>
         <li><a href="#anki">Carduri Anki</a></li>
       </ul>
-      <button class="mode-toggle" type="button" aria-pressed="false" aria-controls="main-content">Doar maghiară</button>
+      <div class="reading-tools" role="group" aria-label="Mod de citire"><button class="mode-toggle" type="button" aria-pressed="false" aria-controls="main-content">Doar maghiară</button><button class="read-help" type="button" popovertarget="read-aloud-help" aria-label="Instrucțiuni pentru citirea cu voce tare"><span aria-hidden="true">ⓘ</span></button></div>
     </div>
   </nav>
+  <div class="read-aloud-popover" id="read-aloud-help" popover="auto"><strong>Citește cu voce tare în Microsoft Edge</strong><p>Activează „Doar maghiară”, selectează textul dorit, apoi fă clic dreapta și alege „Read aloud selection” / „Citiți cu voce tare selecția”.</p></div>
+  <script>const positionReadHelp=()=>{const trigger=document.querySelector('.reading-tools');const popover=document.getElementById('read-aloud-help');const rect=trigger.getBoundingClientRect();popover.style.setProperty('--help-top',`${rect.bottom+8}px`);popover.style.setProperty('--help-right',`${Math.max(12,innerWidth-rect.right)}px`)};document.querySelector('.read-help').addEventListener('click',positionReadHelp);addEventListener('resize',()=>{if(document.getElementById('read-aloud-help').matches(':popover-open'))positionReadHelp()});</script>
 
   <main class="wrap" id="main-content" tabindex="-1">
     <div class="sr-only" id="audio-status" role="status" aria-live="polite"></div>
@@ -2522,6 +2530,7 @@
 
       toggle.addEventListener('click', () => {
         const enabled = !document.body.classList.contains('hu-only');
+        document.getElementById('read-aloud-help').hidePopover();
         if (enabled) buildReadingList();
         getSelection()?.removeAllRanges();
         document.body.classList.toggle('hu-only', enabled);
