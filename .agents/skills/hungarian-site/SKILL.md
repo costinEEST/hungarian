@@ -81,6 +81,95 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   canonical URLs.
 - Keep `Constantin Câmpean` as the author in HTML metadata and structured data.
 
+## Maintain Markdown-backed flashcards
+
+- For city flashcards, fetch `orase-romanesti-cu-nume-maghiare.md` directly;
+  do not introduce a separate JSON deck or hand-maintained HTML copy.
+  `assets/city-source.js` is the shared parser for the lesson and flashcard
+  page. Reject missing or malformed tables visibly rather than silently
+  dropping entries. Derive card and county counts from the parsed rows.
+- Render each language as ordinary text inside `span lang="ro"` and
+  `span lang="hu"`, using native buttons for pair and individual playback.
+  Use `textContent` for Markdown-derived card text. The initial deck teaches
+  city-name pairs; sentence practice requires separate review of the source's
+  reconstructed forms and regional variants.
+- `assets/flashcard-voices.js` adapts voice ranking from `hear-and-read`.
+  Match Romanian and Hungarian voices independently; never substitute another
+  language. Refresh on `voiceschanged`, show missing-voice guidance, and
+  preserve reading when speech is unavailable. Voice ranking is a heuristic.
+- Preserve sequential bilingual playback, stale-event cancellation, shuffle,
+  county filtering, and accent-insensitive search. Resume repeats the current
+  word from its beginning. Filtering or changing settings stops playback.
+- Keep the player sticky and all configuration in the left settings drawer.
+  Opening the native modal dialog pauses playback; closing does not restart it.
+  Preserve the close button, Escape dismissal, backdrop fallback, and focus
+  return. Keep controls usable at 320 CSS pixels and 48px playback targets;
+  account for the player's measured height when scrolling focused content.
+
+## Maintain page SEO and sharing metadata
+
+- Keep a unique title, description, document language, and absolute production
+  canonical URL in the original HTML head, available without JavaScript.
+  Flashcards have their own canonical URL; the related lesson is their source,
+  not a canonical replacement. Follow the existing `index, follow,
+max-image-preview:large` robots convention; `index, follow` is otherwise
+  the default. Do not add `meta keywords`.
+- Include Open Graph type, Romanian locale, site name, title, description,
+  canonical URL, and an absolute HTTPS image URL. Supply the image's actual
+  MIME type, width, height, and descriptive alt text. Include explicit
+  Twitter/X title, description, image, and image alt with
+  `summary_large_image` for the landscape preview.
+- The city preview is `assets/city-flashcards-social.png` (1200 × 630).
+  Treat it and `assets/city-flashcards-social.svg` as one synchronized asset:
+  edit the SVG source first and regenerate the PNG in the same change. Never
+  edit or replace the PNG alone; if a new raster preview is supplied, update
+  the SVG to match it and regenerate the PNG from that source. When the actual
+  card's visible labels, controls, or styling change, review and update both
+  previews together. Preserve the social layout's heading, branding, and
+  1200 × 630 dimensions rather than copying a screenshot's aspect ratio.
+  Verify the rendered PNG visually and check its dimensions before finishing.
+  Use the PNG in metadata, not a data URL or SVG. Do not preload this
+  sharing-only image into the learning page.
+  From the repository root, regenerate it with the command below. It requires
+  Node.js and `sharp` installed in the sibling `../hear-and-read` checkout;
+  this repository does not declare that dependency. Adjust the `createRequire`
+  path if that checkout is elsewhere. This renders the SVG, rather than
+  attempting to reconstruct an editable SVG from the PNG.
+
+  ```bash
+  node --input-type=module <<'JS'
+  import { createRequire } from 'node:module';
+  import { resolve } from 'node:path';
+  import assert from 'node:assert/strict';
+
+  const require = createRequire(resolve('../hear-and-read/package.json'));
+  const sharp = require('sharp');
+  const image = await sharp('assets/city-flashcards-social.svg').png().toBuffer();
+  const { width, height } = await sharp(image).metadata();
+  assert.equal(width, 1200);
+  assert.equal(height, 630);
+  await sharp(image).toFile('assets/city-flashcards-social.png');
+  JS
+  ```
+
+- Add JSON-LD describing the actual resource. The city exercise combines
+  `WebPage` and `LearningResource`, identifies its author, both languages,
+  flashcard practice, free access, preview image, and related lesson through
+  `isBasedOn`. Keep URLs and descriptions consistent with the head metadata;
+  do not invent ratings, dates, or claim guaranteed rich results.
+- `hreflang` describes separate localized URLs, not the languages of individual
+  words. Do not invent a Hungarian alternate URL for a bilingual Romanian page.
+- Cards remain runtime-rendered from Markdown. Metadata alone does not make
+  them available to crawlers that do not execute JavaScript. Keep source links
+  and visible fetch-failure feedback; do not duplicate vocabulary for crawlers.
+  A future prerender should derive from the same Markdown and be explicitly
+  scoped rather than adding a second maintained source.
+- For metadata changes, parse JSON-LD, check canonical/Open Graph URL agreement,
+  and verify that sharing-image URLs map to existing assets with matching
+  dimensions. Follow the [Google metadata guidance](https://developers.google.com/search/docs/crawling-indexing/special-tags),
+  [Open Graph specification](https://ogp.me/), and
+  [LearningResource definition](https://schema.org/LearningResource).
+
 ## Review new vocabulary sources
 
 Before publishing or generating a page from a newly added Markdown vocabulary
