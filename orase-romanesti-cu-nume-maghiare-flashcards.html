@@ -31,7 +31,8 @@
   <meta name="twitter:title" content="Fișe de studiu — orașe în română și maghiară" />
   <meta name="twitter:description"
     content="Exersează numele orașelor în română și maghiară, cu redare vocală și ordine aleatorie." />
-  <meta name="twitter:image" content="https://costineest.github.io/hungarian/assets/social/city-flashcards-social.png" />
+  <meta name="twitter:image"
+    content="https://costineest.github.io/hungarian/assets/social/city-flashcards-social.png" />
   <meta name="twitter:image:alt"
     content="Fișe de studiu română–maghiară: Cluj-Napoca și Kolozsvár, cu ascultare și ordine aleatorie." />
   <script type="application/ld+json">
@@ -59,11 +60,11 @@
     </script>
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23315f3d%27/%3E%3Ctext x=%2732%27 y=%2744%27 text-anchor=%27middle%27 font-size=%2740%27 fill=%27white%27%3EH%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="./assets/city-flashcards.css" />
-  <script type="module" src="./assets/city-flashcards.js"></script>
+  <link rel="stylesheet" href="./assets/flashcards.css" />
+  <script type="module" src="./assets/flashcards.js"></script>
 </head>
 
-<body>
+<body data-deck="cities">
   <header class="wrap">
     <a href="./">← Toate resursele</a>
     <h1>Orașe în română și maghiară</h1>
@@ -113,8 +114,8 @@
           </p>
           <fieldset>
             <legend>Selecția fișelor</legend>
-            <label for="county">Județ</label>
-            <select id="county">
+            <label for="group">Județ</label>
+            <select id="group">
               <option value="">Toate județele</option>
             </select>
             <label for="search">Caută un oraș</label>

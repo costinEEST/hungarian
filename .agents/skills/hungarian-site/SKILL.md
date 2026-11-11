@@ -81,13 +81,39 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   canonical URLs.
 - Keep `Constantin Câmpean` as the author in HTML metadata and structured data.
 
-## Maintain Markdown-backed flashcards
+## Reuse the shared lesson and deck modules
 
+- Both city and chapter lessons load `assets/lesson.css` and `assets/lesson.js`.
+  Reuse `assets/lesson-markdown.js` for explanatory Markdown and the shared
+  Hungarian-only reading controls; do not copy inline renderers or styles.
+- Every lesson and flashcard page selects an explicit `data-deck` identifier.
+  `assets/decks.js` defines its Markdown URL, table schema, lesson columns,
+  grouping, and Hungarian reading text. Add content-specific differences there.
+- `assets/markdown-source.js` validates the maintained plain-text pipe tables.
+  Both datasets expose `group`, `romanian`, `hungarian`, and `notes`; city rows
+  also expose locative forms. Reject malformed or empty tables consistently.
+  Derive runtime counts from parsed entries. Keep expected totals in validation
+  checks rather than rejecting valid source edits with runtime fixed counts.
+
+## Maintain one shared flashcard interface
+
+- Use only the interface in `orase-romanesti-cu-nume-maghiare-flashcards.html`:
+  visible bilingual pairs, individual and paired speech buttons, a sticky player,
+  and one left settings drawer. Reuse `assets/flashcards.css`,
+  `assets/flashcards.js`, and `assets/flashcard-voices.js` for every deck.
+  Do not add flip cards, self-grading, spaced repetition, session summaries,
+  keyboard grading shortcuts, or a second flashcard engine.
+- `magyarok-a1-capitolul-2.md` is the single maintained content source for
+  `magyarok-a1-capitolul-2.html` and its flashcard page. Both fetch it at runtime
+  and use the shared parser in `assets/markdown-source.js`; never duplicate
+  vocabulary in HTML or restore the deleted JSON deck. The source table has category, Romanian,
+  Hungarian, and notes columns. Notes are displayed but never spoken.
+  Review all pairs, intentional repeats, and counts after content edits.
 - For city flashcards, fetch `orase-romanesti-cu-nume-maghiare.md` directly;
   do not introduce a separate JSON deck or hand-maintained HTML copy.
-  `assets/city-source.js` is the shared parser for the lesson and flashcard
-  page. Reject missing or malformed tables visibly rather than silently
-  dropping entries. Derive card and county counts from the parsed rows.
+  `assets/markdown-source.js` is the shared parser for both lessons and
+  flashcard pages. Reject missing or malformed tables visibly rather than
+  silently dropping entries. Derive card and county counts from the parsed rows.
 - Render each language as ordinary text inside `span lang="ro"` and
   `span lang="hu"`, using native buttons for pair and individual playback.
   Use `textContent` for Markdown-derived card text. The initial deck teaches
@@ -98,7 +124,7 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   language. Refresh on `voiceschanged`, show missing-voice guidance, and
   preserve reading when speech is unavailable. Voice ranking is a heuristic.
 - Preserve sequential bilingual playback, stale-event cancellation, shuffle,
-  county filtering, and accent-insensitive search. Resume repeats the current
+  group filtering (counties or themes), and accent-insensitive search. Resume repeats the current
   word from its beginning. Filtering or changing settings stops playback.
 - Keep the player sticky and all configuration in the left settings drawer.
   Opening the native modal dialog pauses playback; closing does not restart it.
@@ -241,9 +267,11 @@ Approved dictionaries: none recorded yet.
 
 - For each new vocabulary Markdown source, retain evidence of the duplicate
   scan and Romanian-meaning review in the task report.
-- For JSON-backed flashcards, run
-  `node scripts/validate-flashcards.mjs <deck.json>`.
-  Review every reported duplicate rather than deleting it automatically.
+- For flashcards, validate every source entry, section total, and language pair.
+  Review every duplicate rather than deleting it automatically; verify both
+  the Markdown-backed city and chapter decks with the shared player. Run
+  `node scripts/validate-flashcards.mjs` for counts and duplicate reports, and
+  `node --test scripts/test-decks.mjs` for source and parser regression checks.
 - Parse executable inline scripts with
   `node scripts/check-inline-scripts.mjs <page.html>`
   and run `git diff --check`.

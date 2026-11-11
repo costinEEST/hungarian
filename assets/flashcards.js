@@ -1,6 +1,7 @@
-import { parseSource } from "./city-source.js";
+import { getDeck, loadDeck } from "./decks.js";
 import { rankVoices } from "./flashcard-voices.js";
 
+const deck = getDeck(document.body.dataset.deck);
 const $ = (id) => document.getElementById(id);
 const synth = globalThis.speechSynthesis;
 const supported = Boolean(synth && globalThis.SpeechSynthesisUtterance);
@@ -203,9 +204,9 @@ function play(selection, codes) {
 }
 function makeCard(row) {
   const li = document.createElement("li");
-  const county = document.createElement("p");
-  county.className = "county";
-  county.textContent = row.county;
+  const group = document.createElement("p");
+  group.className = "group";
+  group.textContent = row.group;
   const pair = document.createElement("p");
   pair.className = "pair";
   for (const [code, text] of [
@@ -219,7 +220,14 @@ function makeCard(row) {
   }
   const speaking = document.createElement("span");
   speaking.className = "speaking";
-  li.append(county, pair, speaking);
+  li.append(group, pair);
+  if (deck.showNotes && row.notes && row.notes !== "—") {
+    const note = document.createElement("p");
+    note.className = "group";
+    note.textContent = row.notes;
+    li.append(note);
+  }
+  li.append(speaking);
   for (const [code, label] of [
     ["pair", "Ascultă perechea"],
     ["ro", "Română"],
@@ -253,7 +261,7 @@ function render() {
   const query = normalize($("search").value.trim());
   visible = order.filter(
     (row) =>
-      (!$("county").value || row.county === $("county").value) &&
+      (!$("group").value || row.group === $("group").value) &&
       normalize(`${row.romanian} ${row.hungarian}`).includes(query),
   );
   $("cards").replaceChildren(...visible.map((row) => nodes.get(row)));
@@ -286,7 +294,7 @@ $("pause").addEventListener("click", () => {
   }
   controls();
 });
-$("county").addEventListener("change", render);
+$("group").addEventListener("change", render);
 $("search").addEventListener("input", render);
 $("shuffle").addEventListener("click", () => {
   for (let i = order.length - 1; i > 0; i--) {
@@ -308,16 +316,13 @@ for (const id of ["voice-ro", "voice-hu", "rate"])
 addEventListener("pagehide", () => stop());
 synth?.addEventListener("voiceschanged", loadVoices);
 loadVoices();
-fetch("./orase-romanesti-cu-nume-maghiare.md")
-  .then((response) => {
-    if (!response.ok) throw new Error("Sursa nu a putut fi încărcată");
-    return response.text();
-  })
-  .then((markdown) => {
-    rows = parseSource(markdown).rows;
+const sourceRows = loadDeck(deck);
+sourceRows
+  .then((entries) => {
+    rows = entries;
     order = [...rows];
-    for (const county of new Set(rows.map((row) => row.county)))
-      $("county").add(new Option(county, county));
+    for (const group of new Set(rows.map((row) => row.group)))
+      $("group").add(new Option(group, group));
     rows.forEach((row) => nodes.set(row, makeCard(row)));
     render();
     $("exercise").hidden = false;
