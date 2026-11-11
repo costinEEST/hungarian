@@ -119,8 +119,8 @@ max-image-preview:large` robots convention; `index, follow` is otherwise
   MIME type, width, height, and descriptive alt text. Include explicit
   Twitter/X title, description, image, and image alt with
   `summary_large_image` for the landscape preview.
-- The city preview is `assets/city-flashcards-social.png` (1200 × 630).
-  Treat it and `assets/city-flashcards-social.svg` as one synchronized asset:
+- The city preview is `assets/social/city-flashcards-social.png` (1200 × 630).
+  Treat it and `assets/social/city-flashcards-social.svg` as one synchronized asset:
   edit the SVG source first and regenerate the PNG in the same change. Never
   edit or replace the PNG alone; if a new raster preview is supplied, update
   the SVG to match it and regenerate the PNG from that source. When the actual
@@ -139,10 +139,22 @@ max-image-preview:large` robots convention; `index, follow` is otherwise
 
   ```bash
   npx --yes --package=sharp-cli@5.2.0 sharp \
-    --input assets/city-flashcards-social.svg \
-    --output assets/city-flashcards-social.png \
+    --input assets/social/city-flashcards-social.svg \
+    --output assets/social/city-flashcards-social.png \
     --format png
   ```
+
+- Other pages use their own `assets/social/<HTML filename without .html>.svg`
+  and `.png` preview pair, including `assets/social/index.*` for the collection.
+  Apply the same SVG-first synchronization rule and pinned conversion command
+  with those paths. Keep preview titles and descriptions aligned with the page
+  metadata; do not reuse the city playback illustration for lessons without
+  those controls. These are sharing-only assets, not page screenshots.
+- Keep `sitemap.xml` synchronized with the canonical URLs of all root HTML
+  pages. Use the trailing-slash site URL for `index.html`, and do not invent
+  `lastmod` dates. On GitHub Pages project hosting, a repository-level
+  `robots.txt` under `/hungarian/` cannot set host-root crawler policy; submit
+  the sitemap through Search Console instead of relying on that file.
 
 - Add JSON-LD describing the actual resource. The city exercise combines
   `WebPage` and `LearningResource`, identifies its author, both languages,
@@ -161,6 +173,38 @@ max-image-preview:large` robots convention; `index, follow` is otherwise
   dimensions. Follow the [Google metadata guidance](https://developers.google.com/search/docs/crawling-indexing/special-tags),
   [Open Graph specification](https://ogp.me/), and
   [LearningResource definition](https://schema.org/LearningResource).
+  Run `node scripts/validate-seo.mjs` from the repository root to check all
+  pages, sharing-image dimensions and source assets, and sitemap coverage.
+  This is a local consistency check, not proof of indexing or rich-result
+  eligibility. After deployment, verify the public URLs and request a new
+  scrape on sharing platforms when cached previews remain stale.
+
+### Verify social previews with browser MCP
+
+- Before marking a new or changed SVG/PNG preview pair verified, use browser
+  MCP to capture its corresponding HTML page, the rendered SVG, and the served
+  PNG. For a batch update, cover every pair. Wait for fonts and asynchronous
+  lesson content to load; capture the relevant content or controls as well as
+  the heading when the preview depicts them.
+- Compare the three captures side by side: topic, wording, counts, language
+  labels, represented controls, colors, and text clipping must agree with the
+  actual page. A branded social banner may keep its own 1200 × 630 composition;
+  it need not duplicate the page layout or screenshot aspect ratio. A preview
+  that depicts a card or other interface must use its current labels and
+  controls, not invented or outdated UI. Record environment-dependent disabled
+  controls separately from real preview mismatches.
+- Check SVG against PNG separately so an up-to-date source cannot hide a stale
+  raster export. Minor browser-versus-Sharp font rasterization differences are
+  acceptable; missing glyphs, changed text, clipped content, or geometry drift
+  require correction. Edit the SVG first, regenerate the PNG, and repeat the
+  affected captures before finishing.
+- Use a consistent viewport and light color scheme for the comparison (for
+  example, 1200 × 900 for the page and 1200 × 630 for the assets). Record the
+  pages, viewports, and findings in the task report and keep captures in a
+  task-specific temporary directory. If a shared MCP profile is busy, use an
+  isolated MCP session without closing another active browser. If MCP remains
+  unavailable, report that limitation rather than claiming screenshot
+  verification from metadata checks or a different capture tool.
 
 ## Review new vocabulary sources
 
