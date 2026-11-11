@@ -130,26 +130,18 @@ max-image-preview:large` robots convention; `index, follow` is otherwise
   Verify the rendered PNG visually and check its dimensions before finishing.
   Use the PNG in metadata, not a data URL or SVG. Do not preload this
   sharing-only image into the learning page.
-  From the repository root, regenerate it with the command below. It requires
-  Node.js and `sharp` installed in the sibling `../hear-and-read` checkout;
-  this repository does not declare that dependency. Adjust the `createRequire`
-  path if that checkout is elsewhere. This renders the SVG, rather than
+  From the repository root, regenerate it with the pinned `npx` command below.
+  It requires Node.js/npm and network access on the first run; npm caches the
+  CLI without adding a project dependency. Do not resolve tools or packages
+  from sibling repositories or other project checkouts. All input and output
+  paths stay inside this repository. This renders the SVG, rather than
   attempting to reconstruct an editable SVG from the PNG.
 
   ```bash
-  node --input-type=module <<'JS'
-  import { createRequire } from 'node:module';
-  import { resolve } from 'node:path';
-  import assert from 'node:assert/strict';
-
-  const require = createRequire(resolve('../hear-and-read/package.json'));
-  const sharp = require('sharp');
-  const image = await sharp('assets/city-flashcards-social.svg').png().toBuffer();
-  const { width, height } = await sharp(image).metadata();
-  assert.equal(width, 1200);
-  assert.equal(height, 630);
-  await sharp(image).toFile('assets/city-flashcards-social.png');
-  JS
+  npx --yes --package=sharp-cli@5.2.0 sharp \
+    --input assets/city-flashcards-social.svg \
+    --output assets/city-flashcards-social.png \
+    --format png
   ```
 
 - Add JSON-LD describing the actual resource. The city exercise combines
