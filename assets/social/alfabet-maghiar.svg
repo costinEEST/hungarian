@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+<title id="title">Magyar Ábécé — Fișă pentru români</title>
+<desc id="description">Învață alfabetul și pronunția maghiară în română: 44 de litere, IPA, exemple audio, perechi minimale, reguli de pronunție și carduri Anki.</desc>
+<rect width="1200" height="630" fill="#fbfaf7"/>
+<rect width="1200" height="8" fill="#315f3d"/>
+<g font-family="Arial, Helvetica, sans-serif">
+<text x="64" y="82" font-size="22" font-weight="700" fill="#315f3d">ROMÂNĂ → MAGHIARĂ</text>
+<rect x="48" y="120" width="1104" height="422" rx="24" fill="#fff" stroke="#b9b6ad" stroke-width="2"/>
+<text x="88" y="174" font-size="21" font-weight="700" fill="#315f3d">ALFABET ȘI PRONUNȚIE</text>
+<text x="88" y="240" font-size="50" font-weight="700" fill="#20201d">Magyar Ábécé — Fișă pentru români</text>
+<text x="88" y="298" font-size="25" fill="#62615b">Învață alfabetul și pronunția maghiară în română: 44 de litere, IPA, exemple</text>
+<text x="88" y="332" font-size="25" fill="#62615b">audio, perechi minimale, reguli de pronunție și carduri Anki.</text>
+<text x="64" y="592" font-size="22" fill="#62615b">Resurse pentru limba maghiară · costineest.github.io/hungarian</text>
+</g>
+</svg>
