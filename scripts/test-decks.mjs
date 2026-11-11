@@ -68,3 +68,19 @@ test("unknown deck identifiers are rejected rather than silently selecting citie
   assert.throws(() => getDeck("unknown"));
   assert.throws(() => getDeck("toString"));
 });
+
+test("practical: parses all 24 section tables and rejects a malformed later table", () => {
+  const deck = getDeck("practical");
+  const markdown = readFileSync(new URL(`../${deck.source}`, import.meta.url), "utf8");
+  const { rows } = parseDeckSource(markdown, deck);
+  assert.equal(rows.length, 982);
+  assert.equal(new Set(rows.map((row) => row.group)).size, 24);
+  assert.deepEqual(
+    [rows[0].romanian, rows[0].hungarian, rows[0].pronunciation],
+    ["salut (informal)", "szia", "sio"],
+  );
+  assert.ok(rows.every((row) => row.romanian && row.hungarian && row.notes));
+  assert.throws(() => parseDeckSource(markdown.replace(/\| túra\s*\|/, "| |"), deck));
+  assert.throws(() => parseDeckSource(markdown.replace(/\| Maghiară\s*\| Pronunție\s*\| Sens\s*\|/g, "Missing table"), deck));
+  assert.throws(() => parseDeckSource("No sections", deck));
+});

@@ -31,6 +31,14 @@ const decks = {
     reading: (row) =>
       `${row.hungarian}. ${row.where}. ${row.toward}. ${row.from}.`,
   },
+  "practical": {
+    source: "./vocabular-maghiar-practic.md",
+    header: /^\|\s*Maghiară\s*\|\s*Pronunție\s*\|\s*Sens\s*\|\s*$/,
+    fields: ["hungarian", "pronunciation", "romanian"],
+    sectionTables: true,
+    showNotes: true,
+    reading: (row) => row.hungarian,
+  },
   "chapter-2": {
     source: "./magyarok-a1-capitolul-2.md",
     header:
@@ -56,7 +64,18 @@ export function getDeck(id) {
   return decks[id];
 }
 export function parseDeckSource(markdown, deck) {
-  return parseTableSource(markdown, deck);
+  if (!deck.sectionTables) return parseTableSource(markdown, deck);
+  const sections = [...markdown.matchAll(/^##\s+\d+\.\s+(.+)$/gm)];
+  if (!sections.length) throw new Error("Secțiunile de vocabular lipsesc");
+  const rows = sections.flatMap((section, index) => {
+    const source = markdown.slice(section.index, sections[index + 1]?.index);
+    return parseTableSource(source, deck).rows.map((row) => ({
+      ...row,
+      group: section[1].trim(),
+      notes: `Pronunție orientativă: ${row.pronunciation}`,
+    }));
+  });
+  return { rows, guideMarkdown: markdown.slice(0, sections[0].index) };
 }
 export async function loadLesson(deck) {
   const response = await fetch(deck.source);
