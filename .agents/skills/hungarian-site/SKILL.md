@@ -127,6 +127,12 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   group filtering (counties or themes), and accent-insensitive search. Resume repeats the current
   word from its beginning. Filtering or changing settings stops playback.
 - Keep the player sticky and all configuration in the left settings drawer.
+  During `Redă toate`, smoothly scroll each newly active card to the vertical
+  center between the sticky player's measured bottom and the viewport bottom,
+  on both desktop and mobile. Account for the mobile visual viewport and leave
+  enough trailing scroll space to center the final card. Respect reduced motion
+  with instant scrolling; do not move keyboard focus or restart scrolling for
+  the second language of the same card. Individual playback need not scroll.
   Opening the native modal dialog pauses playback; closing does not restart it.
   Preserve the close button, Escape dismissal, backdrop fallback, and focus
   return. Keep controls usable at 320 CSS pixels and 48px playback targets;

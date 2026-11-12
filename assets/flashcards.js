@@ -25,6 +25,9 @@ const normalize = (text) =>
     .toLowerCase();
 const drawer = $("settings-drawer");
 const settingsButton = $("settings-open");
+const player = document.querySelector(".player");
+let followPlayback = false;
+let centeredCard = null;
 let resultAnnouncement;
 
 settingsButton.addEventListener("click", () => {
@@ -66,7 +69,34 @@ const playerObserver = new ResizeObserver(([entry]) => {
     `${entry.target.getBoundingClientRect().height}px`,
   );
 });
-playerObserver.observe(document.querySelector(".player"));
+playerObserver.observe(player);
+
+function centerPlayingCard(node) {
+  const viewport = window.visualViewport;
+  const viewportTop = viewport?.offsetTop ?? 0;
+  const viewportHeight = viewport?.height ?? window.innerHeight;
+  // The player will be stuck at the top after scrolling, even when starting
+  // playback from the page header. Its current bottom is not the final offset.
+  const playerHeight = player.getBoundingClientRect().height;
+  const availableHeight = Math.max(0, viewportHeight - playerHeight);
+  const firstCard = $("cards").firstElementChild;
+  const lastCard = $("cards").lastElementChild;
+  // Let the first card center with the player already stuck, too.
+  const cardGap = parseFloat(getComputedStyle($("cards")).marginTop);
+  $("cards").style.paddingTop =
+    `${Math.max(0, (availableHeight - firstCard.getBoundingClientRect().height) / 2 - cardGap)}px`;
+  // Leave room for the final card to reach the same center as earlier cards.
+  $("cards").style.paddingBottom =
+    `${Math.max(0, (availableHeight - lastCard.getBoundingClientRect().height) / 2)}px`;
+  const rect = node.getBoundingClientRect();
+  const targetCenter = viewportTop + playerHeight + availableHeight / 2;
+  window.scrollTo({
+    top: window.scrollY + rect.top + rect.height / 2 - targetCenter,
+    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+      ? "instant"
+      : "smooth",
+  });
+}
 
 function clearHighlight() {
   for (const node of nodes.values()) {
@@ -90,6 +120,8 @@ function stop(message = "Redarea a fost oprită.") {
   clearTimeout(timer);
   utterance = null;
   active = paused = false;
+  followPlayback = false;
+  centeredCard = null;
   synth?.cancel();
   clearHighlight();
   controls();
@@ -150,6 +182,10 @@ function next(token) {
     item.code === "ro" ? "Se citește în română" : "Se citește în maghiară";
   $("progress").textContent =
     `Fișa ${item.position} din ${item.total}: ${item.row.romanian} — ${item.code === "ro" ? "română" : "maghiară"}.`;
+  if (followPlayback && centeredCard !== node) {
+    centeredCard = node;
+    centerPlayingCard(node);
+  }
   const voice = voices[item.code].find(
     (voice) => voice.voiceURI === $(`voice-${item.code}`).value,
   );
@@ -185,9 +221,10 @@ function next(token) {
     $("notice").textContent = "Redarea nu a putut începe.";
   }
 }
-function play(selection, codes) {
+function play(selection, codes, follow = false) {
   if (!supported || codes.some((code) => !voices[code].length)) return;
   stop("");
+  followPlayback = follow;
   $("notice").textContent = "";
   queue = selection.flatMap((row, index) =>
     codes.map((code) => ({
@@ -274,7 +311,9 @@ function render() {
   $("empty").hidden = visible.length > 0;
   updateAvailability();
 }
-$("play-all").addEventListener("click", () => play(visible, ["ro", "hu"]));
+$("play-all").addEventListener("click", () =>
+  play(visible, ["ro", "hu"], true),
+);
 $("stop").addEventListener("click", () => {
   if (active) stop();
 });
