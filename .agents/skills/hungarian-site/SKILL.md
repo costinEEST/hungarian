@@ -1,9 +1,27 @@
 ---
 name: hungarian-site
-description: Maintain the Hungarian learning website's lesson pages, Markdown vocabulary sources, navigation, responsive layouts, Hungarian-only reading mode, accessibility, generated content, and index metadata. Use for vocabulary review or structural and behavioral changes to the site's Markdown, HTML, CSS, or JavaScript; use hungarian-audio as well when pronunciation recordings or playback are involved.
+description: "Maintain Hungarian lessons and flashcards: use for vocabulary, layouts, reading mode, shared playback, and SEO changes."
+metadata:
+  author: "Constantin Câmpean <mail.la.costi@gmail.com>"
+  version: "1.0.0"
+  tags: "hungarian, lessons, flashcards"
 ---
 
 # Hungarian lesson-site maintenance
+
+## Purpose
+
+Maintain the Romanian-to-Hungarian site using its shared modules and Markdown
+sources. Use `hungarian-audio` for alphabet recordings and their playback;
+flashcard speech synthesis belongs to this skill.
+
+## Prerequisites
+
+Use Node.js for local validators and npm for pinned formatting and image tools.
+Python 3 serves fetch-backed pages locally. Browser MCP verifies interactions
+and social previews. First-time CLI downloads and remote checks need network access.
+
+## Instructions
 
 Run commands from the repository root. Preserve the established visual system
 and Romanian-to-Hungarian learning flow unless the user requests a redesign.
@@ -86,11 +104,12 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
 - Both city and chapter lessons load `assets/lesson.css` and `assets/lesson.js`.
   Reuse `assets/lesson-markdown.js` for explanatory Markdown and the shared
   Hungarian-only reading controls; do not copy inline renderers or styles.
-- Every lesson and flashcard page selects an explicit `data-deck` identifier.
+- Every shared Markdown-backed lesson and flashcard page selects an explicit
+  `data-deck` identifier.
   `assets/decks.js` defines its Markdown URL, table schema, lesson columns,
   grouping, and Hungarian reading text. Add content-specific differences there.
 - `assets/markdown-source.js` validates the maintained plain-text pipe tables.
-  Both datasets expose `group`, `romanian`, `hungarian`, and `notes`; city rows
+  All three decks expose `group`, `romanian`, `hungarian`, and `notes`; city rows
   also expose locative forms. Reject malformed or empty tables consistently.
   Derive runtime counts from parsed entries. Keep expected totals in validation
   checks rather than rejecting valid source edits with runtime fixed counts.
@@ -114,6 +133,12 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   `assets/markdown-source.js` is the shared parser for both lessons and
   flashcard pages. Reject missing or malformed tables visibly rather than
   silently dropping entries. Derive card and county counts from the parsed rows.
+- The `practical` deck fetches `vocabular-maghiar-practic.md` for
+  `vocabular-maghiar-practic-flashcards.html`. `parseDeckSource()` in
+  `assets/decks.js` parses every numbered section's Hungarian/pronunciation/meaning
+  table, derives the group from its heading, and displays pronunciation as notes.
+  Pronunciation notes are never spoken. Preserve this section-table schema and
+  reject a malformed later table as well as a malformed first table.
 - Render each language as ordinary text inside `span lang="ro"` and
   `span lang="hu"`, using native buttons for pair and individual playback.
   Use `textContent` for Markdown-derived card text. The initial deck teaches
@@ -127,11 +152,12 @@ and Romanian-to-Hungarian learning flow unless the user requests a redesign.
   group filtering (counties or themes), and accent-insensitive search. Resume repeats the current
   word from its beginning. Filtering or changing settings stops playback.
 - Keep the player sticky and all configuration in the left settings drawer.
-  During `Redă toate`, smoothly scroll each newly active card to the vertical
-  center between the sticky player's measured bottom and the viewport bottom,
-  on both desktop and mobile. Account for the mobile visual viewport and leave
-  enough trailing scroll space to center the final card. Respect reduced motion
-  with instant scrolling; do not move keyboard focus or restart scrolling for
+  During `Redă toate`, smoothly align each newly active card's top below the
+  sticky player's measured bottom, leaving the computed `#cards` row gap
+  (currently 16px). Use `scrollPlayingCard()` in `assets/flashcards.js`; account
+  for the mobile visual viewport and leave enough trailing scroll space for the
+  final card to reach the same position. Do not add leading centering space.
+  Respect reduced motion with instant scrolling; do not move keyboard focus or restart scrolling for
   the second language of the same card. Individual playback need not scroll.
   Opening the native modal dialog pauses playback; closing does not restart it.
   Preserve the close button, Escape dismissal, backdrop fallback, and focus
@@ -274,9 +300,9 @@ Approved dictionaries: none recorded yet.
 - For each new vocabulary Markdown source, retain evidence of the duplicate
   scan and Romanian-meaning review in the task report.
 - For flashcards, validate every source entry, section total, and language pair.
-  Review every duplicate rather than deleting it automatically; verify both
-  the Markdown-backed city and chapter decks with the shared player. Run
-  `node scripts/validate-flashcards.mjs` for counts and duplicate reports, and
+  Review every duplicate rather than deleting it automatically; verify
+  all three Markdown-backed decks (cities, chapter-2, practical) with the shared
+  player. Run `node scripts/validate-flashcards.mjs` for counts and duplicate reports, and
   `node --test scripts/test-decks.mjs` for source and parser regression checks.
 - Parse executable inline scripts with
   `node scripts/check-inline-scripts.mjs <page.html>`
@@ -288,7 +314,7 @@ Approved dictionaries: none recorded yet.
 - Format-check this skill with:
 
 ```bash
-npx --yes prettier --check .agents/skills/hungarian-site/SKILL.md
+npx --yes prettier@3.6.2 --check .agents/skills/hungarian-site/SKILL.md
 ```
 
 ## Reuse source-extraction tools
@@ -322,3 +348,28 @@ npx --yes prettier --check .agents/skills/hungarian-site/SKILL.md
   generated files cannot be mistaken for maintained project sources.
 
 Do not commit unless the user requests it.
+
+## Examples
+
+- For play-all scrolling changes, check first, middle, and final cards on desktop
+  and mobile. The space below the player must equal the grid row gap; the second
+  language of the same card must not scroll again. Include reduced motion.
+- For practical-vocabulary additions, edit the maintained Markdown table,
+  validate every section with `parseDeckSource()`, and recompute totals;
+  do not paste entries into the flashcard HTML.
+
+## Limitations
+
+Dictionary verification remains pending until an approved dictionary is recorded.
+Voice availability depends on the browser and installed system voices; static
+checks cannot prove speech playback or browser Read Aloud behavior. SEO checks
+verify local consistency, not indexing or cached sharing previews.
+
+## Troubleshooting
+
+- If voices are missing, inspect `voice-status` and installed Romanian and
+  Hungarian voices; keep cards readable and never substitute another language.
+- If Markdown fetching fails, serve the repo over local HTTP and inspect the
+  request and parser error before changing data or duplicating it in HTML.
+- If browser MCP is busy, try an isolated session and report any remaining
+  verification gap; do not close someone else's browser.

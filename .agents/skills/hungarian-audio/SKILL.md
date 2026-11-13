@@ -1,9 +1,26 @@
 ---
 name: hungarian-audio
-description: Maintain pronunciation recordings for the Hungarian alphabet page. Use when adding, replacing, comparing, finding, or validating audio URLs in alfabet-maghiar.html, or when troubleshooting its pronunciation buttons and audio-source attribution.
+description: "Maintain alphabet pronunciation audio: use for recording discovery, URL validation, playback, and attribution in alfabet-maghiar.html."
+metadata:
+  author: "Constantin Câmpean <mail.la.costi@gmail.com>"
+  version: "1.0.0"
+  tags: "hungarian, pronunciation, audio"
 ---
 
 # Hungarian audio maintenance
+
+## Purpose
+
+Maintain mapped alphabet recordings and their accessible playback. Flashcard
+speech synthesis is maintained by `hungarian-site`, not the recording map.
+
+## Prerequisites
+
+Use Node.js for audio-map helpers and inline-script checks, and Bash plus `curl`
+for `inspect-audio.sh`. `ffprobe` is optional for codec measurements. Discovery
+and URL checks need network access; npm runs the pinned formatting command.
+
+## Instructions
 
 Run commands from the repository root. Preserve the user's requested word,
 phrase, and recording source unless they ask for alternatives.
@@ -81,11 +98,34 @@ treat network denial or rate limiting as evidence that a recording is invalid.
 After editing, format-check the skill with:
 
 ```bash
-npx --yes prettier --check .agents/skills/hungarian-audio/SKILL.md
+npx --yes prettier@3.6.2 --check .agents/skills/hungarian-audio/SKILL.md
 ```
 
-Prettier verifies that the Markdown and YAML frontmatter parse and follow the
-repository's formatting convention; it does not enforce the full Codex skill
-schema. Also parse changed inline JavaScript and run `git diff --check`. When
+Prettier checks Markdown formatting; validate YAML frontmatter separately with
+a skill-schema validator. Also parse changed inline JavaScript and run `git diff --check`. When
 an audio mapping changed, run the scoped URL verifier and report which source
 and format were selected. Do not commit unless the user requests it.
+
+## Examples
+
+- To replace one recording, inspect the candidate URL, review the map change,
+  and run `node scripts/verify-audio.mjs --word '<word-or-phrase>'`. Report the
+  selected provider and format, and test its pronunciation button.
+- To compare formats, run `inspect-audio.sh` on each candidate URL and compare
+  codec measurements and audible quality before selecting one.
+
+## Limitations
+
+Provider availability, rate limits, and browser CORS policies affect playback.
+A successful URL check proves an audio response, not correct pronunciation or
+recording quality; listen when those are part of the task. Codec measurements
+are unavailable when optional `ffprobe` is absent.
+
+## Troubleshooting
+
+- On network denial or rate limiting, report the verification gap and retry only
+  within the authorized network scope; do not delete the mapping as invalid.
+- If a URL verifies but browser playback fails, inspect the response and console
+  for CORS errors, especially provider-specific `crossOrigin` handling.
+- If a phrase renders several buttons, check its complete displayed text has a
+  map entry before removing word mappings used elsewhere.
