@@ -63,4 +63,10 @@ approved dictionary covers an entry, still perform the linguistic review and
 state that dictionary verification remains pending rather than claiming it was
 completed.
 
-Approved dictionaries: none recorded yet.
+Dictionary sources selected for the MCC verification task at the user's request:
+
+- [Transindex / Adatbank Hungarian–Romanian dictionary](https://szotar.adatbank.ro/?szotar=huro): ordinary lexical senses and Romanian meanings; exact-word searches do not validate whole MCC descriptions.
+- [Szótár.net](https://www.szotar.net/): publisher dictionary headwords and accessible free entries; never claim verification of subscription-only definitions that were not read.
+- [MEK English–Hungarian word list](https://mek.oszk.hu/00000/00076/html/index.htm): auxiliary candidate senses only. Its 1998 introduction explicitly says the collection is not fully linguistically checked; do not use it alone for technical or medical equivalence.
+
+The MCC-specific audit and remaining gaps are recorded in `docs/coduri-mcc-verificare.md`. Visa's manual supplies category context, not dictionary authority.

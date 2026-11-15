@@ -7,6 +7,7 @@ for (const [id, total, groups] of [
   ["cities", 143, 17],
   ["chapter-2", 165, 10],
   ["possession", 72, 5],
+  ["mcc", 723, 17],
 ]) {
   const deck = getDeck(id);
   const markdown = readFileSync(
@@ -84,4 +85,24 @@ test("practical: parses all 24 section tables and rejects a malformed later tabl
   assert.throws(() => parseDeckSource(markdown.replace(/\| túra\s*\|/, "| |"), deck));
   assert.throws(() => parseDeckSource(markdown.replace(/\| Maghiară\s*\| Pronunție\s*\| Sens\s*\|/g, "Missing table"), deck));
   assert.throws(() => parseDeckSource("No sections", deck));
+});
+
+
+test("mcc: codes remain unique and searchable with English references", () => {
+  const deck = getDeck("mcc");
+  const { rows } = parseDeckSource(readFileSync(new URL("../coduri-mcc-maghiara.md", import.meta.url), "utf8"), deck);
+  const codes = rows.flatMap((row) =>
+    row.notes.match(/^MCC (\d{4}(?:\/ \d{4})*)\. EN: /)?.[1].split("/ ") ?? [],
+  );
+  assert.equal(codes.length, 981);
+  assert.equal(new Set(rows.map((row) => `${row.romanian}|${row.hungarian}`)).size, rows.length);
+  const airlines = rows.find((row) => row.romanian === "Companii aeriene");
+  assert.equal(airlines.notes.match(/^MCC ([\d/ ]+)\./)[1].split("/ ").length, 128);
+  assert.ok(deck.searchText(airlines).includes("3026"));
+  assert.ok(deck.searchText(airlines).includes("3072"));
+  assert.ok(codes.every(Boolean));
+  assert.equal(new Set(codes).size, 981);
+  const veterinary = rows.find((row) => row.notes.startsWith("MCC 0742."));
+  assert.ok(deck.searchText(veterinary).includes("0742"));
+  assert.ok(deck.searchText(veterinary).includes("Veterinary Services"));
 });

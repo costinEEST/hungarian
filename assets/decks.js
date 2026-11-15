@@ -64,6 +64,12 @@ decks.possession = {
   source: "./persoane-si-posesia-maghiara.md",
 };
 
+decks.mcc = {
+  ...decks["chapter-2"],
+  source: "./coduri-mcc-maghiara.md",
+  searchText: (row) => `${row.romanian} ${row.hungarian} ${row.notes}`,
+};
+
 export function getDeck(id) {
   if (!Object.hasOwn(decks, id)) throw new Error(`Sursă necunoscută: ${id}`);
   return decks[id];

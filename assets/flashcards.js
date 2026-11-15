@@ -294,7 +294,7 @@ function render() {
   visible = order.filter(
     (row) =>
       (!$("group").value || row.group === $("group").value) &&
-      normalize(`${row.romanian} ${row.hungarian}`).includes(query),
+      normalize(deck.searchText?.(row) ?? `${row.romanian} ${row.hungarian}`).includes(query),
   );
   $("cards").replaceChildren(...visible.map((row) => nodes.get(row)));
   $("count").textContent = `${visible.length} de fișe`;

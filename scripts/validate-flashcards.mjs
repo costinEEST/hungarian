@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { getDeck, parseDeckSource } from "../assets/decks.js";
 
 const requested = process.argv.slice(2);
-const identifiers = requested.length ? requested : ["cities", "chapter-2", "practical", "possession"];
+const identifiers = requested.length ? requested : ["cities", "chapter-2", "practical", "possession", "mcc"];
 const normalize = (text) =>
   text.normalize("NFC").trim().toLocaleLowerCase("ro");
 let failed = false;
