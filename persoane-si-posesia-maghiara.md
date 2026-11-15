@@ -2,7 +2,7 @@
 
 ## De la férfi și nép la népe
 
-**Férfi** înseamnă „bărbat”, **nép** înseamnă „popor”, iar **népe** este o formă posesivă: „poporul lui / ei”. Nu sunt cuvinte din aceeași familie. Lecția pornește de la această diferență și explică posesia prin vocabular despre persoane și exemple cotidiene.
+**Férfi** înseamnă „bărbat”, **nép** înseamnă „popor”, iar **népe** este o formă posesivă: „poporul lui / ei”. Férfi și nép aparțin unor familii diferite; népe este o formă a lui nép. Lecția pornește de la această diferență și explică posesia prin vocabular despre persoane și exemple cotidiene.
 
 ## Persoane, plural și familii de cuvinte
 
@@ -12,7 +12,7 @@
 
 ## Cum se exprimă „lui” sau „ei”
 
-În maghiară, terminația posesivă se adaugă la lucrul posedat: **nép + -e → népe**. Termenul maghiar este **birtokos személyjel**. Aici studiem un singur lucru posedat și un posesor la persoana a III-a singular.
+În maghiară, terminația posesivă se adaugă la lucrul posedat: **nép + -e → népe**. Termenul maghiar este **birtokos személyjel**. Pornim de la un singur lucru posedat și un posesor la persoana a III-a singular; mai jos introducem și „am / ai”.
 
 **Anna könyve** înseamnă „cartea Anei”: posesorul apare înainte, iar **könyv** („carte”) primește **-e**. **Isten népe** înseamnă „poporul lui Dumnezeu”. **Népe** se scrie cu literă mică în această expresie; majuscula apare la începutul propoziției sau când o cere un titlu.
 
@@ -38,6 +38,12 @@ Articolul hotărât este **a** înaintea unei consoane și **az** înaintea unei
 **Ez Anna könyve.** — Aceasta este cartea Anei. La persoana a III-a, în prezent, o identificare ca aceasta nu folosește **van**. Pentru localizare însă: **Anna könyve itt van.** — Cartea Anei este aici.
 
 **Ki ő?** întreabă „Cine este el / ea?”. **Kinek a könyve ez?** întreabă „A cui este această carte?”. **Kinek** înseamnă aici „al cui / a cui”. În răspunsul **Ez Anna könyve**, numele Anna nu primește o terminație. Există și construcția **Annának a könyve**, utilă ca extensie după ce stăpânești modelul simplu.
+
+## Cum spui „am” și „nu am”
+
+Pentru un singur lucru posedat, folosește **van / nincs** și substantivul cu terminație posesivă: **Van egy könyvem.** — Am o carte. **Nincs könyvem.** — Nu am carte. **-m** indică posesorul „eu”, iar **-d**, posesorul „tu”: **Van egy könyved?** — Ai o carte?
+
+Cu un nume explicit: **Annának van egy könyve.** — Anna are o carte. Numele primește **-nak / -nek**, iar lucrul posedat păstrează terminația posesivă. Nu confunda această construcție cu **Anna könyve itt van**, care localizează cartea.
 
 ## Cum le pronunți
 
@@ -81,6 +87,8 @@ Traducere: **1. Ez Anna kertje. 2. Anna könyve itt van. 3. Kinek a háza ez?**
 
 Exemplele cotidiene și exercițiile sunt adaptări didactice. Lista de mai jos alimentează atât lecția HTML, cât și flashcardurile; observațiile nu se citesc în redarea vocală.
 
+Pentru vocabularul despre familie: [lista maghiară–engleză / engleză–maghiară, Durst Péter, ediția 2017](https://www.lepesenkent.hu/media/pdf/L1N_Hung_Eng_Eng_Hung_vocab.pdf), intrările **anya, apa, család, férj, feleség, öcs, nővér, húg**. Traducerile românești și propozițiile sunt adaptări didactice; **húg** precizează sora mai mică, deși glosarul englezesc spune doar „sister”.
+
 ## Fișe
 
 | Categorie | Română | Maghiară | Observații |
@@ -96,6 +104,14 @@ Exemplele cotidiene și exercițiile sunt adaptări didactice. Lista de mai jos 
 | Persoane | bărbați | férfiak | Plural; după numeral folosim singularul. |
 | Persoane | femei | nők | Plural. |
 | Persoane | copii | gyerekek | Plural. |
+| Persoane | mamă | anya | Termen de familie. |
+| Persoane | tată | apa | Termen de familie. |
+| Persoane | familie | család | Nu este pluralul lui copil. |
+| Persoane | soț | férj | Distinge férj de férfi (bărbat). |
+| Persoane | soție | feleség | Termen de familie. |
+| Persoane | frate mai mic | öcs | Mai mic decât persoana de referință. |
+| Persoane | soră mai mare | nővér | Aici: rudenie; sensul depinde de context. |
+| Persoane | soră mai mică | húg | Precizează vârsta relativă. |
 | Popor și cuvinte înrudite | popor | nép | Plural: népek. |
 | Popor și cuvinte înrudite | popoare | népek | Plural, nu posesiv. |
 | Popor și cuvinte înrudite | poporul lui / ei | népe | nép + -e; é rămâne lung. |
@@ -145,3 +161,7 @@ Exemplele cotidiene și exercițiile sunt adaptări didactice. Lista de mai jos 
 | Propoziții și întrebări | A cui este această casă? | Kinek a háza ez? | ház → háza. |
 | Propoziții și întrebări | Cum îl / o cheamă? | Mi a neve? | Literal: Care este numele lui / ei? |
 | Propoziții și întrebări | Numele lui / ei este Anna. | A neve Anna. | neve este o formă posesivă. |
+| Propoziții și întrebări | Am o carte. | Van egy könyvem. | -m: posesorul este „eu”. |
+| Propoziții și întrebări | Nu am carte. | Nincs könyvem. | Negația posesiei: nincs. |
+| Propoziții și întrebări | Ai o carte? | Van egy könyved? | -d: posesorul este „tu”. |
+| Propoziții și întrebări | Anna are o carte. | Annának van egy könyve. | Posesor explicit cu -nak. |

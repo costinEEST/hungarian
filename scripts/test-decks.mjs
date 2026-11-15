@@ -6,7 +6,7 @@ import { getDeck, parseDeckSource } from "../assets/decks.js";
 for (const [id, total, groups] of [
   ["cities", 143, 17],
   ["chapter-2", 165, 10],
-  ["possession", 60, 5],
+  ["possession", 72, 5],
 ]) {
   const deck = getDeck(id);
   const markdown = readFileSync(

@@ -28,6 +28,12 @@ Accentul cade **întotdeauna pe prima silabă**.
 
 ---
 
+## Repere din Lépésenként magyarul 1
+
+[Glosarul maghiară–engleză / engleză–maghiară al lui Durst Péter (2017)](https://www.lepesenkent.hu/media/pdf/L1N_Hung_Eng_Eng_Hung_vocab.pdf) completează sensurile din această selecție: **erős** = puternic ori iute, **beteg** = bolnav ori pacient, **alacsony** = scund ori jos. Traducerile românești sunt adaptări, nu o versiune românească oficială a glosarului.
+
+Distinge **férfi** (bărbat) de **férj** (soț), **testvér** (frate sau soră) de **öcs** (frate mai mic) și **nővér** (soră mai mare, în familie). Un sens din glosar nu epuizează toate utilizările cuvântului. Pentru posesie și propoziții, vezi [persoane și posesia în maghiară](./persoane-si-posesia-maghiara.html).
+
 ## 1. Salutări și politețe
 
 | Maghiară             | Pronunție             | Sens                                                      |
@@ -387,7 +393,7 @@ Accentul cade **întotdeauna pe prima silabă**.
 | hosszú      | hossuu        | lung              |
 | rövid       | rövid         | scurt             |
 | magas       | mogoș         | înalt             |
-| alacsony    | olocioñ       | scund, jos        |
+| alacsony    | olocioñ       | scund (persoană); jos (înălțime) |
 | széles      | seeleș        | lat               |
 | keskeny     | keșkeñ        | îngust            |
 | nehéz       | neheez        | greu              |
@@ -396,7 +402,7 @@ Accentul cade **întotdeauna pe prima silabă**.
 | egyszerű    | eghiserüü     | simplu            |
 | gyors       | ghiorș        | rapid             |
 | lassú       | loșșuu        | lent              |
-| erős        | eröös         | puternic          |
+| erős        | eröös         | puternic; iute (despre mâncare) |
 | gyenge      | ghienghe      | slab              |
 | meleg       | meleg         | cald              |
 | hideg       | hideg         | rece, frig        |
@@ -426,7 +432,7 @@ Accentul cade **întotdeauna pe prima silabă**.
 | fáradt      | faarott       | obosit            |
 | éhes        | eeheș         | flămând           |
 | szomjas     | somioș        | însetat           |
-| beteg       | beteg         | bolnav            |
+| beteg       | beteg         | bolnav; pacient (ca substantiv) |
 | egészséges  | egheesșeegheș | sănătos           |
 | kedves      | kedveș        | drăguț, amabil    |
 | udvarias    | udvorioș      | politicos         |
