@@ -148,8 +148,8 @@ vite.config.ts.timestamp-*
 # Turbo Repo
 .turbo
 
-# Local
-tmp
+# User-owned local workspace (preserve during cleanup)
+/sandbox/
 
 # macOS Finder metadata
 .DS_Store

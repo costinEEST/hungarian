@@ -36,11 +36,23 @@ npx --yes prettier@3.6.2 --check ".agents/skills/hungarian-site/**/*.md"
 
 ## Clean up task artifacts
 
+Preserve the repository-root `sandbox/` directory and its existing contents:
+the user created this directory and explicitly exempted it from cleanup. Do not
+use it for new agent temporary artifacts or classify it as disposable by name.
+
+Cleanup is required for every task that creates temporary files or directories,
+inside or outside the repository, including failed or abandoned attempts. Keep
+an inventory of task-created paths as they are created; `git status` alone
+cannot reveal files in `/tmp` or other external locations.
+
 - Put downloads, extracted text, generated script fragments, test reports, and
   one-off dependencies in a task-specific `mktemp` directory, never beside
   maintained sources.
 - Register cleanup with a shell `trap` as soon as the temporary directory is
-  created. Delete only the explicit task directory; never use an unresolved
+  created, or use `try/finally` or a temporary-directory context manager in a
+  script. Track any temporary files created outside that directory too. Delete
+  only the explicit task directory or individually recorded task-created files;
+  never use an unresolved
   variable, broad glob, repository root, home directory, or shared `/tmp` as a
   removal target.
 - Prefer helpers that stream results or parse in memory. The validation scripts
@@ -48,8 +60,12 @@ npx --yes prettier@3.6.2 --check ".agents/skills/hungarian-site/**/*.md"
 - Keep task-specific environment variables scoped to a single command or
   subprocess. Unset any variable exported into the interactive shell before
   handoff, stop local servers, and remove all task-owned temporary artifacts.
-- Before finishing, inspect `git status` and the task's known temporary paths so
-  generated files cannot be mistaken for maintained project sources.
+- Before the final handoff, remove every inventoried temporary file and
+  directory and confirm those paths no longer exist. Inspect `git status` too
+  so generated files cannot be mistaken for maintained project sources.
+- Preserve requested deliverables, pre-existing files, and shared tool caches.
+  If permissions or a running process prevent deletion, report the exact paths
+  left behind and why cleanup could not finish; do not silently leave them.
 
 Do not commit unless the user requests it.
 

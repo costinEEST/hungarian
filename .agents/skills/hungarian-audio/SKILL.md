@@ -14,6 +14,23 @@ metadata:
 Maintain mapped alphabet recordings and their accessible playback. Flashcard
 speech synthesis is maintained by `hungarian-site`, not the recording map.
 
+## Temporary files and directories
+
+The user-created `sandbox/` directory at the repository root is explicitly
+exempt from cleanup: preserve it and its existing contents. Do not use it as
+the workspace for new agent temporary files.
+
+Delete every temporary file and directory created for the task before the final
+handoff, including files outside the repository such as downloads, dictionary
+lookups, helper scripts, screenshots, and test output in `/tmp`. This also
+applies after failed commands and abandoned attempts. Keep requested deliverables
+and pre-existing files; delete only paths created by the current task. If cleanup
+is blocked, report the exact remaining paths and the reason.
+
+Follow the shared
+[cleanup procedure](../hungarian-site/references/validation-and-tools.md#clean-up-task-artifacts)
+whenever creating temporary artifacts, including standalone work.
+
 ## Prerequisites
 
 Use Node.js for audio-map helpers and inline-script checks, and Bash plus `curl`

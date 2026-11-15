@@ -15,6 +15,22 @@ user requests a redesign. Use the sibling `hungarian-audio` skill for alphabet
 recordings, providers, audio mappings, and mapped recording playback; flashcard
 speech synthesis belongs here.
 
+## Temporary files and directories
+
+The user-created `sandbox/` directory at the repository root is explicitly
+exempt from cleanup: preserve it and its existing contents. Do not use it as
+the workspace for new agent temporary files.
+
+Delete every temporary file and directory created for the task before the final
+handoff, including files outside the repository such as downloads, dictionary
+lookups, helper scripts, screenshots, and test output in `/tmp`. This also
+applies after failed commands and abandoned attempts. Keep requested deliverables
+and pre-existing files; delete only paths created by the current task. If cleanup
+is blocked, report the exact remaining paths and the reason.
+
+For tracking, automatic cleanup, and final checks, follow
+[Clean up task artifacts](references/validation-and-tools.md#clean-up-task-artifacts).
+
 ## Prerequisites
 
 - Run commands from the repository root. Use Node.js for local validators and
