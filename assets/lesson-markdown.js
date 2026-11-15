@@ -7,12 +7,17 @@ export const slugify = (value) =>
     .replace(/(^-|-$)/g, "");
 const appendInline = (parent, text) => {
   const pattern =
-    /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`)/g;
+    /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|<span lang="(hu|ro|en)">([\s\S]*?)<\/span>)/g;
   let start = 0;
   let match;
   while ((match = pattern.exec(text))) {
     parent.append(document.createTextNode(text.slice(start, match.index)));
-    if (match[2] && /^(https?:|\.\.?\/|#)/i.test(match[3])) {
+    if (match[7]) {
+      const span = document.createElement("span");
+      span.lang = match[7];
+      appendInline(span, match[8]);
+      parent.append(span);
+    } else if (match[2] && /^(https?:|\.\.?\/|#)/i.test(match[3])) {
       const anchor = document.createElement("a");
       anchor.href = match[3];
       appendInline(anchor, match[2]);
@@ -25,11 +30,11 @@ const appendInline = (parent, text) => {
       parent.append(document.createTextNode(match[2]));
     } else if (match[4]) {
       const strong = document.createElement("strong");
-      strong.textContent = match[4];
+      appendInline(strong, match[4]);
       parent.append(strong);
     } else if (match[5]) {
       const emphasis = document.createElement("em");
-      emphasis.textContent = match[5];
+      appendInline(emphasis, match[5]);
       parent.append(emphasis);
     } else {
       const code = document.createElement("code");

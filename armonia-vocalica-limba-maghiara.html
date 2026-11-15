@@ -82,6 +82,8 @@
     @media(max-width:680px){.wrap{width:min(100% - 24px,1120px)}header{padding-bottom:22px}.study-nav a{padding:7px 10px;font-size:.76rem}.lesson{padding-inline:18px}.table-wrap{overflow:visible;border-radius:14px}.lesson table,.lesson tbody{display:block;width:100%;min-width:0}.lesson thead{display:none}.lesson tbody tr{display:flex;flex-direction:column;align-items:center;padding:16px 14px;text-align:center;border-bottom:1px solid var(--line)}.lesson tbody tr:last-child{border-bottom:0}.lesson :is(th,td){display:block;width:100%;padding:4px 0;border:0;text-align:center;overflow-wrap:anywhere}.lesson tbody td::before{display:block;margin-top:5px;color:var(--muted);font-size:.72rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;content:attr(data-label)}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}@media(forced-colors:active){.study-nav a,.lesson,.table-wrap,.status{border:1px solid CanvasText}}
   </style>
+  <link rel="preload" href="./assets/fonts/literata/literata-latin-roman.e42c54d5.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="./assets/typography.css" />
 </head>
 <body>
   <a class="skip" href="#continut">Sari la conținut</a>
@@ -99,13 +101,14 @@
       const status = document.getElementById('status');
       const slugify = (value) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
       const appendInline = (parent, text) => {
-        const pattern = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|(?<!\*)\*([^*]+)\*(?!\*)|`([^`]+)`)/g;
+        const pattern = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|(?<!\*)\*([^*]+)\*(?!\*)|`([^`]+)`|<span lang="(hu|ro|en)">([\s\S]*?)<\/span>)/g;
         let start = 0; let match;
         while ((match = pattern.exec(text))) {
           parent.append(document.createTextNode(text.slice(start, match.index)));
-          if (match[2]) { const anchor = document.createElement('a'); anchor.href = match[3]; appendInline(anchor, match[2]); if (/^https?:/.test(match[3])) { anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; } parent.append(anchor); }
-          else if (match[4]) { const strong = document.createElement('strong'); strong.textContent = match[4]; parent.append(strong); }
-          else if (match[5]) { const emphasis = document.createElement('em'); emphasis.textContent = match[5]; parent.append(emphasis); }
+          if (match[7]) { const span = document.createElement('span'); span.lang = match[7]; appendInline(span, match[8]); parent.append(span); }
+          else if (match[2]) { const anchor = document.createElement('a'); anchor.href = match[3]; appendInline(anchor, match[2]); if (/^https?:/.test(match[3])) { anchor.target = '_blank'; anchor.rel = 'noopener noreferrer'; } parent.append(anchor); }
+          else if (match[4]) { const strong = document.createElement('strong'); appendInline(strong, match[4]); parent.append(strong); }
+          else if (match[5]) { const emphasis = document.createElement('em'); appendInline(emphasis, match[5]); parent.append(emphasis); }
           else { const code = document.createElement('code'); code.textContent = match[6]; parent.append(code); }
           start = pattern.lastIndex;
         }

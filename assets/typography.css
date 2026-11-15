@@ -1,0 +1,40 @@
+/* Self-hosted Literata; provenance and license: fonts/literata/README.md. */
+@font-face {
+  font-family: "Literata";
+  src: url("./fonts/literata/literata-latin-roman.e42c54d5.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Literata";
+  src: url("./fonts/literata/literata-latin-italic.85368b48.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* Shared reading font for Romanian and Hungarian. Explicit language markers
+   remain for pronunciation; specialized phonetic/monospace styles stay intact. */
+:root,
+body {
+  font-family: "Literata", Georgia, "Times New Roman", serif;
+  font-optical-sizing: auto;
+  /* Literata's measured x-height / units-per-em; stable even before loading. */
+  font-size-adjust: 0.507;
+  line-height: 1.6;
+}
+
+/* Alphabet tables use monospace for pronunciation; Hungarian letters and
+   examples still use the shared reading font. */
+:root [lang|="hu"] {
+  font-family: "Literata", Georgia, "Times New Roman", serif;
+}
+
+/* Older browsers still get readable serif text and room for tall accents. */
+@supports not (font-size-adjust: 0.507) {
+  :root {
+    line-height: 1.6;
+  }
+}

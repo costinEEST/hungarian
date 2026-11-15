@@ -1,5 +1,5 @@
 import { getDeck, loadLesson } from "./decks.js";
-import { renderGuide, slugify } from "./lesson-markdown.js";
+import { renderGuide, slugify } from "./lesson-markdown.js?v=20261115";
 
 const $ = (id) => document.getElementById(id);
 const sourceView = $("source-view");
