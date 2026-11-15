@@ -59,6 +59,11 @@ const decks = {
   },
 };
 
+decks.possession = {
+  ...decks["chapter-2"],
+  source: "./persoane-si-posesia-maghiara.md",
+};
+
 export function getDeck(id) {
   if (!Object.hasOwn(decks, id)) throw new Error(`Sursă necunoscută: ${id}`);
   return decks[id];
