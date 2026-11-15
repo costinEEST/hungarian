@@ -70,6 +70,11 @@ decks.mcc = {
   searchText: (row) => `${row.romanian} ${row.hungarian} ${row.notes}`,
 };
 
+decks["vowel-examples"] = {
+  ...decks["chapter-2"],
+  source: "./armonia-vocalica-exemple-si-conjugari.md",
+};
+
 export function getDeck(id) {
   if (!Object.hasOwn(decks, id)) throw new Error(`Sursă necunoscută: ${id}`);
   return decks[id];

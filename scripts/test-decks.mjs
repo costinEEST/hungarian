@@ -7,6 +7,7 @@ for (const [id, total, groups] of [
   ["cities", 143, 17],
   ["chapter-2", 165, 10],
   ["possession", 72, 5],
+  ["vowel-examples", 60, 6],
   ["mcc", 723, 17],
 ]) {
   const deck = getDeck(id);
