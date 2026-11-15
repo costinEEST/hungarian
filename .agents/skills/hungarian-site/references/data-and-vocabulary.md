@@ -30,6 +30,12 @@
 
 ## Review new vocabulary sources
 
+When English-language PDFs, glossaries, grammar guides, or pasted passages
+inform Hungarian lesson content, also read
+[interpreting-hungarian](../../interpreting-hungarian/SKILL.md). Use it for
+linguistic adaptation and review while retaining Romanian explanations and
+source Hungarian examples. English coding instructions alone do not trigger it.
+
 Before publishing or generating a page from a newly added Markdown vocabulary
 or phrase source:
 

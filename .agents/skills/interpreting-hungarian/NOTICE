@@ -1,0 +1,13 @@
+Interpreting Hungarian — English ↔ Hungarian Translation Skill
+Copyright 2026 Virág Làzár Csaba ✸☽
+
+Licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full terms.
+
+Repository adaptation for Hungarian lessons for Romanian speakers.
+Upstream: https://github.com/forint573/interpreting-hungarian
+Pinned revision: 59796b18dbafec64bbdd11f91d658f387fa12824
+Local modifications: replaced SKILL.md with project-specific routing; moved
+the upstream core to reference/translation-guidance.md, adjusted relative
+reference paths, and replaced its output/model rules with task-scoped guidance.
+The five other reference files are preserved unchanged.
