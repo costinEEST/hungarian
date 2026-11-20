@@ -1,7 +1,10 @@
 import { getDeck, loadDeck } from "./decks.js";
 import { rankVoices } from "./flashcard-voices.js";
 
-const deck = getDeck(document.body.dataset.deck);
+const embeddedDeck = document.getElementById("embedded-deck");
+const deck = embeddedDeck
+  ? { showNotes: true }
+  : getDeck(document.body.dataset.deck);
 const $ = (id) => document.getElementById(id);
 const synth = globalThis.speechSynthesis;
 const supported = Boolean(synth && globalThis.SpeechSynthesisUtterance);
@@ -294,7 +297,9 @@ function render() {
   visible = order.filter(
     (row) =>
       (!$("group").value || row.group === $("group").value) &&
-      normalize(deck.searchText?.(row) ?? `${row.romanian} ${row.hungarian}`).includes(query),
+      normalize(
+        deck.searchText?.(row) ?? `${row.romanian} ${row.hungarian}`,
+      ).includes(query),
   );
   $("cards").replaceChildren(...visible.map((row) => nodes.get(row)));
   $("count").textContent = `${visible.length} de fișe`;
@@ -350,7 +355,26 @@ for (const id of ["voice-ro", "voice-hu", "rate"])
 addEventListener("pagehide", () => stop());
 synth?.addEventListener("voiceschanged", loadVoices);
 loadVoices();
-const sourceRows = loadDeck(deck);
+const sourceRows = embeddedDeck
+  ? Promise.resolve().then(() => {
+      const entries = JSON.parse(embeddedDeck.textContent);
+      if (
+        !Array.isArray(entries) ||
+        !entries.length ||
+        entries.some(
+          (row) =>
+            !row ||
+            ["group", "romanian", "hungarian", "notes"].some(
+              (key) => typeof row[key] !== "string",
+            ) ||
+            !row.romanian.trim() ||
+            !row.hungarian.trim(),
+        )
+      )
+        throw new Error("Fișe invalide");
+      return entries;
+    })
+  : loadDeck(deck);
 sourceRows
   .then((entries) => {
     rows = entries;

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ro">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fișe din fotografii — română și maghiară</title>
+  <meta name="description"
+    content="Fotografiază o pagină cu text în română și maghiară, extrage textul local în browser și generează o pagină cu fișe." />
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#151512" media="(prefers-color-scheme: dark)" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2712%27 fill=%27%23315f3d%27/%3E%3Ctext x=%2732%27 y=%2744%27 text-anchor=%27middle%27 font-size=%2740%27 fill=%27white%27%3EF%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="./assets/foto-flashcarduri/app.css" />
+  <link rel="stylesheet" href="./assets/typography.css" />
+  <script type="module" src="./assets/foto-flashcarduri/app.js"></script>
+  <meta name="author" content="Constantin Câmpean">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://costineest.github.io/hungarian/foto-flashcarduri.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ro_RO">
+  <meta property="og:site_name" content="Resurse pentru limba maghiară">
+  <meta property="og:title" content="Fișe din fotografii — română și maghiară">
+  <meta property="og:description"
+    content="Fotografiază o pagină cu text în română și maghiară, extrage textul local în browser și generează o pagină cu fișe.">
+  <meta property="og:url" content="https://costineest.github.io/hungarian/foto-flashcarduri.html">
+  <meta property="og:image" content="https://costineest.github.io/hungarian/assets/social/foto-flashcarduri.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Fișe din fotografii: imagine, text OCR, perechi verificate și export HTML.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fișe din fotografii — română și maghiară">
+  <meta name="twitter:description"
+    content="Fotografiază o pagină cu text în română și maghiară, extrage textul local în browser și generează o pagină cu fișe.">
+  <meta name="twitter:image" content="https://costineest.github.io/hungarian/assets/social/foto-flashcarduri.png">
+  <meta name="twitter:image:alt" content="Fișe din fotografii: imagine, text OCR, perechi verificate și export HTML.">
+  <script
+    type="application/ld+json">{"@context": "https://schema.org", "@type": ["WebPage", "LearningResource", "WebApplication"], "@id": "https://costineest.github.io/hungarian/foto-flashcarduri.html", "url": "https://costineest.github.io/hungarian/foto-flashcarduri.html", "name": "Fișe din fotografii — română și maghiară", "description": "Fotografiază o pagină cu text în română și maghiară, extrage textul local în browser și generează o pagină cu fișe.", "author": {"@type": "Person", "name": "Constantin Câmpean"}, "inLanguage": ["ro", "hu"], "isAccessibleForFree": true, "applicationCategory": "EducationalApplication", "operatingSystem": "Web browser", "image": {"@type": "ImageObject", "url": "https://costineest.github.io/hungarian/assets/social/foto-flashcarduri.png", "width": 1200, "height": 630}}</script>
+</head>
+
+<body>
+  <header class="wrap">
+    <a href="./">← Toate resursele</a>
+    <h1>Fișe din fotografii</h1>
+    <p>
+      Fotografiază sau încarcă o pagină cu text în română și maghiară. Textul este extras
+      în browser, apoi îl transformi în fișe pe care le poți descărca.
+    </p>
+    <p class="muted">Imaginile și textul sunt procesate local, fără încărcare pe un server. Prima utilizare OCR necesită
+      internet pentru motor și modelele de limbă. Reîncărcarea paginii șterge lucrul nesalvat.</p>
+  </header>
+
+  <main class="wrap">
+    <noscript>Activează JavaScript pentru fotografii, OCR și export.</noscript>
+    <section aria-labelledby="step-1">
+      <h2 id="step-1"><span class="step">1</span> Imaginea</h2>
+      <div class="actions">
+        <button id="camera-start" type="button">Pornește camera</button>
+        <button id="camera-shot" type="button" hidden>Fotografiază</button>
+        <button id="camera-stop" type="button" hidden>Oprește camera</button>
+        <label for="file-input">Încarcă fotografii</label>
+        <input id="file-input" type="file" accept="image/*" multiple />
+      </div>
+      <p class="muted">Poți și lipi o imagine (Ctrl/⌘ + V) sau o poți trage în pagină.</p>
+      <video id="video" playsinline muted hidden></video>
+      <p id="capture-status" role="status"></p>
+
+      <div id="pages-panel" hidden>
+        <h3>Pagini</h3>
+        <ol id="pages" class="pages" role="list"></ol>
+        <div class="editor">
+          <canvas id="preview" role="img"
+            aria-label="Fotografia paginii selectate. Textul extras apare mai jos."></canvas>
+          <div class="actions">
+            <button id="rotate-left" type="button">Rotește ⟲</button>
+            <button id="rotate-right" type="button">Rotește ⟳</button>
+            <label class="check"><input id="enhance" type="checkbox" /> Contrast mărit (alb-negru)</label>
+            <button id="remove-page" type="button">Șterge pagina</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="step-2">
+      <h2 id="step-2"><span class="step">2</span> Textul (OCR)</h2>
+      <fieldset>
+        <legend>Motor OCR</legend>
+        <label class="check"><input type="radio" name="engine" value="tesseract" checked /> Tesseract (română +
+          maghiară) — procesare locală</label>
+        <label class="check"><input type="radio" name="engine" value="gemini" id="engine-gemini" /> Gemini Nano din
+          Chrome — experimental</label>
+        <p id="gemini-ocr-status" class="muted"></p>
+      </fieldset>
+      <div class="actions">
+        <button id="ocr-run" type="button" disabled>Extrage textul</button>
+        <button id="ocr-cancel" type="button" hidden>Anulează</button>
+      </div>
+      <progress id="ocr-progress" max="1" value="0" hidden aria-label="Progresul extragerii"></progress>
+      <p id="ocr-status" role="status"></p>
+      <label for="ocr-text">Text extras (îl poți corecta)</label>
+      <p id="ocr-help">Verifică diacriticele și alinierea. Poți introduce text manual: o pereche pe linie, cu tab sau „
+        – ” între limbi. Perechile neclare rămân incomplete.</p><textarea aria-describedby="ocr-help" id="ocr-text"
+        rows="14" spellcheck="false"></textarea>
+    </section>
+
+    <section aria-labelledby="step-3">
+      <h2 id="step-3"><span class="step">3</span> Fișele</h2>
+      <fieldset>
+        <legend>Cum se formează perechile</legend>
+        <label class="check"><input type="radio" name="pairing" value="ai" id="pairing-ai" /> Gemini Nano din Chrome
+          — experimental</label>
+        <label class="check"><input type="radio" name="pairing" value="rules" checked /> Reguli simple: aceeași linie
+          („cuvânt – szó”) sau linii consecutive</label>
+        <p id="ai-status" class="muted"></p>
+        <p class="muted">Româna și maghiara nu sunt limbi oficial acceptate de Prompt API. Rezultatele pot eșua sau
+          conține erori. Reguli simple și editarea manuală rămân disponibile.</p>
+      </fieldset>
+      <div class="actions">
+        <button id="cards-build" type="button" disabled>Generează fișele</button>
+        <button id="cards-cancel" type="button" hidden>Anulează</button>
+
+        <button id="cards-add" type="button">Adaugă o fișă</button>
+      </div>
+      <progress id="ai-progress" max="1" value="0" hidden aria-label="Descărcarea modelului"></progress>
+      <p id="cards-status" role="status"></p>
+      <div class="table-scroll">
+        <table id="cards-table" hidden>
+          <caption>Verifică și corectează perechile înainte de export</caption>
+          <thead>
+            <tr>
+              <th scope="col">Temă</th>
+              <th scope="col">Română</th>
+              <th scope="col">Maghiară</th>
+              <th scope="col">Observații</th>
+              <th scope="col"><span class="visually-hidden">Acțiuni</span></th>
+            </tr>
+          </thead>
+          <tbody id="cards-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="step-4">
+      <h2 id="step-4"><span class="step">4</span> Pagina cu fișe</h2>
+      <label for="deck-title">Titlu</label>
+      <input id="deck-title" type="text" value="Fișe română–maghiară" />
+      <div class="actions">
+        <button id="export-preview" type="button" disabled>Deschide pagina</button>
+        <button id="export-html" type="button" disabled>Descarcă HTML</button>
+        <button id="export-md" type="button" disabled>Descarcă Markdown</button>
+      </div>
+      <p class="muted">
+        Pagina HTML funcționează singură, fără internet. Markdown-ul are tabelul
+        „Categorie | Română | Maghiară | Observații”, același format ca fișierele din depozitul <i>hungarian</i>.
+      </p>
+      <p id="export-status" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="wrap muted">
+    <p>OCR cu <a href="https://github.com/naptha/tesseract.js">Tesseract.js</a>; AI din browser cu
+      <a href="https://developer.chrome.com/docs/ai/built-in">API-urile Chrome pentru Gemini Nano</a>.
+    </p>
+  </footer>
+</body>
+
+</html>

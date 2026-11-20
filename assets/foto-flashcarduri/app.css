@@ -1,0 +1,248 @@
+:root {
+  color-scheme: light dark;
+  --bg: #fbfaf7;
+  --surface: #fff;
+  --ink: #20201d;
+  --muted: #62615b;
+  --line: #b9b6ad;
+  --accent: #315f3d;
+  --on-accent: #fff;
+  --focus: #174ea6;
+  --error: #a3261b;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #151512;
+    --surface: #1f1f1b;
+    --ink: #f4f2ec;
+    --muted: #b8b5ac;
+    --line: #77746b;
+    --accent: #8cc798;
+    --on-accent: #10200f;
+    --focus: #8ab4f8;
+    --error: #ff9b8f;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+/* Author display rules (buttons, video) must not defeat the hidden attribute. */
+[hidden] {
+  display: none !important;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.wrap {
+  width: min(100% - 32px, 1100px);
+  margin-inline: auto;
+}
+header {
+  padding-block: 32px 8px;
+}
+h1 {
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.15;
+  margin-block: 0 12px;
+}
+h2 {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+section {
+  border-top: 1px solid var(--line);
+  padding-block: 8px 24px;
+}
+.step {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 1rem;
+}
+.muted {
+  color: var(--muted);
+}
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+button,
+.button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+.button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  white-space: nowrap;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+#ocr-run,
+#cards-build,
+#export-html {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+}
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-block: 12px;
+}
+.check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  min-height: 36px;
+}
+fieldset {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+label {
+  display: block;
+}
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+}
+textarea {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+progress {
+  width: 100%;
+}
+video,
+#preview {
+  display: block;
+  max-width: 100%;
+  max-height: 70vh;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #000;
+}
+#preview {
+  background: var(--surface);
+}
+.pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  list-style: none;
+}
+.pages button {
+  padding: 4px;
+  flex-direction: column;
+  gap: 2px;
+}
+.pages button[aria-current="true"] {
+  border: 3px solid var(--accent);
+}
+.pages img {
+  display: block;
+  width: 72px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.table-scroll {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th,
+td {
+  padding: 4px;
+  border-bottom: 1px solid var(--line);
+  text-align: start;
+  vertical-align: top;
+}
+td input {
+  width: 100%;
+  min-width: 9rem;
+  padding: 6px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ink);
+}
+td input:hover,
+td input:focus {
+  border-color: var(--line);
+  background: var(--surface);
+}
+tr[data-empty] td input:placeholder-shown {
+  border-color: var(--error);
+}
+[role="status"]:empty {
+  display: none;
+}
+.error {
+  color: var(--error);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+footer {
+  padding-block: 24px 40px;
+}
+
+fieldset {
+  min-inline-size: 0;
+}
+input[type="file"] {
+  max-inline-size: 100%;
+}
+button {
+  white-space: normal;
+}
+.table-scroll {
+  max-inline-size: 100%;
+}
